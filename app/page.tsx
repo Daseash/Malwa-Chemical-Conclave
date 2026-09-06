@@ -327,8 +327,7 @@ export default function HomePage() {
               <div className="relative flex-1 w-full min-h-[340px] rounded-lg overflow-hidden border border-gray-100">
                 <CampusMap className="h-full w-full border-0 shadow-none min-h-[340px]" />
               </div>
-              <div className="pt-3 px-1 flex items-center justify-between text-xs text-gray-500">
-                <span className="font-semibold text-navy-950">Interactive Map</span>
+              <div className="pt-3 px-1 flex items-center justify-end text-xs text-gray-500">
                 <a
                   href="https://maps.google.com/?q=Indian+Institute+of+Technology+Indore"
                   target="_blank"
