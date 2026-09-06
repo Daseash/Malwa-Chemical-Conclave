@@ -32,8 +32,3 @@ A modern web application for BIS built with Next.js (App Router), TypeScript, an
 ├── project.md            # Project notes and documentation
 └── tsconfig.json         # TypeScript compiler configuration
 
-Command,Action
-npm run dev,Starts the local Next.js development server
-npm run build,Builds the optimized production build
-npm run start,Runs the compiled production server
-npm run lint,Runs ESLint to identify code and formatting issues
