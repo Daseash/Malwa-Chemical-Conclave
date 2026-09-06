@@ -82,23 +82,37 @@ export function Footer() {
         {/* Column 1: Logo + event info */}
         <div className="lg:col-span-1">
           <div className="flex items-center gap-3">
-            <Image
-              src="/logos/iit-indore-logo.png"
-              alt="IIT Indore emblem"
-              width={80}
-              height={60}
-              unoptimized
-              className="h-11 w-auto object-contain"
-            />
+            <a
+              href="https://www.iiti.ac.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block transition-transform duration-300 hover:scale-105"
+            >
+              <Image
+                src="/logos/iit-indore-logo.png"
+                alt="IIT Indore emblem"
+                width={80}
+                height={60}
+                unoptimized
+                className="h-11 w-auto object-contain transition-all duration-300 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]"
+              />
+            </a>
             <div className="h-8 w-px bg-white/20" />
-            <Image
-              src="/logos/chemical-engineering-logo.png"
-              alt="IIT Indore Chemical Engineering logo"
-              width={48}
-              height={48}
-              unoptimized
-              className="h-10 w-auto object-contain"
-            />
+            <a
+              href="https://chemical.iiti.ac.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block transition-transform duration-300 hover:scale-105"
+            >
+              <Image
+                src="/logos/chemical-engineering-logo.png"
+                alt="IIT Indore Chemical Engineering logo"
+                width={48}
+                height={48}
+                unoptimized
+                className="h-10 w-auto object-contain transition-all duration-300 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]"
+              />
+            </a>
           </div>
           <p className="mt-4 text-sm font-semibold text-gold">
             Malwa Chemical Conclave 2026
@@ -157,25 +171,36 @@ export function Footer() {
             Contact &amp; Connect
           </p>
           <ul className="mt-4 space-y-3 text-sm text-white/60">
-            <li className="flex items-start gap-2">
-              <MapPin size={16} className="mt-0.5 shrink-0 text-gold" />
-              <span>
+            <li className="group/item flex items-start gap-2.5 transition-colors hover:text-white">
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 border border-white/10 shrink-0 text-gold transition-all duration-300 group-hover/item:bg-gold/20 group-hover/item:border-gold/50 group-hover/item:scale-110 group-hover/item:text-gold-400 shadow-xs">
+                <MapPin size={14} className="shrink-0 transition-transform duration-300 group-hover/item:scale-110" />
+              </span>
+              <span className="text-xs leading-relaxed">
                 Department of Chemical Engineering, IIT Indore, Simrol, 453552,
                 Indore–Khandwa Road, Indore, MP
               </span>
             </li>
-            <li className="flex items-center gap-2">
-              <Mail size={16} className="shrink-0 text-gold" />
+            <li className="group/item flex items-center gap-2.5 transition-colors hover:text-white">
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 border border-white/10 shrink-0 text-gold transition-all duration-300 group-hover/item:bg-gold/20 group-hover/item:border-gold/50 group-hover/item:scale-110 group-hover/item:text-gold-400 shadow-xs">
+                <Mail size={14} className="shrink-0 transition-transform duration-300 group-hover/item:scale-110" />
+              </span>
               <a
                 href="mailto:chemenggoffice@iiti.ac.in"
-                className="transition-colors hover:text-white"
+                className="text-xs transition-colors hover:text-gold"
               >
                 chemenggoffice@iiti.ac.in
               </a>
             </li>
-            <li className="flex items-center gap-2">
-              <Phone size={16} className="shrink-0 text-gold" />
-              <span>+91 731 2438 700</span>
+            <li className="group/item flex items-center gap-2.5 transition-colors hover:text-white">
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 border border-white/10 shrink-0 text-gold transition-all duration-300 group-hover/item:bg-gold/20 group-hover/item:border-gold/50 group-hover/item:scale-110 group-hover/item:text-gold-400 shadow-xs">
+                <Phone size={14} className="shrink-0 transition-transform duration-300 group-hover/item:scale-110" />
+              </span>
+              <a
+                href="tel:+917312438700"
+                className="text-xs transition-colors hover:text-gold"
+              >
+                +91 731 2438 700
+              </a>
             </li>
           </ul>
 
@@ -189,9 +214,11 @@ export function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-sm border border-white/15 px-3 py-1.5 text-xs font-medium text-white/70 transition-colors hover:border-gold hover:text-gold"
+                  className="group inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/75 backdrop-blur-xs transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-gold hover:bg-gold/15 hover:text-gold hover:shadow-[0_6px_16px_-3px_rgba(212,175,55,0.3)]"
                 >
-                  <Icon />
+                  <span className="transition-transform duration-300 group-hover:scale-120 group-hover:rotate-6">
+                    <Icon />
+                  </span>
                   <span>{social.name}</span>
                 </a>
               );

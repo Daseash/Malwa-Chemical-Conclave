@@ -65,42 +65,45 @@ export default function AccommodationVenuePage() {
                   <Plane size={18} className="text-navy" /> How to Reach IIT Indore
                 </h3>
                 <div className="space-y-4 text-sm text-gray-700">
-                  <div className="flex items-start gap-3.5">
-                    <img
-                      src="/transit/flight.jpg"
-                      alt="Flight Transit Badge"
-                      className="h-11 w-11 rounded-full object-cover shrink-0 shadow-md border-2 border-gold/40 mt-0.5 transition-transform duration-300 hover:scale-110"
-                    />
+                  {/* Flight */}
+                  <div className="group/transit flex items-start gap-3.5 p-3 rounded-xl transition-all duration-300 hover:bg-navy-50/70 hover:shadow-xs border border-transparent hover:border-navy/15 cursor-default">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-50 text-navy border border-navy/15 shrink-0 transition-all duration-300 ease-out group-hover/transit:bg-navy group-hover/transit:text-gold group-hover/transit:scale-110 group-hover/transit:shadow-md group-hover/transit:-translate-y-0.5">
+                      <Plane size={20} className="transition-transform duration-300 group-hover/transit:-rotate-12" />
+                    </div>
                     <div>
-                      <strong className="text-navy-950 block">By Air (Devi Ahilyabai Holkar Airport):</strong>
+                      <strong className="text-navy-950 block transition-colors group-hover/transit:text-navy">
+                        By Air (Devi Ahilyabai Holkar Airport):
+                      </strong>
                       <span className="text-xs text-gray-600 leading-relaxed">
                         Located ~35 km from campus. Pre-paid airport taxis and app-based cabs (Ola/Uber) are readily available directly to the Simrol campus.
                       </span>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3.5">
-                    <img
-                      src="/transit/train.jpg"
-                      alt="Train Transit Badge"
-                      className="h-11 w-11 rounded-full object-cover shrink-0 shadow-md border-2 border-gold/40 mt-0.5 transition-transform duration-300 hover:scale-110"
-                    />
+                  {/* Train */}
+                  <div className="group/transit flex items-start gap-3.5 p-3 rounded-xl transition-all duration-300 hover:bg-navy-50/70 hover:shadow-xs border border-transparent hover:border-navy/15 cursor-default">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-50 text-navy border border-navy/15 shrink-0 transition-all duration-300 ease-out group-hover/transit:bg-navy group-hover/transit:text-gold group-hover/transit:scale-110 group-hover/transit:shadow-md group-hover/transit:-translate-y-0.5">
+                      <Train size={20} className="transition-transform duration-300 group-hover/transit:scale-110" />
+                    </div>
                     <div>
-                      <strong className="text-navy-950 block">By Train (Indore Junction Station):</strong>
+                      <strong className="text-navy-950 block transition-colors group-hover/transit:text-navy">
+                        By Train (Indore Junction Station):
+                      </strong>
                       <span className="text-xs text-gray-600 leading-relaxed">
                         Located ~24 km from campus. Regular city buses, shared transit, and pre-booked taxis connect from the railway station to IIT Indore main gate.
                       </span>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3.5">
-                    <img
-                      src="/transit/bus.jpg"
-                      alt="Bus Transit Badge"
-                      className="h-11 w-11 rounded-full object-cover shrink-0 shadow-md border-2 border-gold/40 mt-0.5 transition-transform duration-300 hover:scale-110"
-                    />
+                  {/* Bus / Road */}
+                  <div className="group/transit flex items-start gap-3.5 p-3 rounded-xl transition-all duration-300 hover:bg-navy-50/70 hover:shadow-xs border border-transparent hover:border-navy/15 cursor-default">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-50 text-navy border border-navy/15 shrink-0 transition-all duration-300 ease-out group-hover/transit:bg-navy group-hover/transit:text-gold group-hover/transit:scale-110 group-hover/transit:shadow-md group-hover/transit:-translate-y-0.5">
+                      <Car size={20} className="transition-transform duration-300 group-hover/transit:translate-x-0.5" />
+                    </div>
                     <div>
-                      <strong className="text-navy-950 block">By Road (State Highway &amp; Bus Routes):</strong>
+                      <strong className="text-navy-950 block transition-colors group-hover/transit:text-navy">
+                        By Road (State Highway &amp; Express Bus Routes):
+                      </strong>
                       <span className="text-xs text-gray-600 leading-relaxed">
                         Situated conveniently on the Indore–Khandwa State Highway, well-connected by express bus routes and highway corridors.
                       </span>
