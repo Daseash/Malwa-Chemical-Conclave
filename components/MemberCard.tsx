@@ -30,7 +30,7 @@ export function MemberCard({
           alt={name}
           loading="eager"
           decoding="async"
-          className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-108 [image-rendering:-webkit-optimize-contrast] transform-gpu"
+          className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-108"
         />
       ) : (
         <div className="flex h-full w-full items-center justify-center bg-gray-50 text-gray-400">
