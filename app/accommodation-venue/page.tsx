@@ -65,10 +65,12 @@ export default function AccommodationVenuePage() {
                   <Plane size={18} className="text-navy" /> How to Reach IIT Indore
                 </h3>
                 <div className="space-y-4 text-sm text-gray-700">
-                  <div className="flex items-start gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100 text-navy shrink-0 mt-0.5">
-                      <Plane size={16} />
-                    </div>
+                  <div className="flex items-start gap-3.5">
+                    <img
+                      src="/transit/flight.jpg"
+                      alt="Flight Transit Badge"
+                      className="h-11 w-11 rounded-full object-cover shrink-0 shadow-md border-2 border-gold/40 mt-0.5 transition-transform duration-300 hover:scale-110"
+                    />
                     <div>
                       <strong className="text-navy-950 block">By Air (Devi Ahilyabai Holkar Airport):</strong>
                       <span className="text-xs text-gray-600 leading-relaxed">
@@ -77,10 +79,12 @@ export default function AccommodationVenuePage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100 text-navy shrink-0 mt-0.5">
-                      <Train size={16} />
-                    </div>
+                  <div className="flex items-start gap-3.5">
+                    <img
+                      src="/transit/train.jpg"
+                      alt="Train Transit Badge"
+                      className="h-11 w-11 rounded-full object-cover shrink-0 shadow-md border-2 border-gold/40 mt-0.5 transition-transform duration-300 hover:scale-110"
+                    />
                     <div>
                       <strong className="text-navy-950 block">By Train (Indore Junction Station):</strong>
                       <span className="text-xs text-gray-600 leading-relaxed">
@@ -89,12 +93,14 @@ export default function AccommodationVenuePage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100 text-navy shrink-0 mt-0.5">
-                      <Car size={16} />
-                    </div>
+                  <div className="flex items-start gap-3.5">
+                    <img
+                      src="/transit/bus.jpg"
+                      alt="Bus Transit Badge"
+                      className="h-11 w-11 rounded-full object-cover shrink-0 shadow-md border-2 border-gold/40 mt-0.5 transition-transform duration-300 hover:scale-110"
+                    />
                     <div>
-                      <strong className="text-navy-950 block">By Road (State Highway):</strong>
+                      <strong className="text-navy-950 block">By Road (State Highway &amp; Bus Routes):</strong>
                       <span className="text-xs text-gray-600 leading-relaxed">
                         Situated conveniently on the Indore–Khandwa State Highway, well-connected by express bus routes and highway corridors.
                       </span>
