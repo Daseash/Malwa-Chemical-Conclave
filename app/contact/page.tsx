@@ -79,7 +79,7 @@ export default function ContactPage() {
                 </h3>
                 <div className="grid gap-4 sm:grid-cols-2 items-stretch">
                   {/* Campus photo */}
-                  <div className="group relative overflow-hidden rounded-lg border border-[#E5E7EB] bg-white shadow-sm min-h-[240px]">
+                  <div className="group relative overflow-hidden rounded-xl border border-[#E5E7EB] bg-white shadow-xs min-h-[240px]">
                     <img
                       src="/image1.jpg"
                       alt="IIT Indore campus"
@@ -87,7 +87,7 @@ export default function ContactPage() {
                     />
                   </div>
                   {/* Live Map */}
-                  <div className="rounded-lg overflow-hidden border border-[#E5E7EB]">
+                  <div className="rounded-xl overflow-hidden border border-[#E5E7EB] shadow-xs">
                     <CampusMap className="h-full min-h-[240px] w-full border-0" />
                   </div>
                 </div>

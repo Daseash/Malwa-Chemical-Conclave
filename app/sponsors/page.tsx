@@ -98,7 +98,7 @@ export default function SponsorsPage() {
           </div>
 
           <Reveal>
-            <div className="institutional-card p-6 sm:p-10 bg-white border border-[#E5E7EB] shadow-sm hover:border-navy hover:shadow-md transition-all duration-300">
+            <div className="institutional-card p-6 sm:p-10 bg-white border border-[#E5E7EB] rounded-2xl shadow-[0_10px_25px_-5px_rgba(0,35,80,0.08),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_35px_-8px_rgba(0,47,108,0.16),0_10px_15px_-5px_rgba(0,0,0,0.06)] hover:border-navy hover:-translate-y-1 transition-all duration-300">
               <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
                 {/* Logo container */}
                 <div className="lg:col-span-5 flex items-center justify-center p-6 bg-gradient-to-br from-[#F8F9FA] to-navy-50/50 rounded-xl border border-gray-100">
@@ -158,7 +158,7 @@ export default function SponsorsPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {TIERS.map((tier, i) => (
               <Reveal key={tier.name} delay={i * 0.04}>
-                <div className="institutional-card flex h-full flex-col overflow-hidden hover:border-navy hover:shadow-md transition-all duration-300">
+                <div className="institutional-card flex h-full flex-col overflow-hidden rounded-2xl shadow-[0_10px_25px_-5px_rgba(0,35,80,0.08),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_35px_-8px_rgba(0,47,108,0.16),0_10px_15px_-5px_rgba(0,0,0,0.06)] hover:border-navy hover:-translate-y-1 transition-all duration-300">
                   <div className={`p-5 ${tier.accentHeader}`}>
                     <span className={`inline-block rounded px-2 py-0.5 text-xs font-bold uppercase tracking-wider ${tier.badgeColor}`}>
                       {tier.badge}

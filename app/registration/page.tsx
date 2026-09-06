@@ -415,7 +415,7 @@ export default function RegistrationPage() {
           {/* ── LEFT COLUMN: Category & Option Selection ── */}
           <div className="lg:col-span-7 space-y-8">
             <Reveal>
-              <div className="rounded-2xl border border-[#E5E7EB] p-6 sm:p-8 bg-white shadow-sm transition-all duration-300 hover:border-navy/40 hover:shadow-lg">
+              <div className="rounded-2xl border border-[#E5E7EB] p-6 sm:p-8 bg-white shadow-[0_10px_25px_-5px_rgba(0,35,80,0.08),0_8px_10px_-6px_rgba(0,0,0,0.04)] transition-all duration-300 hover:border-navy/40 hover:shadow-[0_20px_35px_-8px_rgba(0,47,108,0.16)]">
                 
                 {/* Step 1: 4 Categories Selection */}
                 <div>
@@ -440,7 +440,7 @@ export default function RegistrationPage() {
                           key={cat.id}
                           onClick={() => handleCategorySelect(cat)}
                           className={cn(
-                            "cursor-pointer rounded-xl border p-4 transition-all duration-300 text-left flex flex-col justify-between bg-white",
+                            "cursor-pointer rounded-2xl border p-4 transition-all duration-300 text-left flex flex-col justify-between bg-white shadow-xs hover:shadow-md",
                             isSelected
                               ? "border-navy shadow-md ring-2 ring-navy/20 bg-blue-50/20"
                               : "border-gray-200 hover:border-navy hover:shadow-xs"
@@ -710,7 +710,7 @@ export default function RegistrationPage() {
 
             {/* ── WHAT'S INCLUDED IN THE PASS ── */}
             <Reveal delay={0.1}>
-              <div className="rounded-2xl border border-[#E5E7EB] p-6 bg-white shadow-sm space-y-4">
+              <div className="rounded-2xl border border-[#E5E7EB] p-6 bg-white shadow-[0_10px_25px_-5px_rgba(0,35,80,0.08),0_8px_10px_-6px_rgba(0,0,0,0.04)] space-y-4">
                 <h4 className="text-base font-bold text-navy-950 flex items-center gap-2">
                   <Award size={18} className="text-gold-700" />
                   What Every Delegate Pass Includes
@@ -739,7 +739,7 @@ export default function RegistrationPage() {
           {/* ── RIGHT COLUMN: Calculated Summary Assessment (5 cols) ── */}
           <div className="lg:col-span-5 sticky top-28 space-y-6">
             <Reveal delay={0.1}>
-              <div className="group rounded-2xl border border-[#E5E7EB] bg-white shadow-sm overflow-hidden transition-all duration-300 hover:border-navy hover:shadow-lg">
+              <div className="group rounded-2xl border border-[#E5E7EB] bg-white shadow-[0_10px_25px_-5px_rgba(0,35,80,0.08),0_8px_10px_-6px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300 hover:border-navy hover:shadow-[0_20px_35px_-8px_rgba(0,47,108,0.16)]">
                 
                 {/* Header Band */}
                 <div className="bg-white p-5 text-navy-950 border-b border-[#E5E7EB]">

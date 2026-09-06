@@ -194,7 +194,7 @@ export function PlacesToVisit() {
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {filteredAttractions.map((attraction, index) => (
           <Reveal key={attraction.id} delay={(index % 4) * 0.05}>
-            <div className="institutional-card group flex flex-col justify-between h-full bg-white border border-[#E5E7EB] rounded-xl overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 hover:border-navy hover:-translate-y-1">
+            <div className="institutional-card group flex flex-col justify-between h-full bg-white border border-[#E5E7EB] rounded-2xl overflow-hidden shadow-[0_10px_25px_-5px_rgba(0,35,80,0.08),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_35px_-8px_rgba(0,47,108,0.16),0_10px_15px_-5px_rgba(0,0,0,0.06)] transition-all duration-300 hover:border-navy hover:-translate-y-1">
               <div>
                 {/* Image Box */}
                 <div className="relative aspect-video w-full overflow-hidden bg-gray-100">

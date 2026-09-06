@@ -162,7 +162,7 @@ export default function HomePage() {
                 <Reveal key={vertical.title} delay={i * 0.03}>
                   <div
                     tabIndex={0}
-                    className="group relative h-[210px] overflow-hidden rounded-lg border border-[#E5E7EB] bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-navy focus:outline-none flex flex-col justify-between cursor-pointer"
+                    className="group relative h-[210px] overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-[0_10px_25px_-5px_rgba(0,35,80,0.08),0_8px_10px_-6px_rgba(0,0,0,0.04)] transition-all duration-300 hover:shadow-[0_20px_35px_-8px_rgba(0,47,108,0.16),0_10px_15px_-5px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:border-navy focus:outline-none flex flex-col justify-between cursor-pointer"
                   >
                     {/* ── Default View: Icon + Category + Title ──── */}
                     <div className="flex items-center justify-between">
@@ -281,8 +281,8 @@ export default function HomePage() {
 
           <div className="grid gap-6 lg:grid-cols-12 lg:items-stretch">
             {/* Campus Photo (Image 3) - Full picture visible without cropping */}
-            <div className="group relative overflow-hidden rounded-xl border border-[#E5E7EB] bg-white shadow-sm p-3 flex flex-col justify-between lg:col-span-4 min-h-[420px]">
-              <div className="relative w-full flex-1 flex items-center justify-center overflow-hidden rounded-lg bg-gray-50 min-h-[340px]">
+            <div className="group relative overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white shadow-[0_10px_25px_-5px_rgba(0,35,80,0.08),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_35px_-8px_rgba(0,47,108,0.16),0_10px_15px_-5px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 p-3 flex flex-col justify-between lg:col-span-4 min-h-[420px]">
+              <div className="relative w-full flex-1 flex items-center justify-center overflow-hidden rounded-xl bg-gray-50 min-h-[340px]">
                 <img
                   src="/campus-image-3.jpg"
                   alt="IIT Indore campus"
@@ -323,8 +323,8 @@ export default function HomePage() {
             </div>
 
             {/* Live Interactive Map */}
-            <div className="rounded-xl border border-[#E5E7EB] overflow-hidden p-3 bg-white shadow-sm lg:col-span-4 flex flex-col justify-between min-h-[420px]">
-              <div className="relative flex-1 w-full min-h-[340px] rounded-lg overflow-hidden border border-gray-100">
+            <div className="rounded-2xl border border-[#E5E7EB] overflow-hidden p-3 bg-white shadow-[0_10px_25px_-5px_rgba(0,35,80,0.08),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_35px_-8px_rgba(0,47,108,0.16),0_10px_15px_-5px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 lg:col-span-4 flex flex-col justify-between min-h-[420px]">
+              <div className="relative flex-1 w-full min-h-[340px] rounded-xl overflow-hidden border border-gray-100">
                 <CampusMap className="h-full w-full border-0 shadow-none min-h-[340px]" />
               </div>
               <div className="pt-3 px-1 flex items-center justify-end text-xs text-gray-500">

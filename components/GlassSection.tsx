@@ -31,7 +31,7 @@ export function GlassCard({
   return (
     <div
       className={cn(
-        "institutional-card rounded-lg border border-[#E5E7EB] bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-navy-500/40 hover:shadow-md",
+        "institutional-card rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-[0_10px_25px_-5px_rgba(0,35,80,0.08),0_8px_10px_-6px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-navy hover:shadow-[0_20px_35px_-8px_rgba(0,47,108,0.16)]",
         className
       )}
     >

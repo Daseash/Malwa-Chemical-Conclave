@@ -260,7 +260,7 @@ export default function SchedulePage() {
           {filteredDays.map((day, dayIndex) => (
             <div key={day.id} className="space-y-6">
               {/* Day Header Banner: Clean White Background with Blue Hover Border */}
-              <div className="overflow-hidden rounded-xl border border-[#E5E7EB] bg-white p-6 shadow-sm border-l-4 border-l-navy transition-all duration-300 ease-in-out hover:border-navy hover:shadow-md hover:ring-1 hover:ring-navy/15">
+              <div className="overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-[0_10px_25px_-5px_rgba(0,35,80,0.08),0_8px_10px_-6px_rgba(0,0,0,0.04)] border-l-4 border-l-navy transition-all duration-300 ease-in-out hover:border-navy hover:shadow-[0_20px_35px_-8px_rgba(0,47,108,0.16)] hover:-translate-y-0.5">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-navy-900 font-mono text-base font-extrabold text-white shadow-xs">
@@ -306,7 +306,7 @@ export default function SchedulePage() {
 
                         {/* Session Card: White Background, Smooth Blue Border Transition on Hover */}
                         <div
-                          className="flex-1 rounded-xl border border-[#E5E7EB] bg-white p-5 sm:p-6 shadow-sm transition-all duration-300 ease-in-out hover:border-navy hover:shadow-md hover:ring-1 hover:ring-navy/15 cursor-pointer"
+                          className="flex-1 rounded-2xl border border-[#E5E7EB] bg-white p-5 sm:p-6 shadow-[0_10px_25px_-5px_rgba(0,35,80,0.08),0_8px_10px_-6px_rgba(0,0,0,0.04)] transition-all duration-300 ease-in-out hover:border-navy hover:shadow-[0_20px_35px_-8px_rgba(0,47,108,0.16)] hover:-translate-y-0.5 cursor-pointer"
                         >
                           {/* Card Header: Category + Time Badge */}
                           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-100 pb-3 mb-3">
