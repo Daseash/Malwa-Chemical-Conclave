@@ -67,7 +67,7 @@ export default function AccommodationVenuePage() {
                 <div className="space-y-4 text-sm text-gray-700">
                   {/* Flight */}
                   <div className="group/transit flex items-start gap-3.5 p-3 rounded-xl transition-all duration-300 hover:bg-navy-50/70 hover:shadow-xs border border-transparent hover:border-navy/15 cursor-default">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-50 text-navy border border-navy/15 shrink-0 transition-all duration-300 ease-out group-hover/transit:bg-navy group-hover/transit:text-gold group-hover/transit:scale-110 group-hover/transit:shadow-md group-hover/transit:-translate-y-0.5">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-50 text-navy border border-navy/15 shrink-0 transition-all duration-300 ease-out group-hover/transit:bg-navy group-hover/transit:text-white group-hover/transit:scale-110 group-hover/transit:shadow-md group-hover/transit:-translate-y-0.5">
                       <Plane size={20} className="transition-transform duration-300 group-hover/transit:-rotate-12" />
                     </div>
                     <div>
@@ -82,7 +82,7 @@ export default function AccommodationVenuePage() {
 
                   {/* Train */}
                   <div className="group/transit flex items-start gap-3.5 p-3 rounded-xl transition-all duration-300 hover:bg-navy-50/70 hover:shadow-xs border border-transparent hover:border-navy/15 cursor-default">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-50 text-navy border border-navy/15 shrink-0 transition-all duration-300 ease-out group-hover/transit:bg-navy group-hover/transit:text-gold group-hover/transit:scale-110 group-hover/transit:shadow-md group-hover/transit:-translate-y-0.5">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-50 text-navy border border-navy/15 shrink-0 transition-all duration-300 ease-out group-hover/transit:bg-navy group-hover/transit:text-white group-hover/transit:scale-110 group-hover/transit:shadow-md group-hover/transit:-translate-y-0.5">
                       <Train size={20} className="transition-transform duration-300 group-hover/transit:scale-110" />
                     </div>
                     <div>
@@ -97,7 +97,7 @@ export default function AccommodationVenuePage() {
 
                   {/* Bus / Road */}
                   <div className="group/transit flex items-start gap-3.5 p-3 rounded-xl transition-all duration-300 hover:bg-navy-50/70 hover:shadow-xs border border-transparent hover:border-navy/15 cursor-default">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-50 text-navy border border-navy/15 shrink-0 transition-all duration-300 ease-out group-hover/transit:bg-navy group-hover/transit:text-gold group-hover/transit:scale-110 group-hover/transit:shadow-md group-hover/transit:-translate-y-0.5">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-50 text-navy border border-navy/15 shrink-0 transition-all duration-300 ease-out group-hover/transit:bg-navy group-hover/transit:text-white group-hover/transit:scale-110 group-hover/transit:shadow-md group-hover/transit:-translate-y-0.5">
                       <Car size={20} className="transition-transform duration-300 group-hover/transit:translate-x-0.5" />
                     </div>
                     <div>

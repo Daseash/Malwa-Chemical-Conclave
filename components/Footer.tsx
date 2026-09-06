@@ -214,7 +214,7 @@ export function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/75 backdrop-blur-xs transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-gold hover:bg-gold/15 hover:text-gold hover:shadow-[0_6px_16px_-3px_rgba(212,175,55,0.3)]"
+                  className="group inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/80 backdrop-blur-xs transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-white/30 hover:bg-white/10 hover:text-white hover:shadow-md"
                 >
                   <span className="transition-transform duration-300 group-hover:scale-120 group-hover:rotate-6">
                     <Icon />

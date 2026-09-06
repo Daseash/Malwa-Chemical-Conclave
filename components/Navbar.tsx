@@ -83,14 +83,14 @@ export function Navbar() {
           !isHome ? "py-1 text-[11px]" : "py-1.5 text-xs sm:text-sm"
         )}>
           <div className="flex items-center gap-3">
-            {/* Interactive 3D Social Icons (Clean Classic Logos with 3D Hover) */}
+            {/* Interactive 3D Social Icons (Clean Classic Logos with Physical Hover) */}
             <div className="flex items-center gap-2.5">
               <a
                 href="https://www.linkedin.com/company/bis-chem-iiti/?viewAsMember=true"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="group flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-white/80 shadow-xs backdrop-blur-xs transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-115 hover:border-gold/60 hover:bg-gold/15 hover:text-gold hover:shadow-[0_6px_16px_rgba(212,175,55,0.45)] cursor-pointer active:scale-95"
+                className="group flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-white shadow-xs backdrop-blur-xs transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-115 hover:border-white/30 hover:shadow-md cursor-pointer active:scale-95"
               >
                 <LinkedInIcon />
               </a>
@@ -99,7 +99,7 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="group flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-white/80 shadow-xs backdrop-blur-xs transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-115 hover:border-gold/60 hover:bg-gold/15 hover:text-gold hover:shadow-[0_6px_16px_rgba(212,175,55,0.45)] cursor-pointer active:scale-95"
+                className="group flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-white shadow-xs backdrop-blur-xs transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-115 hover:border-white/30 hover:shadow-md cursor-pointer active:scale-95"
               >
                 <InstagramIcon />
               </a>
@@ -108,7 +108,7 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter / X"
-                className="group flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-white/80 shadow-xs backdrop-blur-xs transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-115 hover:border-gold/60 hover:bg-gold/15 hover:text-gold hover:shadow-[0_6px_16px_rgba(212,175,55,0.45)] cursor-pointer active:scale-95"
+                className="group flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-white shadow-xs backdrop-blur-xs transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-115 hover:border-white/30 hover:shadow-md cursor-pointer active:scale-95"
               >
                 <TwitterIcon />
               </a>
