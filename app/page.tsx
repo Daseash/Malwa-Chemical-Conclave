@@ -98,7 +98,7 @@ export default function HomePage() {
               <h2 className="mt-4 text-3xl font-bold tracking-tight text-navy-950 sm:text-4xl lg:text-5xl leading-tight">
                 Bringing academia, industry, and regulators onto one stage.
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-gray-600 sm:text-lg">
+              <p className="mt-4 text-base leading-relaxed font-medium text-gray-700 sm:text-lg">
                 Hosted by the Department of Chemical Engineering at IIT Indore in association with the Bureau of Indian Standards, the Malwa Chemical Conclave connects researchers, manufacturers, and policy leaders.
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-4">
@@ -128,7 +128,7 @@ export default function HomePage() {
                     <div className="text-3xl sm:text-4xl font-extrabold text-navy-900">
                       <CountUpStat value={s.value} suffix={s.suffix} label="" />
                     </div>
-                    <p className="mt-2 text-xs sm:text-sm font-semibold uppercase tracking-wider text-gray-600">
+                    <p className="mt-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-gray-700">
                       {s.label}
                     </p>
                   </div>
@@ -149,7 +149,7 @@ export default function HomePage() {
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy-950 sm:text-4xl">
               7 Integrated Verticals
             </h2>
-            <p className="mt-2 text-base text-gray-600">
+            <p className="mt-2 text-base font-medium text-gray-700">
               Structured across a dedicated workshop day and a flagship conclave day to ensure maximum practical takeaway and institutional dialogue.
             </p>
           </div>
@@ -202,7 +202,7 @@ export default function HomePage() {
                         <h4 className="text-base sm:text-lg font-bold text-navy-950 leading-snug">
                           {vertical.title}
                         </h4>
-                        <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-gray-600">
+                        <p className="mt-1.5 text-xs sm:text-sm leading-relaxed font-medium text-gray-700">
                           {vertical.description}
                         </p>
                       </div>
@@ -235,7 +235,7 @@ export default function HomePage() {
               <p className="mt-2 text-lg font-bold text-navy-950">
                 Indian Institute of Technology Indore
               </p>
-              <p className="mt-1 text-xs text-gray-500">
+              <p className="mt-1 text-xs font-medium text-gray-600">
                 Simrol, Khandwa Road, Madhya Pradesh 453552
               </p>
             </div>
@@ -247,7 +247,7 @@ export default function HomePage() {
               <p className="mt-2 text-lg font-bold text-navy-950">
                 October 11&ndash;12, 2026
               </p>
-              <p className="mt-1 text-xs text-gray-500">
+              <p className="mt-1 text-xs font-medium text-gray-600">
                 Day 1 (Oct 11): Workshops &bull; Day 2 (Oct 12): Main Conclave
               </p>
             </div>
@@ -274,7 +274,7 @@ export default function HomePage() {
             <h2 className="mt-2 text-3xl font-bold tracking-tight text-navy-950 sm:text-4xl">
               Find Us at IIT Indore
             </h2>
-            <p className="mt-2 max-w-2xl text-base text-gray-600">
+            <p className="mt-2 max-w-2xl text-base font-medium text-gray-700">
               Department of Chemical Engineering, Indian Institute of Technology Indore, Simrol, Indore&ndash;Khandwa Road, Madhya Pradesh 453552.
             </p>
           </div>
@@ -304,7 +304,7 @@ export default function HomePage() {
                 <h3 className="mt-3 text-xl font-bold text-navy-950">
                   Academic Complex &amp; Lecture Halls
                 </h3>
-                <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+                <p className="mt-2 text-sm font-medium text-gray-700 leading-relaxed">
                   Keynote sessions, interactive panel discussions, and student research exhibitions will be held across the central academic complexes.
                 </p>
 
@@ -351,7 +351,7 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold text-white sm:text-4xl">
             Be Part of Malwa Chemical Conclave 2026
           </h2>
-          <p className="max-w-2xl text-base text-white/80 leading-relaxed">
+          <p className="max-w-2xl text-base font-medium text-white/90 leading-relaxed">
             Reserve your place for keynote sessions, hands-on masterclasses, industry networking, and technical exhibitions.
           </p>
           <div className="mt-4">

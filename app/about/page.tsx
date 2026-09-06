@@ -69,7 +69,7 @@ export default function AboutPage() {
               <div className="flex-1 rounded-md border border-[#E5E7EB] bg-white p-4 shadow-2xs">
                 <span className="text-xs font-bold uppercase tracking-wider text-gray-500">2025 Pilot Edition</span>
                 <p className="mt-1 text-base font-bold text-navy-900">4 Plenary Industry Talks</p>
-                <p className="text-xs text-gray-600 mt-1">Foundation of the BIS Student Chapter collaborative series.</p>
+                <p className="text-xs font-medium text-gray-700 mt-1">Foundation of the BIS Student Chapter collaborative series.</p>
               </div>
               <div className="hidden sm:flex items-center text-navy font-bold text-xl px-2">
                 &rarr;
@@ -77,7 +77,7 @@ export default function AboutPage() {
               <div className="flex-1 rounded-md border-2 border-navy bg-white p-4 shadow-sm">
                 <span className="text-xs font-bold uppercase tracking-wider text-gold-900">2026 Flagship Conclave</span>
                 <p className="mt-1 text-base font-bold text-navy-950">7 Integrated Strategic Verticals</p>
-                <p className="text-xs text-gray-600 mt-1">Workshops, Matchmaking, Student Expo, and BIS Policy Panel.</p>
+                <p className="text-xs font-medium text-gray-700 mt-1">Workshops, Matchmaking, Student Expo, and BIS Policy Panel.</p>
               </div>
             </div>
           </div>
@@ -87,7 +87,7 @@ export default function AboutPage() {
         <div className="mt-12">
           <div className="mb-6">
             <h3 className="text-xl font-bold text-navy-950">Core Pillars of MCC 2026</h3>
-            <p className="text-sm text-gray-600 mt-1">Key drivers that guide each track and technical deliberation.</p>
+            <p className="text-sm font-medium text-gray-700 mt-1">Key drivers that guide each track and technical deliberation.</p>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-3">
@@ -101,7 +101,7 @@ export default function AboutPage() {
                         <Icon size={24} />
                       </div>
                       <h4 className="text-lg font-bold text-navy-950">{item.title}</h4>
-                      <p className="mt-2 text-sm leading-relaxed text-gray-600">{item.description}</p>
+                      <p className="mt-2 text-sm leading-relaxed font-medium text-gray-700">{item.description}</p>
                     </div>
                   </div>
                 </Reveal>
