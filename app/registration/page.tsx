@@ -269,7 +269,7 @@ export default function RegistrationPage() {
         subtitle={
           isOpen
             ? "Explore delegate tiers, workshop passes, and accommodation options to complete your registration."
-            : "Registrations for Malwa Chemical Conclave 2026 will start soon! Portal opens on October 9 at 10:00 AM."
+            : "Registrations for Malwa Chemical Conclave 2026 will start soon!"
         }
       />
 
