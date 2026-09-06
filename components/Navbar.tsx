@@ -212,11 +212,11 @@ export function Navbar() {
               aria-label="Toggle navigation and contact menu"
               className={cn(
                 "flex items-center justify-center rounded-lg border border-white/25 bg-white/10 text-white backdrop-blur-xl transition-all duration-300 hover:bg-gold hover:border-gold hover:text-white cursor-pointer shadow-md",
-                isHome ? "h-11 w-11" : "h-9 w-9"
+                isHome ? "h-9 w-9" : "h-8.5 w-8.5"
               )}
               onClick={() => setMenuOpen((v) => !v)}
             >
-              {menuOpen ? <X size={22} /> : <Menu size={22} />}
+              {menuOpen ? <X size={isHome ? 19 : 17} /> : <Menu size={isHome ? 19 : 17} />}
             </button>
           </div>
         </div>
