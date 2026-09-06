@@ -143,7 +143,7 @@ export default function OrganizersPage() {
                 role={person.role}
                 note={person.note}
                 image={person.image}
-                className="shadow-md hover:shadow-xl border-navy/20"
+                className="border-navy/30"
               />
             </Reveal>
           ))}
@@ -170,7 +170,7 @@ export default function OrganizersPage() {
                 role={person.role}
                 note={person.note}
                 image={person.image}
-                className="shadow-md hover:shadow-xl border-navy/20"
+                className="border-navy/30"
               />
             </Reveal>
           ))}

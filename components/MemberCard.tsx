@@ -19,7 +19,7 @@ export function MemberCard({
     <div
       tabIndex={0}
       className={cn(
-        "group relative aspect-square w-full overflow-hidden rounded-lg border border-[#E5E7EB] bg-gray-100 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-navy focus:outline-none",
+        "group relative aspect-square w-full overflow-hidden rounded-xl border border-gray-200/90 bg-gray-100 shadow-[0_10px_25px_-5px_rgba(0,35,80,0.12),0_8px_10px_-6px_rgba(0,0,0,0.06)] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_24px_48px_-12px_rgba(0,47,108,0.28),0_12px_24px_-8px_rgba(0,0,0,0.12)] hover:border-navy focus:outline-none cursor-pointer transform-gpu will-change-transform",
         className
       )}
     >
