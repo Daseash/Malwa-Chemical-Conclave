@@ -19,11 +19,13 @@ export const metadata: Metadata = {
     "Malwa Chemical Conclave 2026 — Engineering a Responsible Future. Hosted by the Department of Chemical Engineering, IIT Indore, in association with the Bureau of Indian Standards.",
   icons: {
     icon: [
-      { url: "/logos/MCC logo 2026.png" },
-      { url: "/favicon.png" },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
     ],
-    shortcut: "/logos/MCC logo 2026.png",
-    apple: "/logos/MCC logo 2026.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
 };
 
