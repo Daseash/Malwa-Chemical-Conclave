@@ -120,7 +120,7 @@ export function Navbar() {
               href="https://www.iiti.ac.in/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline hover:text-gold transition-colors"
+              className="hidden sm:inline-flex items-center px-2 py-0.5 rounded-md text-white/90 transition-all duration-300 ease-out hover:bg-white/10 hover:text-white hover:-translate-y-0.5 hover:scale-105 cursor-pointer"
             >
               IIT Indore
             </a>
@@ -131,9 +131,9 @@ export function Navbar() {
               href="https://chemical.iiti.ac.in"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline hover:text-gold transition-colors"
+              className="hidden sm:inline-flex items-center px-2 py-0.5 rounded-md text-white/90 transition-all duration-300 ease-out hover:bg-white/10 hover:text-white hover:-translate-y-0.5 hover:scale-105 cursor-pointer"
             >
-              Chemical Engineering
+              IITI Chemical Engineering
             </a>
           </div>
 
@@ -151,7 +151,7 @@ export function Navbar() {
         )}>
           <Link
             href="/"
-            className="flex items-center gap-2.5 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] sm:gap-3.5 shrink-0"
+            className="group flex items-center gap-2.5 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] sm:gap-3.5 shrink-0 cursor-pointer"
             onClick={() => setMenuOpen(false)}
           >
             {/* IIT Indore Logo with Smooth Scale */}
@@ -162,7 +162,7 @@ export function Navbar() {
               height={100}
               unoptimized
               className={cn(
-                "w-auto shrink-0 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] object-contain",
+                "w-auto shrink-0 transition-all duration-300 ease-out group-hover:scale-108 group-hover:-translate-y-0.5 object-contain",
                 isHome ? "h-12 sm:h-14 lg:h-16" : "h-9 sm:h-11 lg:h-12"
               )}
               priority
@@ -339,7 +339,7 @@ export function Navbar() {
                         rel="noopener noreferrer"
                         className="flex items-center justify-center gap-1 rounded-lg bg-white/10 border border-white/15 p-2 text-center text-white/90 hover:bg-white/20 hover:text-gold transition-colors"
                       >
-                        <span>Chemical Engg Dept</span>
+                        <span>IITI Chemical Engineering</span>
                         <ExternalLink size={12} />
                       </a>
                     </div>
