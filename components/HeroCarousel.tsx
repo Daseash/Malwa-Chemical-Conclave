@@ -51,6 +51,7 @@ export function HeroCarousel() {
               alt={slide.alt}
               fill
               priority={index === 0}
+              unoptimized
               sizes="100vw"
               className={cn(
                 "h-full w-full object-cover object-center transition-transform duration-[6000ms] ease-out",

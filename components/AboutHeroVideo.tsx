@@ -37,7 +37,7 @@ export function AboutHeroVideo() {
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
             disablePictureInPicture
             controlsList="nodownload nofullscreen noremoteplayback"
             style={{

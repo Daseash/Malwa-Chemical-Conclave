@@ -28,7 +28,7 @@ export function MemberCard({
         <img
           src={image}
           alt={name}
-          loading="lazy"
+          loading="eager"
           decoding="async"
           className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-108 [image-rendering:-webkit-optimize-contrast] transform-gpu"
         />
