@@ -211,7 +211,7 @@ export function PlacesToVisit() {
 
                   {/* Distance Tag */}
                   <span className="absolute bottom-2.5 left-2.5 flex items-center gap-1 rounded bg-black/70 backdrop-blur-xs px-2 py-0.5 text-[11px] font-medium text-white">
-                    <MapPin size={12} className="text-gold" />
+                    <MapPin size={12} className="text-white" />
                     {attraction.location}
                   </span>
                 </div>
