@@ -244,11 +244,11 @@ export function PlacesToVisit() {
                   href={attraction.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-1.5 rounded-md border border-navy/20 bg-white hover:bg-navy hover:text-white px-3 py-2 text-xs font-semibold text-navy transition-all duration-200 group/btn"
+                  className="w-full inline-flex items-center justify-center gap-1.5 rounded-md border border-navy/20 bg-white hover:bg-white hover:border-navy px-3 py-2 text-xs font-semibold text-navy transition-all duration-200 shadow-2xs hover:shadow-xs group/btn"
                 >
-                  <MapPin size={13} className="group-hover/btn:text-gold transition-colors" />
+                  <MapPin size={13} className="text-navy group-hover/btn:text-navy-900 transition-colors" />
                   <span>View on Google Maps</span>
-                  <ExternalLink size={12} className="opacity-70 group-hover/btn:opacity-100" />
+                  <ExternalLink size={12} className="opacity-70 group-hover/btn:opacity-100 transition-opacity" />
                 </a>
               </div>
             </div>
