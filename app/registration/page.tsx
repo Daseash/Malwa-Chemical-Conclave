@@ -17,7 +17,6 @@ import {
   Hotel,
   Info,
   Clock,
-  Download,
   BookOpen,
   Award,
   Coffee,
@@ -29,7 +28,6 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/Button";
-import { BrochureModal } from "@/components/BrochureModal";
 import { cn } from "@/lib/cn";
 
 type CategoryId = "iiti" | "external_student" | "academia" | "industry";
@@ -172,7 +170,6 @@ export default function RegistrationPage() {
   const [selectedDurationId, setSelectedDurationId] = useState<DurationId>("2days");
   const [selectedAccommodationId, setSelectedAccommodationId] = useState<string>("none");
   const [isAccommodationChecked, setIsAccommodationChecked] = useState<boolean>(false);
-  const [isBrochureOpen, setIsBrochureOpen] = useState<boolean>(false);
 
   // Notify Me State
   const [notifyEmail, setNotifyEmail] = useState("");
@@ -379,26 +376,6 @@ export default function RegistrationPage() {
                 </div>
               </div>
 
-              {/* Action Buttons below matching image design */}
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3 pt-4 border-t border-gray-100">
-                <button
-                  type="button"
-                  onClick={() => setIsBrochureOpen(true)}
-                  className="inline-flex items-center gap-2 rounded-lg border border-navy/20 bg-white hover:bg-navy hover:text-white px-4 py-2 text-xs font-bold text-navy transition-all cursor-pointer shadow-2xs"
-                >
-                  <BookOpen size={15} />
-                  <span>View Conclave Brochure</span>
-                </button>
-
-                <a
-                  href="/MCC 2026 Broucher.pdf"
-                  download="MCC 2026 Brochure.pdf"
-                  className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white hover:border-navy px-4 py-2 text-xs font-semibold text-gray-700 hover:text-navy transition-all"
-                >
-                  <Download size={14} />
-                  <span>Download Brochure PDF</span>
-                </a>
-              </div>
             </div>
           </Reveal>
         )}
@@ -916,12 +893,6 @@ export default function RegistrationPage() {
       )}
 
       </div>
-
-      {/* Brochure Modal Viewer */}
-      <BrochureModal
-        isOpen={isBrochureOpen}
-        onClose={() => setIsBrochureOpen(false)}
-      />
     </>
   );
 }
