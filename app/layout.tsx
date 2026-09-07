@@ -11,6 +11,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://mcc.iiti.ac.in"),
   title: {
     default: "Malwa Chemical Conclave 2026 | Dept. of Chemical Engineering, IIT Indore",
     template: "%s | Malwa Chemical Conclave 2026",

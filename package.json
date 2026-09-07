@@ -1,7 +1,8 @@
 {
-  "name": "bis",
+  "name": "malwa-chemical-conclave",
   "version": "1.0.0",
-  "description": "",
+  "description": "Official web portal for Malwa Chemical Conclave 2026 at IIT Indore in association with BIS",
+  "homepage": "https://mcc.iiti.ac.in",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
