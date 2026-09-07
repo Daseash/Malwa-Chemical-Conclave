@@ -1,0 +1,58 @@
+name: Deploy MCC to IIT CloudPanel
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+concurrency:
+  group: mcc-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Deploy application
+        shell: bash
+        run: |
+          set -e
+
+          SITE_PATH="/home/iiti-mcc/htdocs/mcc.iiti.ac.in/Malwa-Chemical-Conclave"
+
+          echo "======================================"
+          echo "MCC Deployment Started"
+          echo "======================================"
+
+          cd "$SITE_PATH"
+
+          echo "Current directory:"
+          pwd
+
+          echo "Fetching latest code..."
+          git fetch origin main
+
+          echo "Resetting to latest main..."
+          git reset --hard origin/main
+
+          echo "Installing dependencies..."
+          npm ci
+
+          echo "Building Next.js application..."
+          npm run build
+
+          echo "Restarting PM2 application..."
+          pm2 restart mcc
+
+          echo "Saving PM2 process list..."
+          pm2 save
+
+          echo "Checking PM2 status..."
+          pm2 status
+
+          echo "======================================"
+          echo "MCC Deployment Completed"
+          echo "======================================"
