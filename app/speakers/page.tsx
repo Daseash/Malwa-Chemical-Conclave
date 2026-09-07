@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
-import { MemberCard } from "@/components/MemberCard";
-import { Sparkles, Award } from "lucide-react";
+import { Award } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Invited Speakers",
@@ -21,13 +20,6 @@ const FEATURED_SPEAKERS_2026 = [
   },
 ];
 
-const UPCOMING_SPEAKER_SLOTS = [
-  { role: "Plenary Keynote", name: "Speaker Invitation in Progress", note: "Leading Global Chemical Enterprise" },
-  { role: "Technical Keynote", name: "Speaker Invitation in Progress", note: "Process Simulation & Safety Expert" },
-  { role: "Regulatory Policy Address", name: "Senior Regulatory Official", note: "National Standards & Policy Body" },
-  { role: "Industry Talk", name: "Speaker Invitation in Progress", note: "Sustainable Refining & Petrochemicals" },
-  { role: "Special Lecture", name: "Eminent Academic Scholar", note: "IIT / Global Research Institution" },
-];
 
 const PREVIOUS_SPEAKERS = [
   {
@@ -121,30 +113,6 @@ export default function SpeakersPage() {
           ))}
         </div>
 
-        {/* ── Upcoming 2026 Speaker Invitations ────────────────────── */}
-        <div className="mb-6">
-          <span className="inline-block rounded bg-navy-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-navy-900">
-            Programme In Progress
-          </span>
-          <h3 className="mt-2 text-xl sm:text-2xl font-bold tracking-tight text-navy-950">
-            Upcoming Plenary &amp; Technical Slots
-          </h3>
-          <p className="mt-1 text-sm text-gray-600">
-            Speaker invitations and confirmation announcements are currently in progress.
-          </p>
-        </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {UPCOMING_SPEAKER_SLOTS.map((speaker, i) => (
-            <Reveal key={i} delay={i * 0.04}>
-              <MemberCard
-                name={speaker.name}
-                role={speaker.role}
-                note={speaker.note}
-              />
-            </Reveal>
-          ))}
-        </div>
 
         {/* ── Previous Speakers Section ────────────────────────────── */}
         <div className="mt-20 pt-12 border-t border-[#E5E7EB]">
