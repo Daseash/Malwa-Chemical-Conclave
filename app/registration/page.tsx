@@ -214,7 +214,7 @@ export default function RegistrationPage() {
   const basePassFee = activeDuration.amount;
   const totalAmount = basePassFee + accommodationFee;
 
-  // Countdown Timer & Launch Date (October 9, 2026 at 10:00 AM IST)
+  // Countdown Timer & Launch Date (September 9, 2026 at 10:00 AM IST)
   const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
@@ -226,7 +226,7 @@ export default function RegistrationPage() {
 
   useEffect(() => {
     setIsMounted(true);
-    const target = new Date("2026-10-09T10:00:00+05:30").getTime();
+    const target = new Date("2026-09-09T10:00:00+05:30").getTime();
 
     const updateTimer = () => {
       // Support ?preview=true query parameter for developer/organizer preview
@@ -285,7 +285,7 @@ export default function RegistrationPage() {
               </h2>
 
               <p className="mt-4 text-sm sm:text-base text-gray-600 max-w-lg mx-auto leading-relaxed">
-                Official registrations for <strong className="text-navy font-bold">Malwa Chemical Conclave 2026</strong> will open on <strong className="text-navy font-bold">October 9 at 10:00 AM</strong>. Enter your email below to receive an instant notification when the portal goes live.
+                Official registrations for <strong className="text-navy font-bold">Malwa Chemical Conclave 2026</strong> will open on <strong className="text-navy font-bold">September 9 at 10:00 AM</strong>. Enter your email below to receive an instant notification when the portal goes live.
               </p>
 
               {/* Email Notify Pill Bar (styled after user reference image) */}
@@ -380,7 +380,7 @@ export default function RegistrationPage() {
           </Reveal>
         )}
 
-        {/* ── REGISTRATION DETAILS & TIER EXPLORER (Shown after October 9, 2026 at 10:00 AM) ── */}
+        {/* ── REGISTRATION DETAILS & TIER EXPLORER (Shown after September 9, 2026 at 10:00 AM) ── */}
         {isOpen && (
           <>
             {/* ── Top Section Header ── */}

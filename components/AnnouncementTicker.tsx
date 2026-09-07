@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Megaphone } from "lucide-react";
 
 const ANNOUNCEMENTS: { label: string; href: string }[] = [
-  { label: "Registrations opening soon — Malwa Chemical Conclave 2026", href: "/registration" },
+  { label: "Registrations opening September 9, 2026 — Malwa Chemical Conclave", href: "/registration" },
   { label: "Conclave dates: October 11–12, 2026 at IIT Indore", href: "/schedule" },
   { label: "Call for Student Innovation Expo entries & prototype presentations", href: "/about" },
   { label: "Sponsorship & Industry Collaboration opportunities open", href: "/sponsors" },
