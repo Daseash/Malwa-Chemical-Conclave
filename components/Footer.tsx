@@ -50,6 +50,7 @@ const QUICK_LINKS = [
   { label: "Organizers", href: "/organizers" },
   { label: "Venue", href: "/accommodation-venue" },
   { label: "Contact", href: "/contact" },
+  { label: "Secretariat Portal", href: "/admin" },
 ];
 
 const DEPT_LINKS = [

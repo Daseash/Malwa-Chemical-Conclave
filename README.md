@@ -38,7 +38,6 @@
 
 The **Malwa Chemical Conclave (MCC 2026)** is a premier technical symposium hosted by the **Department of Chemical Engineering, Indian Institute of Technology Indore (IIT Indore)** in collaboration with the **Bureau of Indian Standards (BIS)**. 
 
-The conclave bridges academic research, industrial manufacturing, and national standardization benchmarks. By convening global scholars, industry leaders, policymakers, and budding researchers, MCC 2026 fosters sustainable process innovation, green chemistry, and circular economy practices across Central India's thriving industrial landscape.
 
 ### Core Objectives:
 1. **Regional Relevance:** Connecting cutting-edge chemical engineering research directly to the industrial corridors of the Malwa region.
@@ -47,14 +46,7 @@ The conclave bridges academic research, industrial manufacturing, and national s
 
 ---
 
-## ✨ Key Highlights
 
-- **Distinguished Speakers:** Keynote addresses and plenary panels by eminent academics, scientists, and industry leaders.
-- **Multi-Track Sessions:** Dedicated tracks covering process engineering, clean energy, waste valorization, smart materials, and standards compliance.
-- **Interactive Workshops:** Practical sessions on BIS standard formulation, process safety, and quality assurance.
-- **Student & Scholar Forum:** Poster presentations, paper sessions, and networking with industrial recruiters and researchers.
-
----
 
 ## 🚀 Website Features
 
@@ -204,20 +196,7 @@ npm run start
 - **Endpoint:** `POST /api/registration`
 - **Content-Type:** `application/json`
 
-#### Request Body:
-```json
-{
-  "name": "Dr. Jane Doe",
-  "email": "jane.doe@institution.edu",
-  "phone": "+919876543210",
-  "category": "Academician",
-  "organization": "Indian Institute of Technology Indore",
-  "designation": "Associate Professor",
-  "message": "Interested in session on clean hydrogen processes.",
-  "totalAmount": 2500,
-  "website": ""
-}
-```
+
 
 > **Note on Security:** `website` is a honeypot field. If populated, the request is flagged as a bot submission and silently rejected.
 

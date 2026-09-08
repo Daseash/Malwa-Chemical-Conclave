@@ -11,6 +11,11 @@ interface RegistrationBody {
   category?: string;
   organization?: string;
   designation?: string;
+  duration?: string;
+  accommodation?: string;
+  photo?: string; // Base64 data URL
+  paymentScreenshot?: string; // Base64 data URL
+  transactionId?: string;
   message?: string;
   totalAmount?: number;
   website?: string; // Honeypot field for anti-bot protection
@@ -23,7 +28,7 @@ const PHONE_PATTERN = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]{6,20}$/;
 // In-memory rate limiting map: IP -> array of timestamps
 const rateLimitMap = new Map<string, number[]>();
 const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
-const MAX_REQUESTS_PER_WINDOW = 5; // Max 5 submissions per minute per IP
+const MAX_REQUESTS_PER_WINDOW = 10; // Max 10 submissions per minute per IP
 
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
@@ -85,13 +90,25 @@ export async function POST(request: NextRequest) {
   }
 
   // 3. Honeypot check (anti-bot)
-  // If the hidden 'website' field is populated, a bot filled it.
   if (body.website && body.website.trim().length > 0) {
-    // Return a dummy success to silently discard bot submissions
     return NextResponse.json({ success: true, id: "bot_ignored" }, { status: 200 });
   }
 
-  const { name, email, phone, category, organization, designation, message, totalAmount } = body;
+  const {
+    name,
+    email,
+    phone,
+    category,
+    organization,
+    designation,
+    duration,
+    accommodation,
+    photo,
+    paymentScreenshot,
+    transactionId,
+    message,
+    totalAmount,
+  } = body;
 
   // 4. Required fields validation
   if (!name || typeof name !== "string" || !name.trim()) {
@@ -126,34 +143,72 @@ export async function POST(request: NextRequest) {
   const cleanCategory = sanitize(category).slice(0, 150);
   const cleanOrg = organization && typeof organization === "string" ? sanitize(organization).slice(0, 150) : "";
   const cleanDesignation = designation && typeof designation === "string" ? sanitize(designation).slice(0, 100) : "";
+  const cleanDuration = duration && typeof duration === "string" ? sanitize(duration).slice(0, 100) : "";
+  const cleanAccommodation = accommodation && typeof accommodation === "string" ? sanitize(accommodation).slice(0, 150) : "";
+  const cleanTransactionId = transactionId && typeof transactionId === "string" ? sanitize(transactionId).slice(0, 100) : "";
   const cleanMessage = message && typeof message === "string" ? sanitize(message).slice(0, 1000) : "";
 
   // 6. Validate numerical amount
   const validAmount = typeof totalAmount === "number" && totalAmount >= 0 && totalAmount <= 1000000 ? totalAmount : 0;
 
-  // 7. Write to MongoDB
+  // 7. Validate Photo (if provided)
+  if (photo && typeof photo === "string") {
+    // Base64 check: must not exceed ~3 MB in base64 (~2 MB raw file)
+    if (photo.length > 3.5 * 1024 * 1024) {
+      return NextResponse.json(
+        { error: "Photo size exceeds the maximum limit (2 MB). Please reduce the photo size to under 1 MB." },
+        { status: 400 }
+      );
+    }
+  }
+
+  // 8. Generate Human-Readable Registration ID
+  const regId = `MCC-2026-${Math.floor(100000 + Math.random() * 900000)}`;
+
+  // 9. Write to MongoDB
   try {
     const clientPromise = getMongoClientPromise();
     const client = await clientPromise;
     const db = client.db(DB_NAME);
 
-    const result = await db.collection(COLLECTION).insertOne({
+    const docToInsert = {
+      registrationId: regId,
       name: cleanName,
       email: cleanEmail,
       phone: cleanPhone,
       category: cleanCategory,
       organization: cleanOrg,
       designation: cleanDesignation,
+      duration: cleanDuration,
+      accommodation: cleanAccommodation,
       totalAmount: validAmount,
+      photo: photo || null,
+      hasPhoto: Boolean(photo),
+      paymentScreenshot: paymentScreenshot || null,
+      hasPaymentScreenshot: Boolean(paymentScreenshot),
+      transactionId: cleanTransactionId || null,
       message: cleanMessage,
       submittedAt: new Date(),
-    });
+    };
 
-    return NextResponse.json({ success: true, id: result.insertedId }, { status: 201 });
-  } catch (err) {
-    console.error("Registration submission failed:", err);
+    const result = await db.collection(COLLECTION).insertOne(docToInsert);
+
     return NextResponse.json(
-      { error: "Could not save your registration right now. Please try again shortly." },
+      {
+        success: true,
+        id: result.insertedId,
+        registrationId: regId,
+        message: "Registration submitted successfully! Your details have been securely recorded in the conclave database.",
+      },
+      { status: 201 }
+    );
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : String(err);
+    console.error("Registration submission failed:", errorMessage);
+    return NextResponse.json(
+      {
+        error: "Could not save your registration right now. " + errorMessage,
+      },
       { status: 500 }
     );
   }
