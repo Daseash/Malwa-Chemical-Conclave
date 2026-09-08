@@ -90,6 +90,23 @@ body {
 }
 
 /* ── Header: transparent → solid on scroll & compact on inner pages ── */
+/* Admin route isolation: eliminate any chance of site-header or site-footer flashing */
+body:has(#admin-portal) .site-header,
+body:has(#admin-portal) footer,
+html:has(#admin-portal) .site-header,
+html:has(#admin-portal) footer {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
+
+body:has(#admin-portal) {
+  background-color: #ffffff !important;
+}
+
 .site-header {
   position: absolute;
   top: 0;

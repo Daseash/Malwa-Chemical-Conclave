@@ -309,7 +309,7 @@ export default function AdminPage() {
     <div className="min-h-screen bg-white text-gray-900 flex flex-col justify-between">
       <div>
         {/* Sleek Top Navbar on Pure White */}
-        <header className="sticky top-0 z-40 border-b border-gray-200 bg-white/95 backdrop-blur-md px-4 sm:px-8 py-3 shadow-2xs">
+        <header className="sticky top-0 z-40 border-b border-gray-200 bg-white px-4 sm:px-8 py-3.5 shadow-2xs">
           <div className="mx-auto max-w-7xl flex items-center justify-between gap-4">
             
             {/* Logo Brand Section */}
