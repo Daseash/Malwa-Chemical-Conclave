@@ -169,12 +169,14 @@ const PASS_PERKS = [
   },
 ];
 
+const PAYU_PAYMENT_URL = "https://payu.in/web/EB3AF4CBC22FB4C90B5ABC9A52E5CAC3";
+
 export default function RegistrationPage() {
   // Step State
   const [currentStep, setCurrentStep] = useState<FormStep>("details");
 
   // Category & Tier Selection
-  const [selectedCategory, setSelectedCategory] = useState<CategoryTier>(CATEGORIES[0]);
+  const [selectedCategory, setSelectedCategory] = useState<CategoryTier>(CATEGORIES[1]);
   const [selectedDurationId, setSelectedDurationId] = useState<DurationId>("2days");
   const [selectedAccommodationId, setSelectedAccommodationId] = useState<string>("none");
   const [isAccommodationChecked, setIsAccommodationChecked] = useState<boolean>(false);
@@ -202,12 +204,36 @@ export default function RegistrationPage() {
   // Form Validation Error for Step 1
   const [validationError, setValidationError] = useState<string | null>(null);
 
-  // Check URL query on mount (e.g. ?step=proof)
+  // Check URL query and restore draft state from sessionStorage
   useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
       if (params.get("step") === "proof") {
         setCurrentStep("payment_proof");
+      }
+
+      try {
+        const draft = sessionStorage.getItem("mcc_reg_draft");
+        if (draft) {
+          const p = JSON.parse(draft);
+          if (p.fullName) setFullName(p.fullName);
+          if (p.email) setEmail(p.email);
+          if (p.phone) setPhone(p.phone);
+          if (p.organization) setOrganization(p.organization);
+          if (p.designation) setDesignation(p.designation);
+          if (p.message) setMessage(p.message);
+          if (p.photo) setPhoto(p.photo);
+          if (p.selectedCategoryId) {
+            const cat = CATEGORIES.find((c) => c.id === p.selectedCategoryId);
+            if (cat) setSelectedCategory(cat);
+          }
+          if (p.selectedDurationId) setSelectedDurationId(p.selectedDurationId);
+          if (p.isAccommodationChecked !== undefined) setIsAccommodationChecked(p.isAccommodationChecked);
+          if (p.selectedAccommodationId) setSelectedAccommodationId(p.selectedAccommodationId);
+          if (p.currentStep === "payment_proof") setCurrentStep("payment_proof");
+        }
+      } catch (err) {
+        console.error("Draft restore error:", err);
       }
     }
   }, []);
@@ -276,11 +302,31 @@ export default function RegistrationPage() {
       return;
     }
 
-    // Open external payment portal in a separate tab if configured
-    const externalPaymentUrl = process.env.NEXT_PUBLIC_PAYMENT_URL;
-    if (externalPaymentUrl) {
-      window.open(externalPaymentUrl, "_blank");
+    // Save draft state in sessionStorage so entered details and photo are never lost
+    try {
+      sessionStorage.setItem(
+        "mcc_reg_draft",
+        JSON.stringify({
+          fullName,
+          email,
+          phone,
+          organization,
+          designation,
+          message,
+          photo,
+          selectedCategoryId: selectedCategory.id,
+          selectedDurationId,
+          isAccommodationChecked,
+          selectedAccommodationId,
+          currentStep: "payment_proof",
+        })
+      );
+    } catch (err) {
+      console.error("Draft save error:", err);
     }
+
+    // Open PayU official payment gateway in a separate tab
+    window.open(PAYU_PAYMENT_URL, "_blank");
 
     // Transition this form to the locked view where payment screenshot must be uploaded
     setCurrentStep("payment_proof");
@@ -884,34 +930,60 @@ export default function RegistrationPage() {
           <Reveal>
             <div className="mx-auto max-w-3xl space-y-8">
               
-              {/* Alert Header */}
-              <div className="rounded-2xl border border-navy/20 bg-navy-50/60 p-5 sm:p-6 text-navy-950 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="flex items-start gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-navy text-white shrink-0 mt-0.5 shadow-xs">
-                    <Receipt size={20} />
+              {/* PayU Instructions & Direct Link Header */}
+              <div className="rounded-3xl border-2 border-navy/20 bg-linear-to-r from-navy-50/80 to-blue-50/50 p-6 sm:p-7 text-navy-950 space-y-4 shadow-sm">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-navy/15 pb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-navy text-white shrink-0 shadow-md">
+                      <Receipt size={22} />
+                    </div>
+                    <div>
+                      <span className="text-[11px] font-bold text-navy uppercase tracking-widest block">
+                        Step 2 of 2
+                      </span>
+                      <h3 className="text-lg sm:text-xl font-extrabold text-navy-950">
+                        PayU Payment &amp; Screenshot Verification
+                      </h3>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-bold">
-                      Payment Verification &amp; Confirmation
-                    </h3>
-                    <p className="text-xs text-gray-600 mt-0.5 leading-relaxed">
-                      Complete your transaction on your payment portal/app, then upload your payment screenshot below to finalize your registration.
-                    </p>
-                  </div>
+
+                  <a
+                    href={PAYU_PAYMENT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-5 py-3 text-xs font-bold text-white shadow-md hover:bg-navy-900 transition-all shrink-0 cursor-pointer hover:scale-[1.02]"
+                  >
+                    <span>Open PayU Portal</span>
+                    <ExternalLink size={14} />
+                  </a>
                 </div>
 
-                {process.env.NEXT_PUBLIC_PAYMENT_URL && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      window.open(process.env.NEXT_PUBLIC_PAYMENT_URL, "_blank");
-                    }}
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-navy bg-white px-4 py-2 text-xs font-bold text-navy hover:bg-navy hover:text-white transition-all shrink-0 cursor-pointer shadow-xs"
-                  >
-                    <span>Open Payment Portal</span>
-                    <ExternalLink size={13} />
-                  </button>
-                )}
+                {/* Clear Step-by-Step Instructions */}
+                <div className="space-y-2 rounded-2xl bg-white/95 border border-navy/10 p-4 text-xs text-navy-950">
+                  <p className="font-bold text-navy flex items-center gap-1.5 text-sm">
+                    <AlertCircle size={16} className="text-navy" /> How to Complete Your Registration:
+                  </p>
+                  <ol className="list-decimal list-inside space-y-2 text-gray-700 leading-relaxed font-medium pt-1">
+                    <li>
+                      Complete your pass &amp; accommodation payment (<strong>₹{totalAmount.toLocaleString("en-IN")}</strong>) on the{" "}
+                      <a href={PAYU_PAYMENT_URL} target="_blank" rel="noopener noreferrer" className="font-bold text-navy underline hover:text-gold">
+                        official PayU gateway ↗
+                      </a>.
+                    </li>
+                    <li>
+                      <strong>Take a screenshot</strong> of the payment success screen (or save the transaction receipt to your phone / computer gallery).
+                      <span className="block text-[11px] text-gray-500 font-normal mt-0.5">
+                        *(Note: Due to web browser banking security &amp; privacy policies, websites cannot automatically capture external payment screens or access your personal device gallery without your permission)*.
+                      </span>
+                    </li>
+                    <li>
+                      Attach or paste your payment screenshot in the uploader below.
+                    </li>
+                    <li>
+                      Click the green <strong>&quot;OK — Complete Registration&quot;</strong> button to record your entry in the official database.
+                    </li>
+                  </ol>
+                </div>
               </div>
 
               {/* ── LOCKED / READ-ONLY REVIEW SUMMARY ── */}
@@ -1038,10 +1110,10 @@ export default function RegistrationPage() {
                   <div className="pt-2">
                     <button
                       type="submit"
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || !paymentScreenshot}
                       className={cn(
                         "w-full flex items-center justify-center gap-2 rounded-xl bg-green-600 hover:bg-green-700 py-4 px-6 text-sm font-bold text-white shadow-lg transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99]",
-                        isSubmitting && "opacity-75 cursor-wait"
+                        (!paymentScreenshot || isSubmitting) && "opacity-75 cursor-not-allowed"
                       )}
                     >
                       {isSubmitting ? (
@@ -1052,7 +1124,7 @@ export default function RegistrationPage() {
                       ) : (
                         <>
                           <CheckCircle2 size={18} />
-                          <span>Complete Registration &amp; Submit Proof</span>
+                          <span>OK — Complete Registration &amp; Submit Proof</span>
                         </>
                       )}
                     </button>
@@ -1072,16 +1144,21 @@ export default function RegistrationPage() {
         ════════════════════════════════════════════════════════════════════ */}
         {currentStep === "confirmed" && (
           <Reveal>
-            <div className="mx-auto max-w-2xl rounded-3xl border border-green-300 bg-white p-8 sm:p-12 shadow-xl text-center space-y-6">
+            <div className="mx-auto max-w-2xl rounded-3xl border-2 border-green-400 bg-white p-8 sm:p-12 shadow-2xl text-center space-y-6">
               
+              {/* Celebratory Emojis */}
+              <div className="text-4xl sm:text-5xl">
+                🎉 🚀 🎓
+              </div>
+
               {/* Green Success Badge */}
               <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-green-100 text-green-600 shadow-md">
                 <CheckCircle2 size={44} />
               </div>
 
               <div>
-                <span className="inline-block rounded-full bg-green-100 px-3.5 py-1 text-xs font-bold text-green-900 border border-green-200 uppercase tracking-widest mb-2">
-                  Registration Successfully Recorded
+                <span className="inline-block rounded-full bg-green-100 px-4 py-1.5 text-xs font-black text-green-900 border border-green-200 uppercase tracking-widest mb-2">
+                  Registration Completed Successfully! 🎉
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-black text-navy-950 tracking-tight">
                   Welcome to Malwa Chemical Conclave 2026!
@@ -1138,22 +1215,39 @@ export default function RegistrationPage() {
                 </p>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+              {/* Action Buttons: Prominent OK / Done Button that cleanly refreshes form */}
+              <div className="flex flex-wrap items-center justify-center gap-3 pt-4 border-t border-gray-100">
+                <button
+                  type="button"
+                  onClick={() => {
+                    try {
+                      sessionStorage.removeItem("mcc_reg_draft");
+                    } catch (e) {
+                      console.error(e);
+                    }
+                    window.location.href = "/registration";
+                  }}
+                  className="inline-flex items-center gap-2 rounded-xl bg-green-600 hover:bg-green-700 px-6 py-3 text-xs sm:text-sm font-bold text-white shadow-lg transition-all cursor-pointer hover:scale-[1.02]"
+                >
+                  <CheckCircle2 size={16} />
+                  <span>OK — Done (New Registration)</span>
+                  <RotateCcw size={14} />
+                </button>
+
                 <button
                   type="button"
                   onClick={() => window.print()}
-                  className="inline-flex items-center gap-2 rounded-xl bg-navy px-5 py-2.5 text-xs font-bold text-white shadow-md hover:bg-navy-900 transition-all cursor-pointer"
+                  className="inline-flex items-center gap-2 rounded-xl bg-navy px-5 py-3 text-xs font-bold text-white shadow-md hover:bg-navy-900 transition-all cursor-pointer"
                 >
                   <Download size={14} />
-                  <span>Print / Save Confirmation Slip</span>
+                  <span>Print Confirmation Slip</span>
                 </button>
 
                 <Link
                   href="/schedule"
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-gray-300 bg-white px-5 py-2.5 text-xs font-semibold text-gray-700 hover:bg-gray-50 transition-all"
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-gray-300 bg-white px-5 py-3 text-xs font-semibold text-gray-700 hover:bg-gray-50 transition-all"
                 >
-                  <span>Explore Conclave Schedule</span>
+                  <span>Explore Schedule</span>
                   <ArrowRight size={13} />
                 </Link>
               </div>
