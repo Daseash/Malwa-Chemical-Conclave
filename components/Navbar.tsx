@@ -68,6 +68,10 @@ export function Navbar() {
 
   const isHome = pathname === "/";
 
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <header
       className={cn(
