@@ -1,7 +1,5 @@
 import { MongoClient } from "mongodb";
 
-const uri = process.env.MONGODB_URI;
-
 let cachedClientPromise: Promise<MongoClient> | null = null;
 
 declare global {
@@ -11,10 +9,10 @@ declare global {
 
 /**
  * Lazily connects on first use rather than at import time, so the rest of
- * the site still builds and runs before MONGODB_URI is configured — only
- * the registration API route needs it.
+ * the site still builds and runs before MONGODB_URI is configured.
  */
 export default function getMongoClientPromise(): Promise<MongoClient> {
+  const uri = process.env.MONGODB_URI;
   if (!uri) {
     throw new Error(
       "MONGODB_URI is not set. Copy .env.example to .env.local and fill in your connection string."
@@ -23,14 +21,25 @@ export default function getMongoClientPromise(): Promise<MongoClient> {
 
   if (cachedClientPromise) return cachedClientPromise;
 
-  if (process.env.NODE_ENV === "development") {
-    // Reuse the connection across hot-reloads in dev.
-    if (!global._mongoClientPromise) {
-      global._mongoClientPromise = new MongoClient(uri).connect();
+  const client = new MongoClient(uri, {
+    serverSelectionTimeoutMS: 10000,
+    connectTimeoutMS: 10000,
+  });
+
+  const promise = client.connect().catch((err) => {
+    // Reset cache on error so subsequent requests can retry fresh instead of reusing a rejected promise
+    cachedClientPromise = null;
+    if (global._mongoClientPromise) {
+      global._mongoClientPromise = undefined;
     }
+    throw err;
+  });
+
+  if (process.env.NODE_ENV === "development") {
+    global._mongoClientPromise = promise;
     cachedClientPromise = global._mongoClientPromise;
   } else {
-    cachedClientPromise = new MongoClient(uri).connect();
+    cachedClientPromise = promise;
   }
 
   return cachedClientPromise;
