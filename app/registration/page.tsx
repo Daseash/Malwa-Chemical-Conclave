@@ -878,8 +878,8 @@ export default function RegistrationPage() {
                       <span>Proceed to Pay ₹{totalAmount.toLocaleString("en-IN")}</span>
                       <ExternalLink size={16} />
                     </button>
-                    <p className="mt-2 text-center text-[11px] text-gray-500">
-                      Clicking will open the official payment gateway in a new tab. After payment, you will upload your transaction screenshot here.
+                    <p className="mt-2 text-center text-[11px] text-gray-500 font-medium">
+                      * Take the screenshot of your payment *
                     </p>
                   </div>
                 </form>
@@ -954,19 +954,24 @@ export default function RegistrationPage() {
             <div className="mx-auto max-w-3xl space-y-8">
               
               {/* Payment Instructions Header */}
-              <div className="rounded-2xl border border-navy/20 bg-blue-50/50 p-5 text-navy-950 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div className="text-xs sm:text-sm font-semibold text-navy-950">
-                  Complete your pass &amp; accommodation payment (₹{totalAmount.toLocaleString("en-IN")}) and attach the screenshot
+              <div className="rounded-2xl border border-navy/20 bg-blue-50/50 p-5 text-navy-950 shadow-sm space-y-2.5">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="text-xs sm:text-sm font-semibold text-navy-950">
+                    Complete your pass &amp; accommodation payment (₹{totalAmount.toLocaleString("en-IN")}) and attach the screenshot
+                  </div>
+                  <a
+                    href={PAYU_PAYMENT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-navy-900 transition-all shrink-0 cursor-pointer"
+                  >
+                    <span>Open PayU Portal</span>
+                    <ExternalLink size={14} />
+                  </a>
                 </div>
-                <a
-                  href={PAYU_PAYMENT_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-navy-900 transition-all shrink-0 cursor-pointer"
-                >
-                  <span>Open PayU Portal</span>
-                  <ExternalLink size={14} />
-                </a>
+                <p className="text-[11px] text-gray-500 font-medium">
+                  * Take the screenshot of your payment *
+                </p>
               </div>
 
               {/* ── LOCKED / READ-ONLY REVIEW SUMMARY ── */}
