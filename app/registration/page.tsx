@@ -289,8 +289,13 @@ export default function RegistrationPage() {
       setValidationError("Please enter a valid email address.");
       return;
     }
-    if (!phone.trim()) {
+    const phoneDigits = phone.replace(/\D/g, "");
+    if (!phoneDigits) {
       setValidationError("Please enter your contact phone number.");
+      return;
+    }
+    if (phoneDigits.length !== 10) {
+      setValidationError("Phone number must be exactly 10 digits.");
       return;
     }
     if (!organization.trim()) {
@@ -727,17 +732,23 @@ export default function RegistrationPage() {
 
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 mb-1">
-                        Contact Phone Number <span className="text-red-500">*</span>
+                        Contact Phone Number (10 Digits) <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
                         <Phone size={15} className="absolute left-3.5 top-3.5 text-gray-400" />
                         <input
                           type="tel"
                           required
+                          inputMode="numeric"
+                          maxLength={10}
+                          pattern="[0-9]{10}"
                           value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
-                          placeholder="e.g. +91 98765 43210"
-                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
+                          onChange={(e) => {
+                            const digitsOnly = e.target.value.replace(/\D/g, "").slice(0, 10);
+                            setPhone(digitsOnly);
+                          }}
+                          placeholder="e.g. 9876543210"
+                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none font-mono"
                         />
                       </div>
                     </div>

@@ -135,9 +135,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
   }
 
-  const cleanPhone = phone.trim();
-  if (cleanPhone.length < 8 || cleanPhone.length > 25 || !PHONE_PATTERN.test(cleanPhone)) {
-    return NextResponse.json({ error: "Please provide a valid phone number." }, { status: 400 });
+  const cleanPhone = phone.trim().replace(/\D/g, "");
+  if (cleanPhone.length !== 10) {
+    return NextResponse.json({ error: "Please provide a valid 10-digit phone number." }, { status: 400 });
   }
 
   const cleanCategory = sanitize(category).slice(0, 150);
