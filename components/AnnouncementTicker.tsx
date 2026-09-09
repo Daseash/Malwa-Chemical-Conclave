@@ -12,7 +12,7 @@ export function AnnouncementTicker() {
   return (
     <section className="border-y border-[#002F6C] bg-[#001B3D] text-white">
       <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white shrink-0">
+        <div className="flex items-center gap-2 rounded-full bg-gold px-3 py-1 text-xs font-bold uppercase tracking-wider text-navy-950 shrink-0">
           <Megaphone size={14} /> Announcements
         </div>
 
