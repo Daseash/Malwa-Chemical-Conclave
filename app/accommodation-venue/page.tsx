@@ -3,7 +3,7 @@ import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { CampusMap } from "@/components/CampusMap";
 import { PlacesToVisit } from "@/components/PlacesToVisit";
-import { Plane, Train, Car, Hotel, Compass, ArrowDown } from "lucide-react";
+import { Plane, Train, Bus, Hotel, Compass, ArrowDown } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Accommodation & Venue",
@@ -65,10 +65,20 @@ export default function AccommodationVenuePage() {
                   <Plane size={18} className="text-navy" /> How to Reach IIT Indore
                 </h3>
                 <div className="space-y-4 text-sm text-gray-700">
-                  {/* Flight */}
-                  <div className="group/transit flex items-start gap-3.5 p-3 rounded-xl transition-all duration-300 hover:bg-navy-50/70 hover:shadow-xs border border-transparent hover:border-navy/15 cursor-default">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-50 text-navy border border-navy/15 shrink-0 transition-all duration-300 ease-out group-hover/transit:bg-navy group-hover/transit:text-white group-hover/transit:scale-110 group-hover/transit:shadow-md group-hover/transit:-translate-y-0.5">
-                      <Plane size={20} className="transition-transform duration-300 group-hover/transit:-rotate-12" />
+                  {/* Flight / Aeroplane */}
+                  <div className="group/transit flex items-start gap-3.5 p-3 rounded-xl transition-all duration-300 hover:bg-navy-50/70 hover:shadow-sm border border-transparent hover:border-navy/15 cursor-default">
+                    <div className="transit-stage relative flex h-11 w-11 items-center justify-center rounded-xl bg-navy-50 text-navy border border-navy/15 shrink-0 transition-all duration-300 group-hover/transit:bg-navy group-hover/transit:text-white group-hover/transit:shadow-md">
+                      {/* 3D Flying Aeroplane */}
+                      <div className="relative z-10 transition-transform duration-300 group-hover/transit:animate-plane-fly">
+                        <Plane size={22} className="transform -rotate-6 transition-transform" />
+                      </div>
+
+                      {/* Smoke / Contrail Puffs emitted on hover */}
+                      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover/transit:opacity-100 transition-opacity duration-150 overflow-visible">
+                        <span className="smoke-cloud h-3 w-3 bottom-1.5 left-2" style={{ animation: "planeSmokePuff1 0.9s ease-out infinite" }} />
+                        <span className="smoke-cloud h-2.5 w-2.5 bottom-2 left-1.5" style={{ animation: "planeSmokePuff2 1.2s ease-out infinite 0.25s" }} />
+                        <span className="smoke-cloud h-2 w-2 bottom-1 left-2.5" style={{ animation: "planeSmokePuff3 0.7s ease-out infinite 0.45s" }} />
+                      </div>
                     </div>
                     <div>
                       <strong className="text-navy-950 block transition-colors group-hover/transit:text-navy">
@@ -81,9 +91,19 @@ export default function AccommodationVenuePage() {
                   </div>
 
                   {/* Train */}
-                  <div className="group/transit flex items-start gap-3.5 p-3 rounded-xl transition-all duration-300 hover:bg-navy-50/70 hover:shadow-xs border border-transparent hover:border-navy/15 cursor-default">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-50 text-navy border border-navy/15 shrink-0 transition-all duration-300 ease-out group-hover/transit:bg-navy group-hover/transit:text-white group-hover/transit:scale-110 group-hover/transit:shadow-md group-hover/transit:-translate-y-0.5">
-                      <Train size={20} className="transition-transform duration-300 group-hover/transit:scale-110" />
+                  <div className="group/transit flex items-start gap-3.5 p-3 rounded-xl transition-all duration-300 hover:bg-navy-50/70 hover:shadow-sm border border-transparent hover:border-navy/15 cursor-default">
+                    <div className="transit-stage relative flex h-11 w-11 items-center justify-center rounded-xl bg-navy-50 text-navy border border-navy/15 shrink-0 transition-all duration-300 group-hover/transit:bg-navy group-hover/transit:text-white group-hover/transit:shadow-md">
+                      {/* 3D Chugging Train */}
+                      <div className="relative z-10 transition-transform duration-300 group-hover/transit:animate-train-chug">
+                        <Train size={22} className="transition-transform" />
+                      </div>
+
+                      {/* Steam Locomotive Smoke Puffs */}
+                      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover/transit:opacity-100 transition-opacity duration-150 overflow-visible">
+                        <span className="smoke-cloud h-3.5 w-3.5 top-1.5 left-3" style={{ animation: "trainSteamPuff1 0.85s ease-out infinite" }} />
+                        <span className="smoke-cloud h-3 w-3 top-1 left-3.5" style={{ animation: "trainSteamPuff2 1.1s ease-out infinite 0.2s" }} />
+                        <span className="smoke-cloud h-2.5 w-2.5 top-2 left-2.5" style={{ animation: "trainSteamPuff3 0.7s ease-out infinite 0.4s" }} />
+                      </div>
                     </div>
                     <div>
                       <strong className="text-navy-950 block transition-colors group-hover/transit:text-navy">
@@ -96,9 +116,19 @@ export default function AccommodationVenuePage() {
                   </div>
 
                   {/* Bus / Road */}
-                  <div className="group/transit flex items-start gap-3.5 p-3 rounded-xl transition-all duration-300 hover:bg-navy-50/70 hover:shadow-xs border border-transparent hover:border-navy/15 cursor-default">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-50 text-navy border border-navy/15 shrink-0 transition-all duration-300 ease-out group-hover/transit:bg-navy group-hover/transit:text-white group-hover/transit:scale-110 group-hover/transit:shadow-md group-hover/transit:-translate-y-0.5">
-                      <Car size={20} className="transition-transform duration-300 group-hover/transit:translate-x-0.5" />
+                  <div className="group/transit flex items-start gap-3.5 p-3 rounded-xl transition-all duration-300 hover:bg-navy-50/70 hover:shadow-sm border border-transparent hover:border-navy/15 cursor-default">
+                    <div className="transit-stage relative flex h-11 w-11 items-center justify-center rounded-xl bg-navy-50 text-navy border border-navy/15 shrink-0 transition-all duration-300 group-hover/transit:bg-navy group-hover/transit:text-white group-hover/transit:shadow-md">
+                      {/* 3D Driving Bus */}
+                      <div className="relative z-10 transition-transform duration-300 group-hover/transit:animate-bus-drive">
+                        <Bus size={22} className="transition-transform" />
+                      </div>
+
+                      {/* Exhaust Smoke Puffs */}
+                      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover/transit:opacity-100 transition-opacity duration-150 overflow-visible">
+                        <span className="smoke-cloud h-3 w-3 bottom-2 left-2" style={{ animation: "busExhaustPuff1 0.8s ease-out infinite" }} />
+                        <span className="smoke-cloud h-3.5 w-3.5 bottom-1.5 left-1.5" style={{ animation: "busExhaustPuff2 1.15s ease-out infinite 0.25s" }} />
+                        <span className="smoke-cloud h-2.5 w-2.5 bottom-2.5 left-2.5" style={{ animation: "busExhaustPuff3 0.65s ease-out infinite 0.45s" }} />
+                      </div>
                     </div>
                     <div>
                       <strong className="text-navy-950 block transition-colors group-hover/transit:text-navy">

@@ -491,3 +491,222 @@ body:has(#admin-portal) {
   color: rgba(255, 255, 255, 0.95);
 }
 
+/* ── 3D Vehicle & Smoke Motion on Hover ─────────────────────────── */
+.transit-stage {
+  perspective: 600px;
+  transform-style: preserve-3d;
+}
+
+/* Aeroplane 3D Flight & Smoke */
+@keyframes plane3dFly {
+  0% {
+    transform: perspective(600px) translate3d(0, 0, 0) rotateZ(-6deg) rotateX(0deg);
+  }
+  30% {
+    transform: perspective(600px) translate3d(7px, -6px, 14px) rotateZ(-18deg) rotateX(10deg);
+  }
+  60% {
+    transform: perspective(600px) translate3d(10px, -9px, 20px) rotateZ(-22deg) rotateX(14deg);
+  }
+  100% {
+    transform: perspective(600px) translate3d(8px, -7px, 16px) rotateZ(-20deg) rotateX(12deg);
+  }
+}
+
+@keyframes planeSmokePuff1 {
+  0% {
+    transform: translate(0, 0) scale(0.3);
+    opacity: 0.9;
+  }
+  60% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-26px, 18px) scale(2.4);
+    opacity: 0;
+    filter: blur(3px);
+  }
+}
+
+@keyframes planeSmokePuff2 {
+  0% {
+    transform: translate(0, 0) scale(0.35);
+    opacity: 0.85;
+  }
+  60% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate(-38px, 26px) scale(2.8);
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
+@keyframes planeSmokePuff3 {
+  0% {
+    transform: translate(0, 0) scale(0.2);
+    opacity: 0.8;
+  }
+  60% {
+    opacity: 0.45;
+  }
+  100% {
+    transform: translate(-16px, 10px) scale(1.8);
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
+/* Train 3D Chug & Steam */
+@keyframes train3dChug {
+  0% {
+    transform: perspective(600px) translate3d(0, 0, 0) rotate(0deg);
+  }
+  20% {
+    transform: perspective(600px) translate3d(3px, -2px, 8px) rotate(1.5deg);
+  }
+  40% {
+    transform: perspective(600px) translate3d(7px, 1.5px, 14px) rotate(-1deg);
+  }
+  60% {
+    transform: perspective(600px) translate3d(10px, -1px, 18px) rotate(1.2deg);
+  }
+  80% {
+    transform: perspective(600px) translate3d(8px, 1px, 15px) rotate(-0.8deg);
+  }
+  100% {
+    transform: perspective(600px) translate3d(9px, 0px, 16px) rotate(0.4deg);
+  }
+}
+
+@keyframes trainSteamPuff1 {
+  0% {
+    transform: translate(0, 0) scale(0.35);
+    opacity: 0.9;
+  }
+  60% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate(-16px, -26px) scale(2.5);
+    opacity: 0;
+    filter: blur(3px);
+  }
+}
+
+@keyframes trainSteamPuff2 {
+  0% {
+    transform: translate(0, 0) scale(0.4);
+    opacity: 0.8;
+  }
+  60% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate(-26px, -36px) scale(3);
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
+@keyframes trainSteamPuff3 {
+  0% {
+    transform: translate(0, 0) scale(0.25);
+    opacity: 0.75;
+  }
+  60% {
+    opacity: 0.45;
+  }
+  100% {
+    transform: translate(-10px, -16px) scale(2);
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
+/* Bus 3D Drive & Exhaust */
+@keyframes bus3dDrive {
+  0% {
+    transform: perspective(600px) translate3d(0, 0, 0) rotate(0deg);
+  }
+  25% {
+    transform: perspective(600px) translate3d(4px, -2px, 8px) rotate(1deg);
+  }
+  50% {
+    transform: perspective(600px) translate3d(8px, 1.5px, 15px) rotate(-1deg);
+  }
+  75% {
+    transform: perspective(600px) translate3d(11px, -1px, 19px) rotate(0.8deg);
+  }
+  100% {
+    transform: perspective(600px) translate3d(9px, 0px, 16px) rotate(0.3deg);
+  }
+}
+
+@keyframes busExhaustPuff1 {
+  0% {
+    transform: translate(0, 0) scale(0.35);
+    opacity: 0.9;
+  }
+  60% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-22px, -8px) scale(2.3);
+    opacity: 0;
+    filter: blur(3px);
+  }
+}
+
+@keyframes busExhaustPuff2 {
+  0% {
+    transform: translate(0, 0) scale(0.4);
+    opacity: 0.8;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-32px, -14px) scale(2.8);
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
+@keyframes busExhaustPuff3 {
+  0% {
+    transform: translate(0, 0) scale(0.25);
+    opacity: 0.75;
+  }
+  60% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-14px, -4px) scale(1.8);
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
+.animate-plane-fly {
+  animation: plane3dFly 1.8s ease-in-out infinite alternate;
+}
+
+.animate-train-chug {
+  animation: train3dChug 1.2s ease-in-out infinite alternate;
+}
+
+.animate-bus-drive {
+  animation: bus3dDrive 1.4s ease-in-out infinite alternate;
+}
+
+.smoke-cloud {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(230, 240, 255, 0.95) 15%, rgba(190, 215, 245, 0.7) 50%, rgba(150, 185, 230, 0) 100%);
+  box-shadow: 0 0 8px rgba(180, 210, 250, 0.7);
+  pointer-events: none;
+}
+
+
