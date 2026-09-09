@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Upload, CheckCircle2, X, Receipt, Image as ImageIcon } from "lucide-react";
+import { Upload, CheckCircle2, X, Maximize2 } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 interface PaymentScreenshotUploadProps {
@@ -17,6 +17,7 @@ export function PaymentScreenshotUpload({
 }: PaymentScreenshotUploadProps) {
   const [screenshotData, setScreenshotData] = useState<string | undefined>(value);
   const [fileName, setFileName] = useState<string | null>(null);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -40,12 +41,14 @@ export function PaymentScreenshotUpload({
   const handleRemove = () => {
     setScreenshotData(undefined);
     setFileName(null);
+    setIsPreviewOpen(false);
     onChange(undefined);
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
+      {/* Hidden File Input */}
       <input
         type="file"
         ref={fileInputRef}
@@ -55,84 +58,115 @@ export function PaymentScreenshotUpload({
         disabled={disabled}
       />
 
+      {/* Initial State: Compact rectangular button with zero wasted space */}
       {!screenshotData ? (
-        <div
-          onClick={() => !disabled && fileInputRef.current?.click()}
+        <button
+          type="button"
+          disabled={disabled}
+          onClick={() => fileInputRef.current?.click()}
           className={cn(
-            "group cursor-pointer rounded-2xl border-2 border-dashed border-navy/30 bg-blue-50/20 p-6 text-center transition-all hover:border-navy hover:bg-blue-50/40 hover:shadow-md",
+            "inline-flex items-center gap-2 rounded-xl border border-gray-300 bg-white hover:border-navy hover:bg-gray-50 px-4 py-2.5 text-xs font-semibold text-navy-950 transition-all cursor-pointer shadow-xs hover:shadow-sm",
             disabled && "cursor-not-allowed opacity-60"
           )}
         >
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white border border-navy/20 text-navy shadow-xs transition-transform group-hover:scale-110 mb-3">
-            <Receipt size={28} className="text-navy" />
+          <Upload size={15} className="text-navy" />
+          <span>Upload Screenshot</span>
+        </button>
+      ) : (
+        /* Small preview shown only after upload */
+        <div className="inline-flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-2.5 shadow-xs">
+          {/* Small Clickable Thumbnail (Opens Pop-up Modal) */}
+          <div
+            onClick={() => setIsPreviewOpen(true)}
+            className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-navy/20 bg-gray-100 cursor-pointer group"
+            title="Click to expand screenshot"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={screenshotData}
+              alt="Payment Screenshot"
+              className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform"
+            />
+            <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <Maximize2 size={13} className="text-white" />
+            </div>
           </div>
 
-          <h5 className="text-sm font-bold text-navy-950">
-            Upload Payment Screenshot / Transaction Receipt
-          </h5>
-          <p className="mt-1 text-xs text-gray-500 max-w-sm mx-auto">
-            Attach a screenshot of your successful transaction or bank confirmation receipt.
-          </p>
+          <div className="space-y-1 pr-2 text-left">
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1 text-[11px] font-bold text-green-700 bg-green-50 px-1.5 py-0.5 rounded border border-green-200">
+                <CheckCircle2 size={11} /> Screenshot Uploaded
+              </span>
+            </div>
 
-          <div className="mt-4">
-            <span className="inline-flex items-center gap-1.5 rounded-lg bg-navy px-5 py-2.5 text-xs font-bold text-white shadow-xs group-hover:bg-navy-900 transition-all">
-              <Upload size={14} />
-              <span>Browse Receipt / Screenshot</span>
-            </span>
+            {fileName && (
+              <p className="text-[10px] font-mono text-gray-500 truncate max-w-[180px]">
+                {fileName}
+              </p>
+            )}
+
+            {!disabled && (
+              <div className="flex items-center gap-2 text-xs">
+                <button
+                  type="button"
+                  onClick={() => setIsPreviewOpen(true)}
+                  className="text-[11px] font-semibold text-gray-600 hover:text-navy hover:underline cursor-pointer"
+                >
+                  View
+                </button>
+                <span className="text-gray-300">•</span>
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="text-[11px] font-semibold text-navy hover:underline cursor-pointer"
+                >
+                  Change
+                </button>
+                <span className="text-gray-300">•</span>
+                <button
+                  type="button"
+                  onClick={handleRemove}
+                  className="text-[11px] font-semibold text-red-600 hover:underline cursor-pointer"
+                >
+                  Remove
+                </button>
+              </div>
+            )}
           </div>
         </div>
-      ) : (
-        <div className="rounded-2xl border border-green-200 bg-green-50/30 p-4 sm:p-5 shadow-xs">
-          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-            {/* Thumbnail */}
-            <div className="relative h-28 w-28 sm:h-32 sm:w-32 shrink-0 overflow-hidden rounded-xl border border-green-300 bg-white shadow-xs">
+      )}
+
+      {/* Pop-up Lightbox Modal when user clicks the small image */}
+      {isPreviewOpen && screenshotData && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-xs"
+          onClick={() => setIsPreviewOpen(false)}
+        >
+          <div
+            className="relative max-w-2xl w-full max-h-[85vh] rounded-2xl bg-white p-4 shadow-2xl overflow-hidden flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between pb-3 border-b border-gray-100 mb-3">
+              <span className="text-xs font-bold text-navy-950 flex items-center gap-1.5">
+                <CheckCircle2 size={14} className="text-green-600" />
+                Payment Screenshot
+              </span>
+              <button
+                type="button"
+                onClick={() => setIsPreviewOpen(false)}
+                className="rounded-full p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="overflow-auto max-h-[70vh] flex items-center justify-center bg-gray-50 rounded-xl p-2 border border-gray-100">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={screenshotData}
-                alt="Payment Screenshot"
-                className="h-full w-full object-contain p-1"
+                alt="Payment Screenshot Large Preview"
+                className="max-h-[65vh] max-w-full object-contain rounded"
               />
-            </div>
-
-            {/* Content & Options */}
-            <div className="flex-1 text-center sm:text-left space-y-2">
-              <div className="flex items-center justify-center sm:justify-between">
-                <span className="inline-flex items-center gap-1 text-xs font-bold text-green-800 bg-green-100 px-2.5 py-0.5 rounded-full border border-green-300">
-                  <CheckCircle2 size={13} /> Payment Screenshot Attached
-                </span>
-              </div>
-
-              {fileName && (
-                <p className="text-xs font-mono text-gray-600 truncate max-w-xs">
-                  {fileName}
-                </p>
-              )}
-
-              <p className="text-xs text-gray-600 leading-relaxed">
-                Your transaction proof is linked to this registration. The secretariat will verify it against the banking portal.
-              </p>
-
-              {!disabled && (
-                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-1">
-                  <button
-                    type="button"
-                    onClick={() => fileInputRef.current?.click()}
-                    className="inline-flex items-center gap-1 rounded-md border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-50"
-                  >
-                    <Upload size={12} />
-                    <span>Replace Screenshot</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={handleRemove}
-                    className="inline-flex items-center gap-1 rounded-md border border-red-200 bg-red-50 px-2.5 py-1.5 text-xs font-semibold text-red-700 hover:bg-red-100"
-                  >
-                    <X size={12} />
-                    <span>Remove</span>
-                  </button>
-                </div>
-              )}
             </div>
           </div>
         </div>

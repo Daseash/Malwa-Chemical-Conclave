@@ -511,9 +511,6 @@ export default function RegistrationPage() {
                             <h5 className="text-sm font-bold text-navy-950 leading-snug">
                               {cat.name}
                             </h5>
-                            <p className="mt-1.5 text-xs text-gray-500 leading-relaxed">
-                              {cat.description}
-                            </p>
                           </div>
 
                           <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-semibold">
@@ -815,107 +812,58 @@ export default function RegistrationPage() {
 
             </div>
 
-            {/* Right Column: Pass Summary (5 Cols) */}
-            <div className="lg:col-span-5 sticky top-28 space-y-6">
+            {/* Right Column: Compact Fee Calculation (5 Cols) */}
+            <div className="lg:col-span-5 sticky top-28">
               <Reveal delay={0.1}>
-                <div className="rounded-3xl border border-[#E5E7EB] bg-white shadow-lg overflow-hidden">
-                  <div className="bg-navy-950 p-5 text-white">
-                    <div className="flex items-center justify-between">
-                      <span className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-gold-400">
-                        <Receipt size={14} /> Fee Calculation
-                      </span>
-                      <span className="rounded bg-white/10 px-2 py-0.5 text-[10px] font-mono font-bold text-white">
-                        MCC-2026
-                      </span>
-                    </div>
-                    <h4 className="mt-2 text-xl font-bold tracking-tight text-white">
-                      Registration Pass Fee
-                    </h4>
-                    <p className="text-xs text-gray-300">IIT Indore Department of Chemical Engineering</p>
+                <div className="rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+                  <div className="bg-navy-950 px-5 py-3.5 text-white flex items-center justify-between">
+                    <span className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gold-400">
+                      <Receipt size={14} /> Fee Calculation
+                    </span>
+                    <span className="text-xs font-semibold text-gray-300">
+                      {selectedCategory.badge}
+                    </span>
                   </div>
 
-                  <div className="p-6 space-y-5">
-                    {/* Selected Tier Banner */}
-                    <div className="rounded-xl bg-gray-50 p-4 border border-gray-200 flex items-start justify-between">
-                      <div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500 block mb-0.5">
-                          Participant Category
-                        </span>
-                        <h5 className="text-sm font-bold text-navy-950">{selectedCategory.name}</h5>
-                        <p className="mt-0.5 text-xs text-gray-500">{activeDuration.label}</p>
-                      </div>
-                      <span className="font-mono text-base font-extrabold text-navy-950">
-                        ₹{basePassFee.toLocaleString("en-IN")}
-                      </span>
-                    </div>
-
-                    {/* Itemized Line Items */}
-                    <div className="space-y-3 pt-2 border-t border-gray-100">
-                      <span className="text-xs font-bold uppercase tracking-wider text-gray-500 block">
-                        Breakdown &amp; Inclusions
-                      </span>
-
-                      <div className="flex items-center justify-between text-xs text-gray-700">
-                        <span className="flex items-center gap-2">
-                          <Check size={14} className="text-green-600 shrink-0" />
-                          <span>Conference Pass ({activeDuration.label})</span>
-                        </span>
-                        <span className="font-mono font-bold text-gray-900">
+                  <div className="p-4 sm:p-5 space-y-3">
+                    <div className="space-y-2.5 text-xs">
+                      <div className="flex items-start justify-between text-gray-700">
+                        <div className="pr-3">
+                          <span className="font-semibold text-navy-950 block">{selectedCategory.name}</span>
+                          <span className="text-[11px] text-gray-500">{activeDuration.label}</span>
+                        </div>
+                        <span className="font-mono font-bold text-navy-950 shrink-0 pt-0.5">
                           ₹{basePassFee.toLocaleString("en-IN")}
                         </span>
                       </div>
 
-                      <div className="flex items-center justify-between text-xs text-gray-700">
-                        <span className="flex items-center gap-2">
-                          <Hotel size={14} className="text-navy shrink-0" />
-                          <span className="truncate max-w-[200px]" title={accommodationLabel}>
-                            {accommodationLabel}
+                      {accommodationFee > 0 && (
+                        <div className="flex items-start justify-between text-gray-700 pt-2 border-t border-gray-100">
+                          <div className="pr-3">
+                            <span className="font-semibold text-navy-950 block">Accommodation</span>
+                            <span className="text-[11px] text-gray-500 truncate max-w-[200px] block" title={accommodationLabel}>
+                              {accommodationLabel}
+                            </span>
+                          </div>
+                          <span className="font-mono font-bold text-navy-950 shrink-0 pt-0.5">
+                            ₹{accommodationFee.toLocaleString("en-IN")}
                           </span>
-                        </span>
-                        <span className="font-mono font-bold text-gray-900">
-                          ₹{accommodationFee.toLocaleString("en-IN")}
-                        </span>
-                      </div>
+                        </div>
+                      )}
                     </div>
 
-                    {/* Total Amount Sum */}
-                    <div className="rounded-2xl bg-white p-4 text-navy-950 flex items-center justify-between border-2 border-navy shadow-sm">
-                      <div>
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-navy-900 block">
-                          Total Amount to Pay
-                        </span>
-                        <span className="text-xs text-gray-500">Pass Fee + Housing</span>
-                      </div>
-                      <div className="text-right">
-                        <span className="font-mono text-3xl font-extrabold text-navy-950 tracking-tight">
-                          ₹{totalAmount.toLocaleString("en-IN")}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Guarantee & Invoices Note */}
-                    <div className="space-y-2 pt-2 text-xs text-gray-500">
-                      <div className="flex items-start gap-2 bg-gray-50 p-3 rounded-lg border border-gray-100">
-                        <FileCheck size={16} className="text-navy shrink-0 mt-0.5" />
-                        <span>
-                          Official GST invoice and certificate will be issued upon transaction verification.
-                        </span>
-                      </div>
+                    {/* Total Amount */}
+                    <div className="pt-3 border-t border-gray-200 flex items-center justify-between">
+                      <span className="text-xs font-bold uppercase tracking-wider text-navy-950">
+                        Total Amount
+                      </span>
+                      <span className="font-mono text-2xl font-extrabold text-navy-950">
+                        ₹{totalAmount.toLocaleString("en-IN")}
+                      </span>
                     </div>
                   </div>
                 </div>
               </Reveal>
-
-              {/* What's Included */}
-              <div className="rounded-3xl border border-gray-200 p-5 bg-white shadow-xs space-y-3 text-xs text-gray-600">
-                <span className="font-bold text-navy-950 block">Every Pass Includes:</span>
-                <ul className="space-y-1.5 list-disc pl-4 text-[11px]">
-                  <li>Certificate of Participation (IIT Indore &amp; BIS Chapter)</li>
-                  <li>Conference delegate kit, printed abstracts, and stationery</li>
-                  <li>Access to keynotes, workshops, and poster sessions</li>
-                  <li>Networking lunches and high-tea refreshments</li>
-                </ul>
-              </div>
             </div>
 
           </div>
@@ -930,60 +878,20 @@ export default function RegistrationPage() {
           <Reveal>
             <div className="mx-auto max-w-3xl space-y-8">
               
-              {/* PayU Instructions & Direct Link Header */}
-              <div className="rounded-3xl border-2 border-navy/20 bg-linear-to-r from-navy-50/80 to-blue-50/50 p-6 sm:p-7 text-navy-950 space-y-4 shadow-sm">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-navy/15 pb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-navy text-white shrink-0 shadow-md">
-                      <Receipt size={22} />
-                    </div>
-                    <div>
-                      <span className="text-[11px] font-bold text-navy uppercase tracking-widest block">
-                        Step 2 of 2
-                      </span>
-                      <h3 className="text-lg sm:text-xl font-extrabold text-navy-950">
-                        PayU Payment &amp; Screenshot Verification
-                      </h3>
-                    </div>
-                  </div>
-
-                  <a
-                    href={PAYU_PAYMENT_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-5 py-3 text-xs font-bold text-white shadow-md hover:bg-navy-900 transition-all shrink-0 cursor-pointer hover:scale-[1.02]"
-                  >
-                    <span>Open PayU Portal</span>
-                    <ExternalLink size={14} />
-                  </a>
+              {/* Payment Instructions Header */}
+              <div className="rounded-2xl border border-navy/20 bg-blue-50/50 p-5 text-navy-950 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="text-xs sm:text-sm font-semibold text-navy-950">
+                  Complete your pass &amp; accommodation payment (₹{totalAmount.toLocaleString("en-IN")}) and attach the screenshot
                 </div>
-
-                {/* Clear Step-by-Step Instructions */}
-                <div className="space-y-2 rounded-2xl bg-white/95 border border-navy/10 p-4 text-xs text-navy-950">
-                  <p className="font-bold text-navy flex items-center gap-1.5 text-sm">
-                    <AlertCircle size={16} className="text-navy" /> How to Complete Your Registration:
-                  </p>
-                  <ol className="list-decimal list-inside space-y-2 text-gray-700 leading-relaxed font-medium pt-1">
-                    <li>
-                      Complete your pass &amp; accommodation payment (<strong>₹{totalAmount.toLocaleString("en-IN")}</strong>) on the{" "}
-                      <a href={PAYU_PAYMENT_URL} target="_blank" rel="noopener noreferrer" className="font-bold text-navy underline hover:text-gold">
-                        official PayU gateway ↗
-                      </a>.
-                    </li>
-                    <li>
-                      <strong>Take a screenshot</strong> of the payment success screen (or save the transaction receipt to your phone / computer gallery).
-                      <span className="block text-[11px] text-gray-500 font-normal mt-0.5">
-                        *(Note: Due to web browser banking security &amp; privacy policies, websites cannot automatically capture external payment screens or access your personal device gallery without your permission)*.
-                      </span>
-                    </li>
-                    <li>
-                      Attach or paste your payment screenshot in the uploader below.
-                    </li>
-                    <li>
-                      Click the green <strong>&quot;OK — Complete Registration&quot;</strong> button to record your entry in the official database.
-                    </li>
-                  </ol>
-                </div>
+                <a
+                  href={PAYU_PAYMENT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-navy-900 transition-all shrink-0 cursor-pointer"
+                >
+                  <span>Open PayU Portal</span>
+                  <ExternalLink size={14} />
+                </a>
               </div>
 
               {/* ── LOCKED / READ-ONLY REVIEW SUMMARY ── */}
@@ -1068,7 +976,7 @@ export default function RegistrationPage() {
                   </div>
                 </div>
 
-                {/* ── THE ONLY ACTIVE OPTION: UPLOAD PAYMENT SCREENSHOT ── */}
+                {/* ── ATTACH PAYMENT SCREENSHOT ── */}
                 <form onSubmit={handleFinalSubmit} className="space-y-6 pt-4 border-t border-gray-100">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-navy-950 mb-2">
@@ -1079,23 +987,6 @@ export default function RegistrationPage() {
                       onChange={setPaymentScreenshot}
                       disabled={isSubmitting}
                     />
-                  </div>
-
-                  {/* Transaction / UTR Reference Number */}
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-700 mb-1">
-                      UPI Reference Number / UTR / Transaction ID (Optional)
-                    </label>
-                    <input
-                      type="text"
-                      value={transactionId}
-                      onChange={(e) => setTransactionId(e.target.value)}
-                      placeholder="e.g. 123456789012 or SBI1234567"
-                      className="w-full rounded-xl border border-gray-300 bg-white py-2.5 px-3.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none font-mono"
-                    />
-                    <p className="mt-1 text-[11px] text-gray-400">
-                      Entering your 12-digit UPI UTR number helps instant automated reconciliation.
-                    </p>
                   </div>
 
                   {/* Submit Error */}
@@ -1112,25 +1003,19 @@ export default function RegistrationPage() {
                       type="submit"
                       disabled={isSubmitting || !paymentScreenshot}
                       className={cn(
-                        "w-full flex items-center justify-center gap-2 rounded-xl bg-green-600 hover:bg-green-700 py-4 px-6 text-sm font-bold text-white shadow-lg transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99]",
+                        "w-full flex items-center justify-center gap-2 rounded-xl bg-green-600 hover:bg-green-700 py-3.5 px-6 text-sm font-bold text-white shadow-lg transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99]",
                         (!paymentScreenshot || isSubmitting) && "opacity-75 cursor-not-allowed"
                       )}
                     >
                       {isSubmitting ? (
                         <>
                           <div className="h-4 w-4 rounded-full border-2 border-white border-t-transparent animate-spin" />
-                          <span>Saving Registration to Database...</span>
+                          <span>Completing Registration...</span>
                         </>
                       ) : (
-                        <>
-                          <CheckCircle2 size={18} />
-                          <span>OK — Complete Registration &amp; Submit Proof</span>
-                        </>
+                        <span>Complete Registration</span>
                       )}
                     </button>
-                    <p className="mt-2.5 text-center text-[11px] text-gray-500">
-                      Your details and payment slip will be recorded in the official IIT Indore conclave database.
-                    </p>
                   </div>
                 </form>
 
@@ -1144,79 +1029,57 @@ export default function RegistrationPage() {
         ════════════════════════════════════════════════════════════════════ */}
         {currentStep === "confirmed" && (
           <Reveal>
-            <div className="mx-auto max-w-2xl rounded-3xl border-2 border-green-400 bg-white p-8 sm:p-12 shadow-2xl text-center space-y-6">
-              
-              {/* Celebratory Emojis */}
-              <div className="text-4xl sm:text-5xl">
-                🎉 🚀 🎓
-              </div>
-
-              {/* Green Success Badge */}
-              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-green-100 text-green-600 shadow-md">
-                <CheckCircle2 size={44} />
+            <div className="mx-auto max-w-lg rounded-2xl border-2 border-navy bg-white p-6 sm:p-7 shadow-lg text-center space-y-4">
+              {/* Success Icon */}
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 text-navy">
+                <CheckCircle2 size={28} />
               </div>
 
               <div>
-                <span className="inline-block rounded-full bg-green-100 px-4 py-1.5 text-xs font-black text-green-900 border border-green-200 uppercase tracking-widest mb-2">
-                  Registration Completed Successfully! 🎉
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-black text-navy-950 tracking-tight">
-                  Welcome to Malwa Chemical Conclave 2026!
-                </h2>
-                <p className="mt-2 text-xs sm:text-sm text-gray-600 max-w-md mx-auto leading-relaxed">
-                  Thank you, <strong className="text-navy">{fullName}</strong>. Your registration details, photo, and payment proof have been successfully stored in our database.
+                <h3 className="text-lg sm:text-xl font-bold text-navy-950">
+                  Registration Confirmed
+                </h3>
+                <p className="mt-1 text-xs text-gray-600">
+                  Thank you, <strong className="text-navy">{fullName}</strong>. Your registration details and payment proof have been recorded.
                 </p>
               </div>
 
               {/* Registration Reference Card */}
-              <div className="rounded-2xl border-2 border-dashed border-navy/30 bg-navy-50/40 p-5 max-w-md mx-auto text-left space-y-2.5">
+              <div className="rounded-xl bg-gray-50 p-3.5 border border-gray-200 text-left space-y-2 text-xs">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500">
-                    Registration ID
-                  </span>
-                  <span className="font-mono text-sm font-extrabold text-navy bg-white px-2.5 py-0.5 rounded border border-navy/20">
+                  <span className="text-gray-500 font-medium">Registration ID</span>
+                  <span className="font-mono font-bold text-navy bg-white px-2 py-0.5 rounded border border-navy/20">
                     {confirmedRegistrationId}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500">Participant Category</span>
-                  <span className="font-semibold text-gray-900">{selectedCategory.name}</span>
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-500">Category</span>
+                  <span className="font-medium text-gray-900">{selectedCategory.name}</span>
                 </div>
 
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500">Pass Duration</span>
-                  <span className="font-semibold text-gray-900">{activeDuration.label}</span>
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-500">Duration</span>
+                  <span className="font-medium text-gray-900">{activeDuration.label}</span>
                 </div>
 
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500">Accommodation</span>
-                  <span className="font-semibold text-gray-900">{accommodationLabel}</span>
-                </div>
+                {accommodationFee > 0 && (
+                  <div className="flex items-center justify-between">
+                    <span className="text-gray-500">Accommodation</span>
+                    <span className="font-medium text-gray-900">{accommodationLabel}</span>
+                  </div>
+                )}
 
-                <div className="flex items-center justify-between text-xs pt-2 border-t border-gray-200">
-                  <span className="text-gray-500 font-bold">Total Amount Paid</span>
-                  <span className="font-mono font-extrabold text-navy-950 text-sm">
+                <div className="flex items-center justify-between pt-2 border-t border-gray-200 font-bold">
+                  <span className="text-gray-700">Total Amount Paid</span>
+                  <span className="font-mono text-navy-950">
                     ₹{totalAmount.toLocaleString("en-IN")}
                   </span>
                 </div>
               </div>
 
-              {/* Informational Message */}
-              <div className="rounded-xl bg-gray-50 p-4 text-xs text-gray-600 text-left border border-gray-200 space-y-1">
-                <p className="font-bold text-navy-950 flex items-center gap-1.5">
-                  <ShieldCheck size={14} className="text-navy" /> Next Steps:
-                </p>
-                <p className="leading-relaxed">
-                  1. An official confirmation email with your pass details will be sent to <strong>{email}</strong> once our finance desk verifies the payment screenshot.
-                </p>
-                <p className="leading-relaxed">
-                  2. Keep this Registration ID handy at the Simrol Campus registration counter on conclave days to collect your delegate badge and conference kit.
-                </p>
-              </div>
-
-              {/* Action Buttons: Prominent OK / Done Button that cleanly refreshes form */}
-              <div className="flex flex-wrap items-center justify-center gap-3 pt-4 border-t border-gray-100">
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2">
                 <button
                   type="button"
                   onClick={() => {
@@ -1227,29 +1090,20 @@ export default function RegistrationPage() {
                     }
                     window.location.href = "/registration";
                   }}
-                  className="inline-flex items-center gap-2 rounded-xl bg-green-600 hover:bg-green-700 px-6 py-3 text-xs sm:text-sm font-bold text-white shadow-lg transition-all cursor-pointer hover:scale-[1.02]"
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-navy hover:bg-navy-900 px-4 py-2 text-xs font-bold text-white shadow-sm transition-all cursor-pointer"
                 >
-                  <CheckCircle2 size={16} />
-                  <span>OK — Done (New Registration)</span>
-                  <RotateCcw size={14} />
+                  <RotateCcw size={13} />
+                  <span>New Registration</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => window.print()}
-                  className="inline-flex items-center gap-2 rounded-xl bg-navy px-5 py-3 text-xs font-bold text-white shadow-md hover:bg-navy-900 transition-all cursor-pointer"
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 px-4 py-2 text-xs font-semibold text-gray-700 shadow-2xs transition-all cursor-pointer"
                 >
-                  <Download size={14} />
-                  <span>Print Confirmation Slip</span>
+                  <Download size={13} />
+                  <span>Print Slip</span>
                 </button>
-
-                <Link
-                  href="/schedule"
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-gray-300 bg-white px-5 py-3 text-xs font-semibold text-gray-700 hover:bg-gray-50 transition-all"
-                >
-                  <span>Explore Schedule</span>
-                  <ArrowRight size={13} />
-                </Link>
               </div>
 
             </div>
