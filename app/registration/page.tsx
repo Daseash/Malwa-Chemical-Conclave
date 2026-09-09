@@ -229,8 +229,21 @@ export default function RegistrationPage() {
           }
           if (p.selectedDurationId) setSelectedDurationId(p.selectedDurationId);
           if (p.isAccommodationChecked !== undefined) setIsAccommodationChecked(p.isAccommodationChecked);
-          if (p.selectedAccommodationId) setSelectedAccommodationId(p.selectedAccommodationId);
-          if (p.currentStep === "payment_proof") setCurrentStep("payment_proof");
+          // Only restore step 2 if phone is 10 digits and email is valid
+          const cleanPhone = (p.phone || "").replace(/\D/g, "");
+          const cleanEmail = (p.email || "").trim().toLowerCase();
+          const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail);
+          const isIITIValid =
+            p.selectedCategoryId !== "iiti" ||
+            cleanEmail.endsWith("@iiti.ac.in") ||
+            cleanEmail.endsWith(".iiti.ac.in") ||
+            cleanEmail.endsWith("@gmail.com");
+
+          if (p.currentStep === "payment_proof" && cleanPhone.length === 10 && isEmailValid && isIITIValid) {
+            setCurrentStep("payment_proof");
+          } else {
+            setCurrentStep("details");
+          }
         }
       } catch (err) {
         console.error("Draft restore error:", err);
@@ -392,7 +405,20 @@ export default function RegistrationPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Failed to submit registration.");
+        const errorMsg = data.error || "Failed to submit registration.";
+        // Never show email or phone number validation errors in step 2; redirect to step 1 where they can be fixed
+        if (
+          errorMsg.toLowerCase().includes("phone") ||
+          errorMsg.toLowerCase().includes("email") ||
+          errorMsg.toLowerCase().includes("name") ||
+          errorMsg.toLowerCase().includes("iit indore")
+        ) {
+          setCurrentStep("details");
+          setValidationError(errorMsg);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          return;
+        }
+        throw new Error(errorMsg);
       }
 
       setConfirmedRegistrationId(data.registrationId || `MCC-2026-${Math.floor(100000 + Math.random() * 900000)}`);
@@ -751,6 +777,11 @@ export default function RegistrationPage() {
                           className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
                         />
                       </div>
+                      {selectedCategory.id === "iiti" && email && !(email.toLowerCase().endsWith("@iiti.ac.in") || email.toLowerCase().endsWith(".iiti.ac.in") || email.toLowerCase().endsWith("@gmail.com")) && (
+                        <p className="mt-1 text-[11px] text-red-500 font-medium">
+                          Must end with @iiti.ac.in or @gmail.com
+                        </p>
+                      )}
                     </div>
 
                     <div>
@@ -774,6 +805,16 @@ export default function RegistrationPage() {
                           className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none font-mono"
                         />
                       </div>
+                      {phone.length > 0 && phone.length < 10 && (
+                        <p className="mt-1 text-[11px] text-amber-600 font-medium font-mono">
+                          {phone.length}/10 digits entered
+                        </p>
+                      )}
+                      {phone.length === 10 && (
+                        <p className="mt-1 text-[11px] text-green-600 font-medium">
+                          10 digits complete ✓
+                        </p>
+                      )}
                     </div>
 
                     <div>
