@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, type FormEvent } from "react";
+import { useState, useEffect, useRef, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle2,
@@ -204,6 +204,9 @@ export default function RegistrationPage() {
   // Form Validation Error for Step 1
   const [validationError, setValidationError] = useState<string | null>(null);
 
+  // Reference to the active PayU tab/window so delegates can return to it
+  const payuWindowRef = useRef<Window | null>(null);
+
   // Check URL query and restore draft state from sessionStorage
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -357,12 +360,29 @@ export default function RegistrationPage() {
       console.error("Draft save error:", err);
     }
 
-    // Open PayU official payment gateway in a separate tab
-    window.open(PAYU_PAYMENT_URL, "_blank");
+    // Open PayU official payment gateway in a named tab and store ref so user can return to it
+    const payuWin = window.open(PAYU_PAYMENT_URL, "mcc_payu_portal");
+    payuWindowRef.current = payuWin;
 
     // Transition this form to the locked view where payment screenshot must be uploaded
     setCurrentStep("payment_proof");
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Switch / return to the PayU tab where payment was made
+  const handleOpenPayUTab = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (payuWindowRef.current && !payuWindowRef.current.closed) {
+      try {
+        payuWindowRef.current.focus();
+        return;
+      } catch (err) {
+        console.warn("Could not focus existing PayU tab:", err);
+      }
+    }
+    const win = window.open(PAYU_PAYMENT_URL, "mcc_payu_portal");
+    payuWindowRef.current = win;
+    win?.focus();
   };
 
   // Step 2: Final Submit with Payment Screenshot
@@ -959,15 +979,14 @@ export default function RegistrationPage() {
                   <div className="text-xs sm:text-sm font-semibold text-navy-950">
                     Complete your pass &amp; accommodation payment (₹{totalAmount.toLocaleString("en-IN")}) and attach the screenshot
                   </div>
-                  <a
-                    href={PAYU_PAYMENT_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    type="button"
+                    onClick={handleOpenPayUTab}
                     className="inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-navy-900 transition-all shrink-0 cursor-pointer"
                   >
                     <span>Open PayU Portal</span>
                     <ExternalLink size={14} />
-                  </a>
+                  </button>
                 </div>
                 <p className="text-[11px] text-gray-500 font-medium">
                   * Take the screenshot of your payment *
