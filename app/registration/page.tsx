@@ -285,9 +285,23 @@ export default function RegistrationPage() {
       setValidationError("Please enter your full name.");
       return;
     }
-    if (!email.trim()) {
+    const lowerEmail = email.trim().toLowerCase();
+    const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!lowerEmail || !EMAIL_REGEX.test(lowerEmail)) {
       setValidationError("Please enter a valid email address.");
       return;
+    }
+
+    if (selectedCategory.id === "iiti") {
+      const isIITIOrGmail =
+        lowerEmail.endsWith("@iiti.ac.in") ||
+        lowerEmail.endsWith(".iiti.ac.in") ||
+        lowerEmail.endsWith("@gmail.com");
+
+      if (!isIITIOrGmail) {
+        setValidationError("For the IIT Indore category, email must be @iiti.ac.in or @gmail.com.");
+        return;
+      }
     }
     const phoneDigits = phone.replace(/\D/g, "");
     if (!phoneDigits) {
@@ -716,6 +730,11 @@ export default function RegistrationPage() {
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 mb-1">
                         Email Address <span className="text-red-500">*</span>
+                        {selectedCategory.id === "iiti" && (
+                          <span className="text-[11px] font-normal text-navy ml-1">
+                            (@iiti.ac.in or @gmail.com)
+                          </span>
+                        )}
                       </label>
                       <div className="relative">
                         <Mail size={15} className="absolute left-3.5 top-3.5 text-gray-400" />
@@ -724,7 +743,11 @@ export default function RegistrationPage() {
                           required
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          placeholder="e.g. rajesh@iit.ac.in"
+                          placeholder={
+                            selectedCategory.id === "iiti"
+                              ? "e.g. name@iiti.ac.in or name@gmail.com"
+                              : "e.g. rajesh@university.ac.in"
+                          }
                           className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
                         />
                       </div>

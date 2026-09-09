@@ -135,6 +135,19 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
   }
 
+  if (category && typeof category === "string" && category.toLowerCase().includes("iit indore")) {
+    const isIITIOrGmail =
+      cleanEmail.endsWith("@iiti.ac.in") ||
+      cleanEmail.includes(".iiti.ac.in") ||
+      cleanEmail.endsWith("@gmail.com");
+    if (!isIITIOrGmail) {
+      return NextResponse.json(
+        { error: "For IIT Indore category, please provide an @iiti.ac.in or @gmail.com email address." },
+        { status: 400 }
+      );
+    }
+  }
+
   const cleanPhone = phone.trim().replace(/\D/g, "");
   if (cleanPhone.length !== 10) {
     return NextResponse.json({ error: "Please provide a valid 10-digit phone number." }, { status: 400 });
