@@ -464,17 +464,30 @@ export default function RegistrationPage() {
         {/* ── STEP PROGRESS BAR ── */}
         <div className="mb-10 max-w-3xl mx-auto">
           <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
-            {/* Step 1 Indicator */}
+            {/* Step 1 Indicator / Tab */}
             <div
+              onClick={() => {
+                if (currentStep === "payment_proof") {
+                  setCurrentStep("details");
+                }
+              }}
               className={cn(
-                "rounded-xl border p-3 transition-all",
+                "rounded-xl border bg-white p-3 transition-all duration-200 hover:border-navy",
+                currentStep === "payment_proof" && "cursor-pointer hover:shadow-xs",
                 currentStep === "details"
-                  ? "border-navy bg-navy text-white shadow-md"
-                  : "border-gray-200 bg-white text-gray-500"
+                  ? "border-navy text-navy font-bold shadow-xs ring-1 ring-navy/20"
+                  : "border-gray-200 text-gray-500 hover:text-navy"
               )}
             >
               <div className="flex items-center justify-center gap-1.5 text-xs font-bold">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/20 text-[11px]">
+                <span
+                  className={cn(
+                    "flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-bold transition-colors",
+                    currentStep === "details"
+                      ? "bg-navy text-white"
+                      : "bg-gray-100 text-gray-500"
+                  )}
+                >
                   1
                 </span>
                 <span className="hidden sm:inline">Details &amp; Photo</span>
@@ -482,35 +495,49 @@ export default function RegistrationPage() {
               </div>
             </div>
 
-            {/* Step 2 Indicator */}
+            {/* Step 2 Indicator / Tab */}
             <div
               className={cn(
-                "rounded-xl border p-3 transition-all",
+                "rounded-xl border bg-white p-3 transition-all duration-200 hover:border-navy",
                 currentStep === "payment_proof"
-                  ? "border-navy bg-navy text-white shadow-md"
-                  : "border-gray-200 bg-white text-gray-500"
+                  ? "border-navy text-navy font-bold shadow-xs ring-1 ring-navy/20"
+                  : "border-gray-200 text-gray-500 hover:text-navy"
               )}
             >
               <div className="flex items-center justify-center gap-1.5 text-xs font-bold">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/20 text-[11px]">
+                <span
+                  className={cn(
+                    "flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-bold transition-colors",
+                    currentStep === "payment_proof"
+                      ? "bg-navy text-white"
+                      : "bg-gray-100 text-gray-500"
+                  )}
+                >
                   2
                 </span>
                 <span className="hidden sm:inline">Payment Proof</span>
-                <span className="sm:hidden">Proof</span>
+                <span className="sm:hidden">Payment</span>
               </div>
             </div>
 
-            {/* Step 3 Indicator */}
+            {/* Step 3 Indicator / Tab */}
             <div
               className={cn(
-                "rounded-xl border p-3 transition-all",
+                "rounded-xl border bg-white p-3 transition-all duration-200 hover:border-navy",
                 currentStep === "confirmed"
-                  ? "border-green-600 bg-green-600 text-white shadow-md"
-                  : "border-gray-200 bg-white text-gray-500"
+                  ? "border-green-600 text-green-700 font-bold shadow-xs ring-1 ring-green-600/20"
+                  : "border-gray-200 text-gray-500 hover:text-navy"
               )}
             >
               <div className="flex items-center justify-center gap-1.5 text-xs font-bold">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/20 text-[11px]">
+                <span
+                  className={cn(
+                    "flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-bold transition-colors",
+                    currentStep === "confirmed"
+                      ? "bg-green-600 text-white"
+                      : "bg-gray-100 text-gray-500"
+                  )}
+                >
                   3
                 </span>
                 <span>Confirmed</span>
