@@ -462,7 +462,7 @@ export default function RegistrationPage() {
       <div className="mx-auto max-w-7xl px-4 py-10 sm:py-16 sm:px-6 lg:px-8">
         
         {/* ── STEP PROGRESS BAR ── */}
-        <div className="mb-10 max-w-3xl mx-auto">
+        <div className="mb-10 max-w-3xl mx-auto pt-2">
           <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
             {/* Step 1 Indicator / Tab */}
             <div
@@ -472,19 +472,19 @@ export default function RegistrationPage() {
                 }
               }}
               className={cn(
-                "rounded-xl border bg-white p-3 transition-all duration-200 hover:border-navy",
-                currentStep === "payment_proof" && "cursor-pointer hover:shadow-xs",
+                "rounded-xl border bg-white p-3 transition-all duration-300 hover:border-navy",
+                currentStep === "payment_proof" && "cursor-pointer hover:shadow-xs hover:-translate-y-0.5",
                 currentStep === "details"
-                  ? "border-navy text-navy font-bold shadow-xs ring-1 ring-navy/20"
-                  : "border-gray-200 text-gray-500 hover:text-navy"
+                  ? "relative z-10 border-navy border-b-[3px] text-navy font-bold -translate-y-1.5 shadow-[0_12px_24px_-6px_rgba(0,74,173,0.28),0_6px_12px_-3px_rgba(0,27,61,0.12)] ring-2 ring-navy/20"
+                  : "border-gray-200 text-gray-500 hover:text-navy hover:shadow-xs"
               )}
             >
               <div className="flex items-center justify-center gap-1.5 text-xs font-bold">
                 <span
                   className={cn(
-                    "flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-bold transition-colors",
+                    "flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-bold transition-all",
                     currentStep === "details"
-                      ? "bg-navy text-white"
+                      ? "bg-navy text-white shadow-xs scale-105"
                       : "bg-gray-100 text-gray-500"
                   )}
                 >
@@ -498,18 +498,18 @@ export default function RegistrationPage() {
             {/* Step 2 Indicator / Tab */}
             <div
               className={cn(
-                "rounded-xl border bg-white p-3 transition-all duration-200 hover:border-navy",
+                "rounded-xl border bg-white p-3 transition-all duration-300 hover:border-navy",
                 currentStep === "payment_proof"
-                  ? "border-navy text-navy font-bold shadow-xs ring-1 ring-navy/20"
-                  : "border-gray-200 text-gray-500 hover:text-navy"
+                  ? "relative z-10 border-navy border-b-[3px] text-navy font-bold -translate-y-1.5 shadow-[0_12px_24px_-6px_rgba(0,74,173,0.28),0_6px_12px_-3px_rgba(0,27,61,0.12)] ring-2 ring-navy/20"
+                  : "border-gray-200 text-gray-500 hover:text-navy hover:shadow-xs"
               )}
             >
               <div className="flex items-center justify-center gap-1.5 text-xs font-bold">
                 <span
                   className={cn(
-                    "flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-bold transition-colors",
+                    "flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-bold transition-all",
                     currentStep === "payment_proof"
-                      ? "bg-navy text-white"
+                      ? "bg-navy text-white shadow-xs scale-105"
                       : "bg-gray-100 text-gray-500"
                   )}
                 >
@@ -523,18 +523,18 @@ export default function RegistrationPage() {
             {/* Step 3 Indicator / Tab */}
             <div
               className={cn(
-                "rounded-xl border bg-white p-3 transition-all duration-200 hover:border-navy",
+                "rounded-xl border bg-white p-3 transition-all duration-300 hover:border-navy",
                 currentStep === "confirmed"
-                  ? "border-green-600 text-green-700 font-bold shadow-xs ring-1 ring-green-600/20"
-                  : "border-gray-200 text-gray-500 hover:text-navy"
+                  ? "relative z-10 border-green-600 border-b-[3px] text-green-700 font-bold -translate-y-1.5 shadow-[0_12px_24px_-6px_rgba(22,163,74,0.28),0_6px_12px_-3px_rgba(0,27,61,0.12)] ring-2 ring-green-600/20"
+                  : "border-gray-200 text-gray-500 hover:text-navy hover:shadow-xs"
               )}
             >
               <div className="flex items-center justify-center gap-1.5 text-xs font-bold">
                 <span
                   className={cn(
-                    "flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-bold transition-colors",
+                    "flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-bold transition-all",
                     currentStep === "confirmed"
-                      ? "bg-green-600 text-white"
+                      ? "bg-green-600 text-white shadow-xs scale-105"
                       : "bg-gray-100 text-gray-500"
                   )}
                 >
