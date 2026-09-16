@@ -201,6 +201,18 @@ const BADGE_STYLES = {
   orange: "bg-amber-50 text-amber-900 border-amber-200",
 };
 
+function getIconAnimationClass(icon: unknown) {
+  if (icon === Wrench) return "anim-3d-wrench";
+  if (icon === Sparkles) return "anim-3d-sparkles";
+  if (icon === Presentation) return "anim-3d-presentation";
+  if (icon === Coffee) return "anim-3d-coffee";
+  if (icon === MessagesSquare) return "anim-3d-chat";
+  if (icon === Lightbulb) return "anim-3d-lightbulb";
+  if (icon === Handshake) return "anim-3d-handshake";
+  if (icon === Trophy) return "anim-3d-trophy";
+  return "";
+}
+
 export default function SchedulePage() {
   const [activeFilter, setActiveFilter] = useState<"all" | "day-1" | "day-2">("all");
 
@@ -308,14 +320,17 @@ export default function SchedulePage() {
               <div className="relative pl-4 sm:pl-6 space-y-4 before:absolute before:left-[19px] sm:before:left-[27px] before:top-3 before:bottom-3 before:w-0.5 before:bg-gray-200">
                 {day.items.map((session, sessionIdx) => {
                   const IconComponent = session.icon;
+                  const animClass = getIconAnimationClass(session.icon);
                   return (
                     <Reveal key={session.title + session.time} delay={sessionIdx * 0.04}>
                       <div className="relative flex items-start gap-4 sm:gap-6 group">
-                        {/* Timeline Bullet Node with smooth hover transition */}
+                        {/* Timeline Bullet Node with smooth 3D hover transition */}
                         <div
-                          className="relative z-10 flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-full border-2 border-gray-300 bg-white text-navy-900 group-hover:border-navy group-hover:bg-navy-50 group-hover:text-navy transition-all duration-300 ease-in-out shadow-xs"
+                          className="bullet-node relative z-10 flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full border-2 border-gray-300 bg-white text-navy-900 shadow-xs transition-all duration-300 ease-out [perspective:600px] [transform-style:preserve-3d] group-hover:border-navy group-hover:bg-navy-50 group-hover:text-navy group-hover:scale-110 group-hover:shadow-[0_8px_20px_-3px_rgba(0,74,173,0.3)] hover:border-navy hover:bg-navy-50 hover:text-navy hover:scale-125 hover:shadow-[0_12px_28px_-3px_rgba(0,74,173,0.45)] cursor-pointer"
                         >
-                          <IconComponent size={15} />
+                          <div className={cn("flex items-center justify-center [transform-style:preserve-3d] will-change-transform", animClass)}>
+                            <IconComponent size={16} />
+                          </div>
                         </div>
 
                         {/* Session Card: White Background, Smooth Blue Border Transition on Hover */}
