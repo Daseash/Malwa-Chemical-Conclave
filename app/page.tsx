@@ -19,6 +19,7 @@ import { Button } from "@/components/Button";
 import { AnnouncementTicker } from "@/components/AnnouncementTicker";
 import { CountUpStat } from "@/components/CountUpStat";
 import { HeroCarousel } from "@/components/HeroCarousel";
+import { cn } from "@/lib/cn";
 
 const STATS = [
   { value: 7, suffix: "", label: "Integrated Verticals" },
@@ -74,6 +75,17 @@ const VERTICALS = [
   },
 ];
 
+function getVerticalAnimationClass(icon: unknown) {
+  if (icon === Mic) return "anim-3d-mic";
+  if (icon === Handshake) return "anim-3d-handshake";
+  if (icon === Lightbulb) return "anim-3d-lightbulb";
+  if (icon === MessagesSquare) return "anim-3d-chat";
+  if (icon === Wrench) return "anim-3d-wrench";
+  if (icon === Newspaper) return "anim-3d-newspaper";
+  if (icon === Trophy) return "anim-3d-trophy";
+  return "";
+}
+
 export default function HomePage() {
   return (
     <>
@@ -104,16 +116,18 @@ export default function HomePage() {
               <div className="mt-6 flex flex-wrap items-center gap-4">
                 <Link
                   href="/about"
-                  className="hover-underline inline-flex items-center gap-1.5 text-base font-semibold text-navy"
+                  className="hover-underline inline-flex items-center gap-1.5 text-base font-semibold text-navy [perspective:600px]"
                 >
-                  About the Conclave <ArrowRight size={16} />
+                  <span>About the Conclave</span>
+                  <ArrowRight size={16} className="anim-3d-arrow" />
                 </Link>
                 <span className="text-gray-300">|</span>
                 <Link
                   href="/schedule"
-                  className="hover-underline inline-flex items-center gap-1.5 text-base font-semibold text-navy"
+                  className="hover-underline inline-flex items-center gap-1.5 text-base font-semibold text-navy [perspective:600px]"
                 >
-                  View Schedule <ArrowRight size={16} />
+                  <span>View Schedule</span>
+                  <ArrowRight size={16} className="anim-3d-arrow" />
                 </Link>
               </div>
             </div>
@@ -166,8 +180,8 @@ export default function HomePage() {
                   >
                     {/* ── Default View: Icon + Category + Title ──── */}
                     <div className="flex items-center justify-between">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-navy-900 text-white transition-colors group-hover:bg-navy shadow-sm">
-                        <Icon size={24} />
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-navy-900 text-white transition-colors group-hover:bg-navy shadow-sm [perspective:600px] [transform-style:preserve-3d]">
+                        <Icon size={24} className={cn("transition-transform duration-300", getVerticalAnimationClass(vertical.icon))} />
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-xs font-mono font-bold text-gray-400">
@@ -210,9 +224,10 @@ export default function HomePage() {
                       <div className="pt-2 border-t border-gray-100">
                         <Link
                           href="/schedule"
-                          className="inline-flex items-center text-xs font-bold text-navy hover:text-navy-900 transition-colors"
+                          className="group/link inline-flex items-center text-xs font-bold text-navy hover:text-navy-900 transition-colors [perspective:600px]"
                         >
-                          Explore Track Schedule <ArrowRight size={13} className="ml-1" />
+                          <span>Explore Track Schedule</span>
+                          <ArrowRight size={13} className="ml-1 anim-3d-arrow transition-transform duration-300 inline" />
                         </Link>
                       </div>
                     </div>
@@ -228,9 +243,10 @@ export default function HomePage() {
       <section className="border-t border-[#E5E7EB] bg-white py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <div className="institutional-card p-6">
-              <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-900">
-                <MapPin size={15} /> Venue
+            <div className="group/glance institutional-card p-6 transition-all duration-300 hover:border-navy hover:-translate-y-1">
+              <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-900 [perspective:600px] [transform-style:preserve-3d]">
+                <MapPin size={16} className="anim-3d-mappin text-gold-700 transition-transform duration-300" />
+                <span>Venue</span>
               </p>
               <p className="mt-2 text-lg font-bold text-navy-950">
                 Indian Institute of Technology Indore
@@ -240,9 +256,10 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="institutional-card p-6">
-              <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-900">
-                <Calendar size={15} /> Dates
+            <div className="group/glance institutional-card p-6 transition-all duration-300 hover:border-navy hover:-translate-y-1">
+              <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-900 [perspective:600px] [transform-style:preserve-3d]">
+                <Calendar size={16} className="anim-3d-calendar text-gold-700 transition-transform duration-300" />
+                <span>Dates</span>
               </p>
               <p className="mt-2 text-lg font-bold text-navy-950">
                 October 11&ndash;12, 2026
@@ -252,9 +269,10 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="institutional-card p-6">
-              <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-900">
-                <Building size={15} /> Organizing Body
+            <div className="group/glance institutional-card p-6 transition-all duration-300 hover:border-navy hover:-translate-y-1">
+              <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-900 [perspective:600px] [transform-style:preserve-3d]">
+                <Building size={16} className="anim-3d-building text-gold-700 transition-transform duration-300" />
+                <span>Organizing Body</span>
               </p>
               <p className="mt-2 text-sm font-semibold text-navy-950 leading-relaxed">
                 BIS Student Chapter, Department of Chemical Engineering, IIT Indore, in association with the Bureau of Indian Standards.
@@ -280,26 +298,30 @@ export default function HomePage() {
           </div>
 
           <div className="grid gap-6 lg:grid-cols-12 lg:items-stretch">
-            {/* Campus Photo (Image 3) - Full picture visible without cropping */}
-            <div className="group relative overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white shadow-[0_10px_25px_-5px_rgba(0,35,80,0.08),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_35px_-8px_rgba(0,47,108,0.16),0_10px_15px_-5px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 p-3 flex flex-col justify-between lg:col-span-4 min-h-[420px]">
-              <div className="relative w-full flex-1 flex items-center justify-center overflow-hidden rounded-xl bg-gray-50 min-h-[340px]">
-                <img
-                  src="/campus-image-3.jpg"
-                  alt="IIT Indore campus"
-                  className="h-full w-full max-h-[460px] object-contain transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="pt-3 px-1 flex items-center justify-between text-xs text-gray-500">
-                <span className="font-semibold text-navy-950">IIT Indore Campus</span>
-                <span>Simrol, Madhya Pradesh</span>
+            {/* Campus Photo (Image 3) - Sized to exactly match the portrait photo */}
+            <div className="lg:col-span-3 flex justify-center">
+              <div className="group relative overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white shadow-[0_10px_25px_-5px_rgba(0,35,80,0.08),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_35px_-8px_rgba(0,47,108,0.16),0_10px_15px_-5px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 p-2.5 flex flex-col justify-between w-full max-w-[270px]">
+                <div className="relative w-full overflow-hidden rounded-xl bg-gray-100 aspect-[585/1040]">
+                  <img
+                    src="/campus-image-3.jpg"
+                    alt="IIT Indore campus"
+                    className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="pt-2.5 px-1 flex flex-col text-xs text-gray-500 [perspective:600px] [transform-style:preserve-3d]">
+                  <span className="font-semibold text-navy-950 flex items-center gap-1.5">
+                    <MapPin size={13} className="anim-3d-mappin text-gold-700" /> IIT Indore Campus
+                  </span>
+                  <span className="text-[11px] text-gray-500 pl-4">Simrol, Madhya Pradesh</span>
+                </div>
               </div>
             </div>
 
             {/* Venue Details */}
-            <div className="institutional-card p-6 sm:p-8 flex flex-col justify-between lg:col-span-4 bg-white">
+            <div className="group/venue institutional-card p-6 sm:p-8 flex flex-col justify-between lg:col-span-5 bg-white transition-all duration-300 hover:border-navy hover:-translate-y-1">
               <div>
-                <span className="inline-block rounded bg-navy-50 px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider text-navy-900">
-                  Campus Venue
+                <span className="inline-flex items-center gap-1.5 rounded bg-navy-50 px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider text-navy-900 [perspective:600px] [transform-style:preserve-3d]">
+                  <Building size={13} className="anim-3d-building text-navy" /> Campus Venue
                 </span>
                 <h3 className="mt-3 text-xl font-bold text-navy-950">
                   Academic Complex &amp; Lecture Halls
@@ -316,9 +338,10 @@ export default function HomePage() {
 
               <Link
                 href="/accommodation-venue"
-                className="hover-underline mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-navy"
+                className="group/link hover-underline mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-navy [perspective:600px]"
               >
-                Accommodation &amp; Travel Guide <ArrowRight size={15} />
+                <span>Accommodation &amp; Travel Guide</span>
+                <ArrowRight size={15} className="anim-3d-arrow transition-transform duration-300" />
               </Link>
             </div>
 
@@ -332,9 +355,10 @@ export default function HomePage() {
                   href="https://maps.google.com/?q=Indian+Institute+of+Technology+Indore"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-navy hover:underline inline-flex items-center gap-1"
+                  className="font-medium text-navy hover:underline inline-flex items-center gap-1.5 [perspective:600px]"
                 >
-                  Open in Maps <ArrowRight size={12} />
+                  <span>Open in Maps</span>
+                  <ArrowRight size={13} className="anim-3d-arrow" />
                 </a>
               </div>
             </div>

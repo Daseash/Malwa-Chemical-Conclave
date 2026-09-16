@@ -1001,3 +1001,99 @@ body:has(#admin-portal) {
 .anim-3d-trend:hover {
   animation: trendRise3d 1.1s ease-in-out infinite alternate;
 }
+
+/* ── Home Page 3D Animations ── */
+@keyframes mic3dPulse {
+  0% {
+    transform: perspective(600px) translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: perspective(600px) translate3d(0, -5px, 16px) scale(1.32) rotate(-12deg);
+    filter: drop-shadow(0 0 10px rgba(0, 74, 173, 0.6));
+  }
+  50% {
+    transform: perspective(600px) translate3d(0, -3px, 12px) scale(1.22) rotate(8deg);
+    filter: drop-shadow(0 0 6px rgba(0, 74, 173, 0.4));
+  }
+  75% {
+    transform: perspective(600px) translate3d(0, -6px, 18px) scale(1.35) rotate(-6deg);
+    filter: drop-shadow(0 0 12px rgba(0, 74, 173, 0.8));
+  }
+  100% {
+    transform: perspective(600px) translate3d(0, -4px, 14px) scale(1.26) rotate(0deg);
+  }
+}
+
+@keyframes newspaper3dFlip {
+  0% {
+    transform: perspective(600px) translate3d(0, 0, 0) scale(1) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(600px) translate3d(0, -5px, 16px) scale(1.3) rotateY(-28deg) rotate(-6deg);
+    filter: drop-shadow(0 6px 12px rgba(0, 74, 173, 0.45));
+  }
+  100% {
+    transform: perspective(600px) translate3d(0, -3px, 12px) scale(1.22) rotateY(-18deg) rotate(-3deg);
+    filter: drop-shadow(0 4px 8px rgba(0, 74, 173, 0.35));
+  }
+}
+
+@keyframes mapPin3dDrop {
+  0% {
+    transform: perspective(600px) translate3d(0, 0, 0) scale(1);
+  }
+  30% {
+    transform: perspective(600px) translate3d(0, -8px, 18px) scale(1.35) rotateX(15deg);
+    filter: drop-shadow(0 6px 10px rgba(197, 155, 39, 0.6));
+  }
+  60% {
+    transform: perspective(600px) translate3d(0, -2px, 8px) scale(1.15) rotateX(-5deg);
+  }
+  100% {
+    transform: perspective(600px) translate3d(0, -5px, 14px) scale(1.26) rotateX(10deg);
+    filter: drop-shadow(0 4px 8px rgba(197, 155, 39, 0.5));
+  }
+}
+
+@keyframes calendar3dFlip {
+  0% {
+    transform: perspective(600px) translate3d(0, 0, 0) scale(1) rotateX(0deg);
+  }
+  50% {
+    transform: perspective(600px) translate3d(0, -6px, 16px) scale(1.32) rotateX(-22deg) rotate(4deg);
+    filter: drop-shadow(0 6px 12px rgba(197, 155, 39, 0.6));
+  }
+  100% {
+    transform: perspective(600px) translate3d(0, -4px, 12px) scale(1.24) rotateX(-14deg) rotate(2deg);
+    filter: drop-shadow(0 4px 8px rgba(197, 155, 39, 0.4));
+  }
+}
+
+.group:hover .anim-3d-mic,
+.group\/vertical:hover .anim-3d-mic {
+  animation: mic3dPulse 1.2s ease-in-out infinite alternate;
+}
+
+.group:hover .anim-3d-newspaper,
+.group\/vertical:hover .anim-3d-newspaper {
+  animation: newspaper3dFlip 1.3s ease-in-out infinite alternate;
+}
+
+.group:hover .anim-3d-mappin,
+.institutional-card:hover .anim-3d-mappin,
+.group\/glance:hover .anim-3d-mappin {
+  animation: mapPin3dDrop 1s ease-in-out infinite alternate;
+}
+
+.group:hover .anim-3d-calendar,
+.institutional-card:hover .anim-3d-calendar,
+.group\/glance:hover .anim-3d-calendar {
+  animation: calendar3dFlip 1.1s ease-in-out infinite alternate;
+}
+
+.group:hover .anim-3d-building,
+.institutional-card:hover .anim-3d-building,
+.group\/glance:hover .anim-3d-building {
+  animation: buildingRise3d 0.9s ease-in-out infinite alternate;
+}
+
