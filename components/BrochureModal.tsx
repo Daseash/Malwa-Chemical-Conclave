@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Download, ExternalLink } from "lucide-react";
+import { X, Download } from "lucide-react";
 
 interface BrochureModalProps {
   isOpen: boolean;
@@ -43,23 +43,15 @@ export function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
           }}
         >
           {/* Floating Top Controls */}
-          <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 flex items-center gap-2">
-            <a
-              href="/mcc-2026-brochure.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-navy/90 hover:bg-navy text-white px-3.5 py-2 text-xs font-bold uppercase tracking-wider shadow-lg border border-white/20 backdrop-blur-md transition-all hover:scale-105"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <ExternalLink size={14} /> Open PDF
-            </a>
+          <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 flex items-center gap-2.5">
             <a
               href="/mcc-2026-brochure.pdf"
               download="MCC 2026 Brochure.pdf"
-              className="inline-flex items-center gap-1.5 rounded-full bg-navy-950/90 hover:bg-navy-900 text-gold px-3.5 py-2 text-xs font-bold uppercase tracking-wider shadow-lg border border-gold/40 backdrop-blur-md transition-all hover:scale-105"
+              className="inline-flex items-center gap-2 rounded-full bg-navy hover:bg-navy-900 text-white px-4 py-2 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-xl border border-white/30 backdrop-blur-md transition-all hover:scale-105"
               onClick={(e) => e.stopPropagation()}
             >
-              <Download size={14} /> Download
+              <Download size={16} className="text-gold" />
+              <span>Download PDF</span>
             </a>
             <button
               type="button"

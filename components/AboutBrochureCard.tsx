@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FileText, Eye, Download, ExternalLink, Sparkles } from "lucide-react";
+import { FileText, Eye, Download, Sparkles } from "lucide-react";
 import { BrochureModal } from "@/components/BrochureModal";
 
 export function AboutBrochureCard() {
@@ -42,21 +42,11 @@ export function AboutBrochureCard() {
 
             <a
               href="/mcc-2026-brochure.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 rounded-xl border border-navy/30 bg-white hover:bg-navy-50 px-4 py-3 text-xs sm:text-sm font-bold text-navy shadow-xs transition-all duration-300 hover:scale-[1.02] cursor-pointer"
-            >
-              <ExternalLink size={15} />
-              <span>Open PDF</span>
-            </a>
-
-            <a
-              href="/mcc-2026-brochure.pdf"
               download="MCC 2026 Brochure.pdf"
-              className="inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white hover:bg-gray-100 p-3 text-gray-700 shadow-xs transition-all duration-300 cursor-pointer"
-              title="Download Brochure PDF"
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 rounded-xl border border-navy/30 bg-white hover:bg-navy-50 px-5 py-3 text-xs sm:text-sm font-bold text-navy shadow-xs transition-all duration-300 hover:scale-[1.02] cursor-pointer"
             >
               <Download size={16} />
+              <span>Download PDF</span>
             </a>
           </div>
         </div>

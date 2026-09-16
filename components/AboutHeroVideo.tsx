@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { FileText, ArrowRight, ExternalLink } from "lucide-react";
+import { FileText, ArrowRight, Download } from "lucide-react";
 import { BrochureModal } from "@/components/BrochureModal";
 
 export function AboutHeroVideo() {
@@ -74,12 +74,11 @@ export function AboutHeroVideo() {
             <span className="text-gray-300">|</span>
             <a
               href="/mcc-2026-brochure.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover-underline inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-navy hover:text-navy-900 transition-colors cursor-pointer"
+              download="MCC 2026 Brochure.pdf"
+              className="hover-underline inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-navy hover:text-navy-900 transition-colors cursor-pointer"
             >
-              <span>Open PDF</span>
-              <ExternalLink size={13} className="text-navy" />
+              <Download size={14} className="text-navy" />
+              <span>Download</span>
             </a>
           </div>
         </div>
