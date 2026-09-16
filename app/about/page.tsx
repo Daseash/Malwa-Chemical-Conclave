@@ -61,10 +61,12 @@ export default function AboutPage() {
 
         {/* Milestone Progression */}
         <Reveal delay={0.05}>
-          <div className="mt-8 institutional-card p-6 sm:p-8 bg-gradient-to-r from-navy-50/70 via-white to-gold-50/30 border border-gray-200 hover:border-navy/40 transition-all duration-300">
+          <div className="group/evolution mt-8 institutional-card p-6 sm:p-8 bg-gradient-to-r from-navy-50/70 via-white to-gold-50/30 border border-gray-200 hover:border-navy/40 transition-all duration-300">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-navy-900 flex items-center gap-1.5">
-                <TrendingUp size={15} className="text-navy" />
+              <h3 className="text-xs font-bold uppercase tracking-wider text-navy-900 flex items-center gap-2 cursor-default">
+                <div className="[perspective:600px] [transform-style:preserve-3d]">
+                  <TrendingUp size={16} className="anim-3d-trend text-navy transition-colors duration-300" />
+                </div>
                 <span>Conclave Evolution</span>
               </h3>
               <span className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
@@ -87,10 +89,13 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              {/* Connector Arrow */}
+              {/* Connector Arrow (3D Animated) */}
               <div className="flex items-center justify-center text-navy px-1 py-1 sm:py-0">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-navy/10 text-navy font-bold transition-all duration-300 hover:scale-110 hover:bg-navy hover:text-white shadow-2xs">
-                  <ArrowRight size={16} />
+                <div
+                  className="group/arrow flex h-9 w-9 items-center justify-center rounded-full bg-navy/10 text-navy font-bold transition-all duration-300 hover:scale-120 hover:bg-navy hover:text-white shadow-2xs hover:shadow-[0_8px_18px_-4px_rgba(0,74,173,0.45)] cursor-pointer [perspective:600px] [transform-style:preserve-3d]"
+                  title="2025 to 2026 Trajectory"
+                >
+                  <ArrowRight size={17} className="anim-3d-arrow transition-all duration-300" />
                 </div>
               </div>
 

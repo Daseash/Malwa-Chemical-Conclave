@@ -947,6 +947,57 @@ body:has(#admin-portal) {
   color: var(--color-navy);
 }
 
+/* ── Conclave Evolution 3D Arrow & Trend Animations ── */
+@keyframes arrowThrust3d {
+  0% {
+    transform: perspective(600px) translate3d(0, 0, 0) scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 0 rgba(0, 74, 173, 0));
+  }
+  50% {
+    transform: perspective(600px) translate3d(6px, 0, 14px) scale(1.32) rotateX(10deg) rotateY(-8deg);
+    filter: drop-shadow(0 4px 10px rgba(0, 74, 173, 0.5));
+  }
+  100% {
+    transform: perspective(600px) translate3d(9px, 0, 20px) scale(1.38) rotateX(12deg) rotateY(-12deg);
+    filter: drop-shadow(0 6px 14px rgba(0, 74, 173, 0.7));
+  }
+}
 
+@keyframes trendRise3d {
+  0% {
+    transform: perspective(600px) translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: perspective(600px) translate3d(2px, -3px, 12px) scale(1.28) rotate(-8deg);
+    filter: drop-shadow(0 3px 6px rgba(0, 74, 173, 0.35));
+  }
+  100% {
+    transform: perspective(600px) translate3d(3px, -5px, 16px) scale(1.34) rotate(-12deg);
+    filter: drop-shadow(0 4px 10px rgba(0, 74, 173, 0.5));
+  }
+}
 
+.anim-3d-arrow {
+  transform-origin: center;
+  will-change: transform, filter;
+}
 
+.group\/arrow:hover .anim-3d-arrow,
+.group\/evolution:hover .anim-3d-arrow,
+.anim-3d-arrow:hover {
+  animation: arrowThrust3d 0.85s ease-in-out infinite alternate;
+}
+
+.group\/arrow:hover .anim-3d-arrow {
+  color: #FFFFFF;
+}
+
+.anim-3d-trend {
+  transform-origin: bottom left;
+  will-change: transform, filter;
+}
+
+.group\/evolution:hover .anim-3d-trend,
+.anim-3d-trend:hover {
+  animation: trendRise3d 1.1s ease-in-out infinite alternate;
+}
