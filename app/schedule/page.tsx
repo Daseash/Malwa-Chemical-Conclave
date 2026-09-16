@@ -32,6 +32,7 @@ interface ScheduleItem {
   description: string;
   location: string;
   icon: typeof Wrench;
+  highlight?: string;
 }
 
 interface DaySchedule {
@@ -52,31 +53,44 @@ const SCHEDULE_DAYS: DaySchedule[] = [
     date: "October 11, 2026",
     dayName: "Sunday",
     title: "Technical Masterclasses & Applied Workshops",
-    focus: "Intensive hands-on computational tools, process engineering simulations, and laboratory workflows.",
+    focus: "Intensive hands-on computational tools, process engineering simulations with Aspen and MATLAB, and hosted lunch courtesy of MathWorks.",
     badge: "Workshop Day",
     items: [
       {
-        time: "11:00 AM – 12:00 PM",
-        duration: "60 mins",
-        title: "Hands-on Workshop 1",
+        time: "09:00 AM – 12:00 PM",
+        duration: "3 hours",
+        title: "Aspen Workshop 1",
         track: "Vertical 05: Practical Masterclass",
         category: "Workshop",
         badgeColor: "blue",
         description:
-          "Practical computational masterclass covering chemical process simulation, digital twins, and fluid property modeling with modern engineering software.",
+          "Practical computational masterclass covering chemical process simulation, flowsheet design, unit operations, and property modeling with Aspen software.",
         location: "Department Computing Facility & CAD Labs",
         icon: Wrench,
       },
       {
-        time: "02:00 PM – 03:00 PM",
-        duration: "60 mins",
-        title: "Hands-on Workshop 2",
-        track: "Vertical 05: Technical Masterclass",
+        time: "12:00 PM – 02:00 PM",
+        duration: "2 hours",
+        title: "MathWorks MATLAB Workshop",
+        track: "Vertical 05: Computational Masterclass & Lunch",
+        category: "Workshop & Lunch",
+        badgeColor: "green",
+        description:
+          "Hands-on technical session exploring MATLAB for numerical computation, chemical engineering data analytics, and process optimization. MathWorks will take care of lunch for all participants during this session.",
+        location: "Department Seminar Hall & Computing Lab",
+        icon: Wrench,
+        highlight: "Lunch provided & hosted by MathWorks",
+      },
+      {
+        time: "02:00 PM – 05:00 PM",
+        duration: "3 hours",
+        title: "Aspen Workshop 2",
+        track: "Vertical 05: Advanced Masterclass",
         category: "Workshop",
         badgeColor: "blue",
         description:
-          "Advanced session on industrial standardisation frameworks, quality assurance testing protocols, and applied chemical safety workflows conducted in association with BIS.",
-        location: "Department Seminar Hall & Research Labs",
+          "Advanced session covering dynamic chemical process simulation, reaction engineering, energy integration, and industrial plant optimization using Aspen.",
+        location: "Department Computing Facility & CAD Labs",
         icon: Wrench,
       },
     ],
@@ -342,6 +356,13 @@ export default function SchedulePage() {
                           <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-gray-600">
                             {session.description}
                           </p>
+
+                          {session.highlight && (
+                            <div className="mt-3 flex items-center gap-2 rounded-lg bg-emerald-50 border border-emerald-200/80 px-3 py-2 text-xs font-semibold text-emerald-900">
+                              <Coffee size={14} className="text-emerald-700 shrink-0" />
+                              <span>{session.highlight}</span>
+                            </div>
+                          )}
 
                           {/* Session Location Footer */}
                           <div className="mt-4 pt-3 border-t border-gray-100 flex flex-wrap items-center justify-between gap-2 text-xs text-gray-500">
