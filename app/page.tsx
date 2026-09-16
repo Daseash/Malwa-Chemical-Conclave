@@ -346,17 +346,17 @@ export default function HomePage() {
       <section className="border-t-2 border-gold bg-[#001B3D] text-white py-16 sm:py-20">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-4 px-4 text-center sm:px-6 lg:px-8">
           <span className="inline-block rounded-full bg-white/10 px-3.5 py-1 text-xs font-bold uppercase tracking-widest text-gold-300">
-            Registrations Opening September 9, 2026
+            Registration Open
           </span>
           <h2 className="text-3xl font-bold text-white sm:text-4xl">
             Be Part of Malwa Chemical Conclave 2026
           </h2>
           <p className="max-w-2xl text-base font-medium text-white/90 leading-relaxed">
-            Official registrations open on September 9, 2026. Reserve your place for keynote sessions, hands-on masterclasses, industry networking, and technical exhibitions.
+            Registrations are now open. Reserve your place for keynote sessions, hands-on masterclasses, industry networking, and technical exhibitions.
           </p>
           <div className="mt-4">
             <Button href="/registration">
-              View Countdown &amp; Register
+              Register Now
             </Button>
           </div>
         </div>
