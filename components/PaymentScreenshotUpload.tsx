@@ -18,24 +18,82 @@ export function PaymentScreenshotUpload({
   const [screenshotData, setScreenshotData] = useState<string | undefined>(value);
   const [fileName, setFileName] = useState<string | null>(null);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     setScreenshotData(value);
   }, [value]);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Helper to compress screenshot via HTML5 Canvas
+  const compressImage = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          let width = img.width;
+          let height = img.height;
+
+          // Scale down if dimensions are huge
+          const maxDim = 1200;
+          if (width > maxDim || height > maxDim) {
+            if (width > height) {
+              height = Math.round((height * maxDim) / width);
+              width = maxDim;
+            } else {
+              width = Math.round((width * maxDim) / height);
+              height = maxDim;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext("2d");
+          if (ctx) {
+            ctx.drawImage(img, 0, 0, width, height);
+          }
+
+          // Compress to JPEG at 0.78 quality (~80-150 KB)
+          const compressed = canvas.toDataURL("image/jpeg", 0.78);
+          resolve(compressed);
+        };
+        img.onerror = reject;
+        img.src = e.target?.result as string;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
     setFileName(file.name);
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = reader.result as string;
-      setScreenshotData(result);
-      onChange(result);
-    };
-    reader.readAsDataURL(file);
+    setIsProcessing(true);
+
+    try {
+      if (file.type.startsWith("image/")) {
+        const compressedBase64 = await compressImage(file);
+        setScreenshotData(compressedBase64);
+        onChange(compressedBase64);
+      } else {
+        // For non-images (e.g. PDF receipt)
+        const reader = new FileReader();
+        reader.onload = () => {
+          const result = reader.result as string;
+          setScreenshotData(result);
+          onChange(result);
+        };
+        reader.readAsDataURL(file);
+      }
+    } catch (err) {
+      console.error("Screenshot processing error:", err);
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   const handleRemove = () => {

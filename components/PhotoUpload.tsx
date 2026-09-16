@@ -72,34 +72,27 @@ export function PhotoUpload({ value, onChange, disabled }: PhotoUploadProps) {
   const handleFileProcess = async (file: File) => {
     const sizeInMB = parseFloat((file.size / (1024 * 1024)).toFixed(2));
     setFileSizeMB(sizeInMB);
+    setIsCompressing(true);
 
     try {
       const base64 = await fileToBase64(file);
 
-      if (sizeInMB <= 1.0) {
-        // Less than or equal to 1 MB: Accepted without warning
+      // If file is > 0.5 MB, automatically optimize it for badge printing & low network bandwidth
+      if (sizeInMB > 0.5) {
+        const compressed = await compressImage(base64, 0.8, 0.8);
+        setPhotoData(compressed.dataUrl);
+        setFileSizeMB(compressed.sizeMB);
+        setSizeNotice(null);
+        onChange(compressed.dataUrl);
+      } else {
         setSizeNotice(null);
         setPhotoData(base64);
         onChange(base64);
-      } else if (sizeInMB <= 2.0) {
-        // Between 1 MB and 2 MB: Accepted with note
-        setSizeNotice({
-          type: "warning",
-          message: `Photo size is ${sizeInMB} MB. Please reduce to < 1 MB for optimal badge printing. (Photos up to 2 MB are accepted).`,
-        });
-        setPhotoData(base64);
-        onChange(base64);
-      } else {
-        // Above 2 MB: Blocked, asks to reduce
-        setSizeNotice({
-          type: "error",
-          message: `Photo size is ${sizeInMB} MB, exceeding the 2 MB limit. Please reduce to < 1 MB before uploading.`,
-        });
-        setPhotoData(base64);
-        onChange(undefined);
       }
     } catch (err) {
       console.error("Error reading file:", err);
+    } finally {
+      setIsCompressing(false);
     }
   };
 

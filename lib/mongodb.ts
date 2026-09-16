@@ -24,6 +24,9 @@ export default function getMongoClientPromise(): Promise<MongoClient> {
   const client = new MongoClient(uri, {
     serverSelectionTimeoutMS: 10000,
     connectTimeoutMS: 10000,
+    maxPoolSize: 100, // Handle up to 100 simultaneous concurrent DB operations
+    minPoolSize: 5,   // Keep warm connections ready to avoid handshake delay under load
+    maxIdleTimeMS: 60000,
   });
 
   const promise = client.connect().catch((err) => {

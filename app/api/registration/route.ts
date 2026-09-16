@@ -28,7 +28,10 @@ const PHONE_PATTERN = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]{6,20}$/;
 // In-memory rate limiting map: IP -> array of timestamps
 const rateLimitMap = new Map<string, number[]>();
 const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
-const MAX_REQUESTS_PER_WINDOW = 10; // Max 10 submissions per minute per IP
+// Set to 300 to safely accommodate large numbers of students/delegates registering
+// concurrently from the same college campus / auditorium Wi-Fi network (NAT IP sharing).
+const MAX_REQUESTS_PER_WINDOW = 300; 
+
 
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
@@ -153,10 +156,20 @@ export async function POST(request: NextRequest) {
 
   // 7. Validate Photo (if provided)
   if (photo && typeof photo === "string") {
-    // Base64 check: must not exceed ~3 MB in base64 (~2 MB raw file)
+    // Base64 check: must not exceed ~3.5 MB in base64 (~2 MB raw file)
     if (photo.length > 3.5 * 1024 * 1024) {
       return NextResponse.json(
         { error: "Photo size exceeds the maximum limit (2 MB). Please reduce the photo size to under 1 MB." },
+        { status: 400 }
+      );
+    }
+  }
+
+  // 7b. Validate Payment Screenshot (if provided)
+  if (paymentScreenshot && typeof paymentScreenshot === "string") {
+    if (paymentScreenshot.length > 3.5 * 1024 * 1024) {
+      return NextResponse.json(
+        { error: "Payment screenshot exceeds the maximum limit. Please upload an image under 2 MB." },
         { status: 400 }
       );
     }
