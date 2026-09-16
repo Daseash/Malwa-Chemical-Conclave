@@ -895,5 +895,58 @@ body:has(#admin-portal) {
   animation: trophy3dElevate 1.4s ease-in-out infinite alternate;
 }
 
+/* ── Delegate Form Input 3D Icon Hover Effects ─────────────────── */
+@keyframes phoneRingShake {
+  0% { transform: scale(1.25) rotate(0deg); }
+  20% { transform: scale(1.25) rotate(-18deg); }
+  40% { transform: scale(1.25) rotate(18deg); }
+  60% { transform: scale(1.25) rotate(-14deg); }
+  80% { transform: scale(1.25) rotate(14deg); }
+  100% { transform: scale(1.25) rotate(0deg); }
+}
+
+@keyframes mailFly3d {
+  0% { transform: scale(1) translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: scale(1.28) translate3d(2px, -3px, 12px) rotate(16deg); }
+  100% { transform: scale(1.24) translate3d(1px, -2px, 8px) rotate(12deg); }
+}
+
+@keyframes userGreet3d {
+  0% { transform: scale(1) translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: scale(1.28) translate3d(0, -3px, 10px) rotate(-14deg); }
+  100% { transform: scale(1.22) translate3d(0, -2px, 8px) rotate(-8deg); }
+}
+
+@keyframes buildingRise3d {
+  0% { transform: scale(1) translate3d(0, 0, 0); }
+  50% { transform: scale(1.26) translate3d(0, -4px, 12px) rotateX(15deg); }
+  100% { transform: scale(1.22) translate3d(0, -3px, 10px) rotateX(10deg); }
+}
+
+.group\/field:hover .field-icon-user,
+.group\/field:focus-within .field-icon-user {
+  animation: userGreet3d 0.8s ease-in-out infinite alternate;
+  color: var(--color-navy);
+}
+
+.group\/field:hover .field-icon-mail,
+.group\/field:focus-within .field-icon-mail {
+  animation: mailFly3d 0.9s ease-in-out infinite alternate;
+  color: var(--color-navy);
+}
+
+.group\/field:hover .field-icon-phone,
+.group\/field:focus-within .field-icon-phone {
+  animation: phoneRingShake 0.6s ease-in-out infinite;
+  color: var(--color-navy);
+}
+
+.group\/field:hover .field-icon-building,
+.group\/field:focus-within .field-icon-building {
+  animation: buildingRise3d 0.8s ease-in-out infinite alternate;
+  color: var(--color-navy);
+}
+
+
 
 

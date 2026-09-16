@@ -162,9 +162,9 @@ export function PhotoUpload({ value, onChange, disabled }: PhotoUploadProps) {
           type="button"
           disabled={disabled}
           onClick={() => fileInputRef.current?.click()}
-          className="inline-flex items-center gap-2 rounded-xl border border-gray-300 bg-white hover:border-navy hover:bg-gray-50 px-4 py-2.5 text-xs font-semibold text-navy-950 transition-all cursor-pointer shadow-xs hover:shadow-sm"
+          className="group/upload inline-flex items-center gap-2 rounded-xl border border-gray-300 bg-white hover:border-navy hover:bg-gray-50 px-4 py-2.5 text-xs font-semibold text-navy-950 transition-all cursor-pointer shadow-xs hover:shadow-sm"
         >
-          <Upload size={15} className="text-navy" />
+          <Upload size={15} className="text-navy transition-transform duration-300 ease-out group-hover/upload:-translate-y-1 group-hover/upload:scale-125" />
           <span>Upload Photo</span>
         </button>
       ) : (

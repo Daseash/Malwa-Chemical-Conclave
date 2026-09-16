@@ -822,14 +822,16 @@ export default function RegistrationPage() {
                       <label className="block text-xs font-semibold text-gray-700 mb-1">
                         Full Name <span className="text-red-500">*</span>
                       </label>
-                      <div className="relative">
-                        <User size={15} className="absolute left-3.5 top-3.5 text-gray-400" />
+                      <div className="relative group/field">
+                        <div className="pointer-events-none absolute left-3.5 top-3 text-gray-400 [perspective:600px] [transform-style:preserve-3d]">
+                          <User size={16} className="field-icon-user transition-colors duration-300" />
+                        </div>
                         <input
                           type="text"
                           required
                           value={fullName}
                           onChange={(e) => setFullName(e.target.value)}
-                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
+                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 transition-colors duration-200 hover:border-navy focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
                         />
                       </div>
                     </div>
@@ -838,14 +840,16 @@ export default function RegistrationPage() {
                       <label className="block text-xs font-semibold text-gray-700 mb-1">
                         Email Address <span className="text-red-500">*</span>
                       </label>
-                      <div className="relative">
-                        <Mail size={15} className="absolute left-3.5 top-3.5 text-gray-400" />
+                      <div className="relative group/field">
+                        <div className="pointer-events-none absolute left-3.5 top-3 text-gray-400 [perspective:600px] [transform-style:preserve-3d]">
+                          <Mail size={16} className="field-icon-mail transition-colors duration-300" />
+                        </div>
                         <input
                           type="email"
                           required
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
+                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 transition-colors duration-200 hover:border-navy focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
                         />
                       </div>
                     </div>
@@ -854,15 +858,17 @@ export default function RegistrationPage() {
                       <label className="block text-xs font-semibold text-gray-700 mb-1">
                         Contact Phone Number <span className="text-red-500">*</span>
                       </label>
-                      <div className="relative">
-                        <Phone size={15} className="absolute left-3.5 top-3.5 text-gray-400" />
+                      <div className="relative group/field">
+                        <div className="pointer-events-none absolute left-3.5 top-3 text-gray-400 [perspective:600px] [transform-style:preserve-3d]">
+                          <Phone size={16} className="field-icon-phone transition-colors duration-300" />
+                        </div>
                         <input
                           type="tel"
                           required
                           inputMode="tel"
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
-                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none font-mono"
+                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 transition-colors duration-200 hover:border-navy focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none font-mono"
                         />
                       </div>
                     </div>
@@ -871,14 +877,16 @@ export default function RegistrationPage() {
                       <label className="block text-xs font-semibold text-gray-700 mb-1">
                         Organization / College / Company <span className="text-red-500">*</span>
                       </label>
-                      <div className="relative">
-                        <Building size={15} className="absolute left-3.5 top-3.5 text-gray-400" />
+                      <div className="relative group/field">
+                        <div className="pointer-events-none absolute left-3.5 top-3 text-gray-400 [perspective:600px] [transform-style:preserve-3d]">
+                          <Building size={16} className="field-icon-building transition-colors duration-300" />
+                        </div>
                         <input
                           type="text"
                           required
                           value={organization}
                           onChange={(e) => setOrganization(e.target.value)}
-                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
+                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 transition-colors duration-200 hover:border-navy focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
                         />
                       </div>
                     </div>
