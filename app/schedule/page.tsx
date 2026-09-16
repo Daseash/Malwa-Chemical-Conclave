@@ -153,8 +153,8 @@ const SCHEDULE_DAYS: DaySchedule[] = [
         icon: MessagesSquare,
       },
       {
-        time: "03:00 PM – 04:00 PM",
-        duration: "60 mins",
+        time: "03:00 PM – 05:00 PM",
+        duration: "2 hours",
         title: "Poster Presentation & Student Innovation Expo",
         track: "Vertical 03: Exhibition & Innovation",
         category: "Exhibition",
@@ -165,7 +165,7 @@ const SCHEDULE_DAYS: DaySchedule[] = [
         icon: Lightbulb,
       },
       {
-        time: "04:00 PM – 05:00 PM",
+        time: "03:00 PM – 04:00 PM",
         duration: "60 mins",
         title: "Industry Matchmaking & Networking",
         track: "Vertical 02: Academic–Industry Connect",
