@@ -829,8 +829,7 @@ export default function RegistrationPage() {
                           required
                           value={fullName}
                           onChange={(e) => setFullName(e.target.value)}
-                          placeholder="e.g. Dr. Rajesh Kumar"
-                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
+                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
                         />
                       </div>
                     </div>
@@ -846,8 +845,7 @@ export default function RegistrationPage() {
                           required
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          placeholder="e.g. rajesh@university.ac.in"
-                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
+                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
                         />
                       </div>
                     </div>
@@ -864,8 +862,7 @@ export default function RegistrationPage() {
                           inputMode="tel"
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
-                          placeholder="e.g. 9876543210"
-                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none font-mono"
+                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none font-mono"
                         />
                       </div>
                     </div>
@@ -881,8 +878,7 @@ export default function RegistrationPage() {
                           required
                           value={organization}
                           onChange={(e) => setOrganization(e.target.value)}
-                          placeholder="e.g. IIT Indore / Reliance / CSIR"
-                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
+                          className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
                         />
                       </div>
                     </div>
@@ -895,8 +891,7 @@ export default function RegistrationPage() {
                         type="text"
                         value={designation}
                         onChange={(e) => setDesignation(e.target.value)}
-                        placeholder="e.g. PhD Scholar / Assistant Professor / R&D Manager"
-                        className="w-full rounded-xl border border-gray-300 bg-white py-2.5 px-3.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
+                        className="w-full rounded-xl border border-gray-300 bg-white py-2.5 px-3.5 text-xs sm:text-sm text-gray-900 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
                       />
                     </div>
 
@@ -908,8 +903,7 @@ export default function RegistrationPage() {
                         rows={2}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
-                        placeholder="Any dietary preferences, mobility support, or specific requirements..."
-                        className="w-full rounded-xl border border-gray-300 bg-white py-2 px-3.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none resize-none"
+                        className="w-full rounded-xl border border-gray-300 bg-white py-2 px-3.5 text-xs sm:text-sm text-gray-900 focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none resize-none"
                       />
                     </div>
                   </div>
