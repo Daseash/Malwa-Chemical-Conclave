@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { AboutHeroVideo } from "@/components/AboutHeroVideo";
-import { MapPinned, ClipboardCheck, TrendingUp, ArrowRight } from "lucide-react";
+import { MapPinned, ClipboardCheck, TrendingUp, ArrowRight, FileText, Download } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About",
@@ -136,6 +136,24 @@ export default function AboutPage() {
               );
             })}
           </div>
+        </div>
+      </div>
+
+      {/* ── Official Event Brochure Banner (Above Footer) ── */}
+      <div className="w-full bg-[#F8F9FA] border-t border-[#E5E7EB] py-3.5 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl flex flex-wrap items-center justify-between gap-3">
+          <span className="text-xs font-semibold text-gray-500">
+            Malwa Chemical Conclave 2026 &bull; Official Event Prospectus
+          </span>
+          <a
+            href="/mcc-2026-brochure.pdf"
+            download="MCC 2026 Brochure.pdf"
+            className="hover-underline inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-navy hover:text-navy-900 transition-colors cursor-pointer"
+          >
+            <FileText size={15} className="text-gold-900" />
+            <span>MCC 2026 Brochure</span>
+            <Download size={14} className="text-navy" />
+          </a>
         </div>
       </div>
     </>
