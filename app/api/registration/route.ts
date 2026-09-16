@@ -136,8 +136,8 @@ export async function POST(request: NextRequest) {
   }
 
   const cleanPhone = phone.trim().replace(/\D/g, "");
-  if (cleanPhone.length !== 10) {
-    return NextResponse.json({ error: "Please provide a valid 10-digit phone number." }, { status: 400 });
+  if (cleanPhone.length < 10 || cleanPhone.length > 15) {
+    return NextResponse.json({ error: "Please provide a valid phone number." }, { status: 400 });
   }
 
   const cleanCategory = sanitize(category).slice(0, 150);
