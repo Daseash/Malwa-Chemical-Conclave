@@ -70,7 +70,7 @@ const CATEGORIES: CategoryTier[] = [
     description: "Registered students, PhD research scholars, and faculty members of IIT Indore.",
     durations: [
       { id: "1day", label: "1 Day", sublabel: "Single-day access to technical sessions & exhibitions", amount: 0 },
-      { id: "2days", label: "2 Days [with Workshop]", sublabel: "Full 2-day conclave access + Hands-on masterclasses", amount: 200 },
+      { id: "2days", label: "2 Days", sublabel: "Full 2-day conclave access", amount: 200 },
     ],
     accommodationType: "none",
   },
@@ -292,8 +292,8 @@ export default function RegistrationPage() {
   const basePassFee = activeDuration.amount;
   const totalAmount = basePassFee + accommodationFee;
 
-  // Step 1: Proceed to Pay
-  const handleProceedToPay = (e: FormEvent) => {
+  // Step 1: Proceed to Pay / Free Registration
+  const handleProceedToPay = async (e: FormEvent) => {
     e.preventDefault();
     setValidationError(null);
 
@@ -334,6 +334,58 @@ export default function RegistrationPage() {
     }
     if (!photo) {
       setValidationError("Please attach your delegate photo (upload or take a photo) for your conference badge.");
+      return;
+    }
+
+    // If total amount is 0, do not direct to payment portal — complete registration immediately
+    if (totalAmount === 0) {
+      setIsSubmitting(true);
+      try {
+        const payload = {
+          name: fullName.trim(),
+          email: email.trim(),
+          phone: phone.trim(),
+          category: selectedCategory.name,
+          organization: organization.trim(),
+          designation: designation.trim(),
+          duration: activeDuration.label,
+          accommodation: accommodationLabel,
+          totalAmount: 0,
+          photo,
+          paymentScreenshot: null,
+          transactionId: "FREE_REGISTRATION",
+          message: message.trim(),
+        };
+
+        const response = await fetch("/api/registration", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Failed to complete registration.");
+        }
+
+        try {
+          sessionStorage.removeItem("mcc_reg_draft");
+        } catch (e) {
+          console.error(e);
+        }
+
+        setConfirmedRegistrationId(data.registrationId || `MCC-2026-${Math.floor(100000 + Math.random() * 900000)}`);
+        setCurrentStep("confirmed");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : String(err);
+        setValidationError(msg);
+      } finally {
+        setIsSubmitting(false);
+      }
       return;
     }
 
@@ -390,7 +442,7 @@ export default function RegistrationPage() {
     e.preventDefault();
     setSubmitError(null);
 
-    if (!paymentScreenshot) {
+    if (totalAmount > 0 && !paymentScreenshot) {
       setSubmitError("Please upload your transaction screenshot or payment confirmation receipt.");
       return;
     }
@@ -515,8 +567,8 @@ export default function RegistrationPage() {
                 >
                   2
                 </span>
-                <span className="hidden sm:inline">Payment Proof</span>
-                <span className="sm:hidden">Payment</span>
+                <span className="hidden sm:inline">{totalAmount === 0 ? "Payment (Free)" : "Payment Proof"}</span>
+                <span className="sm:hidden">{totalAmount === 0 ? "Free" : "Payment"}</span>
               </div>
             </div>
 
@@ -916,18 +968,45 @@ export default function RegistrationPage() {
                     </div>
                   )}
 
-                  {/* Action Button: Proceed to Pay */}
+                  {/* Action Button: Proceed to Pay / Complete Free Registration */}
                   <div className="pt-3 border-t border-gray-100">
                     <button
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 rounded-xl bg-navy-950 hover:bg-navy py-4 px-6 text-sm font-bold text-white shadow-lg transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99]"
+                      disabled={isSubmitting}
+                      className={cn(
+                        "w-full flex items-center justify-center gap-2 rounded-xl py-4 px-6 text-sm font-bold text-white shadow-lg transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99]",
+                        totalAmount === 0
+                          ? "bg-green-600 hover:bg-green-700"
+                          : "bg-navy-950 hover:bg-navy",
+                        isSubmitting && "opacity-75 cursor-not-allowed"
+                      )}
                     >
-                      <span>Proceed to Pay ₹{totalAmount.toLocaleString("en-IN")}</span>
-                      <ExternalLink size={16} />
+                      {isSubmitting ? (
+                        <>
+                          <div className="h-4 w-4 rounded-full border-2 border-white border-t-transparent animate-spin" />
+                          <span>Completing Registration...</span>
+                        </>
+                      ) : totalAmount === 0 ? (
+                        <>
+                          <CheckCircle2 size={18} />
+                          <span>Complete Registration (Free)</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Proceed to Pay ₹{totalAmount.toLocaleString("en-IN")}</span>
+                          <ExternalLink size={16} />
+                        </>
+                      )}
                     </button>
-                    <p className="mt-2 text-center text-[11px] text-gray-500 font-medium">
-                      * Take the screenshot of your payment *
-                    </p>
+                    {totalAmount > 0 ? (
+                      <p className="mt-2 text-center text-[11px] text-gray-500 font-medium">
+                        * Take the screenshot of your payment *
+                      </p>
+                    ) : (
+                      <p className="mt-2 text-center text-[11px] text-emerald-600 font-medium">
+                        ✓ Complimentary registration — No payment required
+                      </p>
+                    )}
                   </div>
                 </form>
               </Reveal>
@@ -1166,7 +1245,10 @@ export default function RegistrationPage() {
                   Registration Confirmed
                 </h3>
                 <p className="mt-1 text-xs text-gray-600">
-                  Thank you, <strong className="text-navy">{fullName}</strong>. Your registration details and payment proof have been recorded.
+                  Thank you, <strong className="text-navy">{fullName}</strong>.{" "}
+                  {totalAmount > 0
+                    ? "Your registration details and payment proof have been recorded."
+                    : "Your registration details have been recorded successfully."}
                 </p>
               </div>
 
@@ -1197,9 +1279,11 @@ export default function RegistrationPage() {
                 )}
 
                 <div className="flex items-center justify-between pt-2 border-t border-gray-200 font-bold">
-                  <span className="text-gray-700">Total Amount Paid</span>
+                  <span className="text-gray-700">
+                    {totalAmount > 0 ? "Total Amount Paid" : "Total Amount"}
+                  </span>
                   <span className="font-mono text-navy-950">
-                    ₹{totalAmount.toLocaleString("en-IN")}
+                    {totalAmount > 0 ? `₹${totalAmount.toLocaleString("en-IN")}` : "Free (₹0)"}
                   </span>
                 </div>
               </div>
