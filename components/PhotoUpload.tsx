@@ -169,7 +169,7 @@ export function PhotoUpload({ value, onChange, disabled }: PhotoUploadProps) {
         </button>
       ) : (
         /* Small image preview shown only after upload */
-        <div className="inline-flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-2.5 shadow-xs">
+        <div className="inline-flex items-center gap-3.5 rounded-xl border border-gray-200 bg-white p-3 shadow-xs">
           <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-navy/20 bg-gray-100">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -179,32 +179,29 @@ export function PhotoUpload({ value, onChange, disabled }: PhotoUploadProps) {
             />
           </div>
 
-          <div className="space-y-1 pr-2 text-left">
-            <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1 text-[11px] font-bold text-green-700 bg-green-50 px-1.5 py-0.5 rounded border border-green-200">
-                <CheckCircle2 size={11} /> Photo Uploaded
-              </span>
+          <div className="space-y-1.5 text-left">
+            <div className="flex items-center gap-1.5">
+              <CheckCircle2 size={16} className="text-green-600" />
               {fileSizeMB && (
-                <span className="text-[10px] font-mono text-gray-500 font-medium">
-                  ({fileSizeMB} MB)
+                <span className="text-[11px] font-mono text-gray-500 font-medium">
+                  {fileSizeMB} MB
                 </span>
               )}
             </div>
 
             {!disabled && (
-              <div className="flex items-center gap-2 text-xs">
+              <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className="text-[11px] font-semibold text-navy hover:underline cursor-pointer"
+                  className="rounded-lg border border-gray-300 bg-white hover:bg-gray-50 px-2.5 py-1 text-xs font-semibold text-gray-700 transition-all cursor-pointer shadow-2xs"
                 >
                   Change
                 </button>
-                <span className="text-gray-300">•</span>
                 <button
                   type="button"
                   onClick={handleRemovePhoto}
-                  className="text-[11px] font-semibold text-red-600 hover:underline cursor-pointer"
+                  className="rounded-lg border border-gray-300 bg-white hover:bg-gray-50 px-2.5 py-1 text-xs font-semibold text-gray-700 transition-all cursor-pointer shadow-2xs"
                 >
                   Remove
                 </button>
