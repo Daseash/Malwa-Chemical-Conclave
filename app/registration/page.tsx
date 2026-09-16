@@ -973,11 +973,11 @@ export default function RegistrationPage() {
             <div className="lg:col-span-5 sticky top-28">
               <Reveal delay={0.1}>
                 <div className="rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
-                  <div className="bg-navy-950 px-5 py-3.5 text-white flex items-center justify-between">
-                    <span className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gold-400">
+                  <div className="bg-navy px-5 py-3.5 text-white flex items-center justify-between">
+                    <span className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gold-300">
                       <Receipt size={14} /> Fee Calculation
                     </span>
-                    <span className="text-xs font-semibold text-gray-300">
+                    <span className="text-xs font-semibold text-blue-100">
                       {selectedCategory.badge}
                     </span>
                   </div>
