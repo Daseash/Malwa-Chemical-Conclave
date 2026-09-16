@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Download } from "lucide-react";
+import { X, Download, ExternalLink } from "lucide-react";
 
 interface BrochureModalProps {
   isOpen: boolean;
@@ -37,25 +37,34 @@ export function BrochureModal({ isOpen, onClose }: BrochureModalProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-xs overscroll-contain"
+          className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-sm overscroll-contain"
           onClick={(e) => {
             if (e.target === e.currentTarget) onClose();
           }}
         >
-          {/* Floating Top-Right Controls */}
+          {/* Floating Top Controls */}
           <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 flex items-center gap-2">
             <a
-              href="/MCC 2026 Broucher.pdf"
-              download="MCC 2026 Brochure.pdf"
-              className="inline-flex items-center gap-1.5 rounded-full bg-navy-900/90 hover:bg-navy-950 text-gold px-3.5 py-2 text-xs font-bold uppercase tracking-wider shadow-lg border border-gold/40 backdrop-blur-md transition-all hover:scale-105"
+              href="/mcc-2026-brochure.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full bg-navy/90 hover:bg-navy text-white px-3.5 py-2 text-xs font-bold uppercase tracking-wider shadow-lg border border-white/20 backdrop-blur-md transition-all hover:scale-105"
               onClick={(e) => e.stopPropagation()}
             >
-              <Download size={14} /> PDF
+              <ExternalLink size={14} /> Open PDF
+            </a>
+            <a
+              href="/mcc-2026-brochure.pdf"
+              download="MCC 2026 Brochure.pdf"
+              className="inline-flex items-center gap-1.5 rounded-full bg-navy-950/90 hover:bg-navy-900 text-gold px-3.5 py-2 text-xs font-bold uppercase tracking-wider shadow-lg border border-gold/40 backdrop-blur-md transition-all hover:scale-105"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Download size={14} /> Download
             </a>
             <button
               type="button"
               onClick={onClose}
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-navy-950/90 hover:bg-navy-900 text-white shadow-lg border border-white/20 backdrop-blur-md transition-all hover:scale-105 cursor-pointer"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 hover:bg-white/30 text-white shadow-lg border border-white/30 backdrop-blur-md transition-all hover:scale-105 cursor-pointer"
               aria-label="Close"
             >
               <X size={20} />

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { FileText, ArrowRight } from "lucide-react";
+import { FileText, ArrowRight, ExternalLink } from "lucide-react";
 import { BrochureModal } from "@/components/BrochureModal";
 
 export function AboutHeroVideo() {
@@ -55,18 +55,33 @@ export function AboutHeroVideo() {
         </motion.div>
       </section>
 
-      {/* ── Text Link Below Video (Right Aligned, Responsive) ── */}
-      <div className="w-full bg-[#F8F9FA] border-b border-[#E5E7EB] py-2.5 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl flex items-center justify-end">
-          <button
-            type="button"
-            onClick={() => setIsBrochureOpen(true)}
-            className="hover-underline inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-navy hover:text-navy-900 transition-colors cursor-pointer"
-          >
-            <FileText size={15} className="text-gold-900" />
-            <span>MCC 2026 Brochure</span>
-            <ArrowRight size={14} className="text-navy" />
-          </button>
+      {/* ── Text Link Below Video (Responsive & Accessible) ── */}
+      <div className="w-full bg-[#F8F9FA] border-b border-[#E5E7EB] py-3 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl flex flex-wrap items-center justify-between gap-3">
+          <span className="text-xs font-semibold text-gray-500">
+            Malwa Chemical Conclave 2026 &bull; Official Event Prospectus
+          </span>
+          <div className="flex items-center gap-3 sm:gap-4">
+            <button
+              type="button"
+              onClick={() => setIsBrochureOpen(true)}
+              className="hover-underline inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-navy hover:text-navy-900 transition-colors cursor-pointer"
+            >
+              <FileText size={15} className="text-gold-900" />
+              <span>MCC 2026 Brochure</span>
+              <ArrowRight size={14} className="text-navy" />
+            </button>
+            <span className="text-gray-300">|</span>
+            <a
+              href="/mcc-2026-brochure.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover-underline inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-navy hover:text-navy-900 transition-colors cursor-pointer"
+            >
+              <span>Open PDF</span>
+              <ExternalLink size={13} className="text-navy" />
+            </a>
+          </div>
         </div>
       </div>
 

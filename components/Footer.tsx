@@ -46,6 +46,7 @@ const TwitterIcon = () => (
 
 const QUICK_LINKS = [
   { label: "About", href: "/about" },
+  { label: "Brochure (PDF)", href: "/mcc-2026-brochure.pdf", external: true },
   { label: "Schedule", href: "/schedule" },
   { label: "Invited Speakers", href: "/speakers" },
   { label: "Registration", href: "/registration" },
@@ -143,6 +144,8 @@ export function Footer() {
               <li key={link.href}>
                 <Link
                   href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
                   className="text-sm text-white/60 transition-colors hover:text-white"
                 >
                   {link.label}
