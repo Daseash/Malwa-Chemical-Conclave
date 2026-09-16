@@ -3,7 +3,7 @@ import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { AboutHeroVideo } from "@/components/AboutHeroVideo";
 import { AboutBrochureCard } from "@/components/AboutBrochureCard";
-import { MapPinned, ClipboardCheck, TrendingUp } from "lucide-react";
+import { MapPinned, ClipboardCheck, TrendingUp, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About",
@@ -62,23 +62,51 @@ export default function AboutPage() {
 
         {/* Milestone Progression */}
         <Reveal delay={0.05}>
-          <div className="mt-8 institutional-card p-6 sm:p-8 bg-gradient-to-r from-navy-50/70 to-white">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-navy-900 mb-4">
-              Conclave Evolution
-            </h3>
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-              <div className="flex-1 rounded-md border border-[#E5E7EB] bg-white p-4 shadow-2xs">
-                <span className="text-xs font-bold uppercase tracking-wider text-gray-500">2025 Pilot Edition</span>
-                <p className="mt-1 text-base font-bold text-navy-900">4 Plenary Industry Talks</p>
-                <p className="text-xs font-medium text-gray-700 mt-1">Foundation of the BIS Student Chapter collaborative series.</p>
+          <div className="mt-8 institutional-card p-6 sm:p-8 bg-gradient-to-r from-navy-50/70 via-white to-gold-50/30 border border-gray-200 hover:border-navy/40 transition-all duration-300">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-navy-900 flex items-center gap-1.5">
+                <TrendingUp size={15} className="text-navy" />
+                <span>Conclave Evolution</span>
+              </h3>
+              <span className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
+                Growth &amp; Trajectory
+              </span>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-stretch justify-between gap-4">
+              {/* Box 1: 2025 Pilot Edition */}
+              <div className="group/pilot flex-1 rounded-xl border border-gray-200 bg-white p-5 shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:border-navy hover:shadow-[0_12px_24px_-8px_rgba(0,47,108,0.18)] relative overflow-hidden cursor-pointer">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gray-200 transition-colors duration-300 group-hover/pilot:bg-navy" />
+                <span className="inline-block text-xs font-bold uppercase tracking-wider text-gray-500 group-hover/pilot:text-navy transition-colors">
+                  2025 Pilot Edition
+                </span>
+                <p className="mt-1.5 text-base font-bold text-navy-900 group-hover/pilot:text-navy transition-colors">
+                  4 Plenary Industry Talks
+                </p>
+                <p className="text-xs font-medium text-gray-600 mt-1 leading-relaxed">
+                  Foundation of the BIS Student Chapter collaborative series with inaugural symposium tracks.
+                </p>
               </div>
-              <div className="hidden sm:flex items-center text-navy font-bold text-xl px-2">
-                &rarr;
+
+              {/* Connector Arrow */}
+              <div className="flex items-center justify-center text-navy px-1 py-1 sm:py-0">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-navy/10 text-navy font-bold transition-all duration-300 hover:scale-110 hover:bg-navy hover:text-white shadow-2xs">
+                  <ArrowRight size={16} />
+                </div>
               </div>
-              <div className="flex-1 rounded-md border-2 border-navy bg-white p-4 shadow-sm">
-                <span className="text-xs font-bold uppercase tracking-wider text-gold-900">2026 Flagship Conclave</span>
-                <p className="mt-1 text-base font-bold text-navy-950">7 Integrated Strategic Verticals</p>
-                <p className="text-xs font-medium text-gray-700 mt-1">Workshops, Matchmaking, Student Expo, and BIS Policy Panel.</p>
+
+              {/* Box 2: 2026 Flagship Conclave */}
+              <div className="group/flagship flex-1 rounded-xl border-2 border-navy bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-navy-600 hover:shadow-[0_14px_28px_-8px_rgba(0,74,173,0.28)] relative overflow-hidden cursor-pointer ring-1 ring-navy/10">
+                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-navy to-gold" />
+                <span className="inline-block text-xs font-bold uppercase tracking-wider text-gold-900">
+                  2026 Flagship Conclave
+                </span>
+                <p className="mt-1.5 text-base font-bold text-navy-950 group-hover/flagship:text-navy transition-colors">
+                  7 Integrated Strategic Verticals
+                </p>
+                <p className="text-xs font-medium text-gray-600 mt-1 leading-relaxed">
+                  Workshops, Matchmaking, Student Expo, and BIS Policy Panel with nationwide institutional participation.
+                </p>
               </div>
             </div>
           </div>
