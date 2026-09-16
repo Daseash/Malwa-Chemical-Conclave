@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { AboutHeroVideo } from "@/components/AboutHeroVideo";
-import { AboutBrochureCard } from "@/components/AboutBrochureCard";
 import { MapPinned, ClipboardCheck, TrendingUp, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -137,13 +136,6 @@ export default function AboutPage() {
               );
             })}
           </div>
-        </div>
-
-        {/* ── Official Brochure Section ── */}
-        <div className="mt-14">
-          <Reveal delay={0.1}>
-            <AboutBrochureCard />
-          </Reveal>
         </div>
       </div>
     </>
