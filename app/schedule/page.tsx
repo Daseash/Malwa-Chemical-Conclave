@@ -53,18 +53,18 @@ const SCHEDULE_DAYS: DaySchedule[] = [
     date: "October 11, 2026",
     dayName: "Sunday",
     title: "Technical Masterclasses & Applied Workshops",
-    focus: "Intensive hands-on computational tools, process engineering simulations with Aspen and MATLAB, and hosted lunch courtesy of MathWorks.",
+    focus: "Intensive hands-on computational tools, computational fluid dynamics and process simulations with ANSYS Fluent and MATLAB, and hosted lunch courtesy of MathWorks.",
     badge: "Workshop Day",
     items: [
       {
         time: "09:00 AM – 12:00 PM",
         duration: "3 hours",
-        title: "Aspen Workshop 1",
+        title: "ANSYS Fluent Workshop 1",
         track: "Vertical 05: Practical Masterclass",
         category: "Workshop",
         badgeColor: "blue",
         description:
-          "Practical computational masterclass covering chemical process simulation, flowsheet design, unit operations, and property modeling with Aspen software.",
+          "Practical computational masterclass covering computational fluid dynamics (CFD), mesh generation, boundary conditions, and flow modeling with ANSYS Fluent software.",
         location: "Department Computing Facility & CAD Labs",
         icon: Wrench,
       },
@@ -84,12 +84,12 @@ const SCHEDULE_DAYS: DaySchedule[] = [
       {
         time: "02:00 PM – 05:00 PM",
         duration: "3 hours",
-        title: "Aspen Workshop 2",
+        title: "ANSYS Fluent Workshop 2",
         track: "Vertical 05: Advanced Masterclass",
         category: "Workshop",
         badgeColor: "blue",
         description:
-          "Advanced session covering dynamic chemical process simulation, reaction engineering, energy integration, and industrial plant optimization using Aspen.",
+          "Advanced session covering multiphase flows, turbulence modeling, reacting flows, and industrial chemical process optimization using ANSYS Fluent.",
         location: "Department Computing Facility & CAD Labs",
         icon: Wrench,
       },
