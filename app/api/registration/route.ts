@@ -144,6 +144,21 @@ export async function POST(request: NextRequest) {
   }
 
   const cleanCategory = sanitize(category).slice(0, 150);
+
+  // Validate IIT Indore institute email domain requirement
+  if (
+    cleanCategory.toLowerCase().includes("iit indore") ||
+    cleanCategory.toLowerCase().includes("iiti")
+  ) {
+    const isIitiEmail = cleanEmail.endsWith("@iiti.ac.in") || cleanEmail.endsWith(".iiti.ac.in");
+    if (!isIitiEmail) {
+      return NextResponse.json(
+        { error: "Please enter institute email ending with .iiti.ac.in for IIT Indore registration." },
+        { status: 400 }
+      );
+    }
+  }
+
   const cleanOrg = organization && typeof organization === "string" ? sanitize(organization).slice(0, 150) : "";
   const cleanDesignation = designation && typeof designation === "string" ? sanitize(designation).slice(0, 100) : "";
   const cleanDuration = duration && typeof duration === "string" ? sanitize(duration).slice(0, 100) : "";

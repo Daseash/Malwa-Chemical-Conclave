@@ -236,7 +236,8 @@ export default function RegistrationPage() {
           const cleanPhone = (p.phone || "").replace(/\D/g, "");
           const cleanEmail = (p.email || "").trim().toLowerCase();
           const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail);
-          if (p.currentStep === "payment_proof" && cleanPhone.length >= 10 && isEmailValid) {
+          const isIitiValid = p.selectedCategoryId !== "iiti" || cleanEmail.endsWith("@iiti.ac.in") || cleanEmail.endsWith(".iiti.ac.in");
+          if (p.currentStep === "payment_proof" && cleanPhone.length >= 10 && isEmailValid && isIitiValid) {
             setCurrentStep("payment_proof");
           } else {
             setCurrentStep("details");
@@ -300,6 +301,14 @@ export default function RegistrationPage() {
     if (!lowerEmail || !EMAIL_REGEX.test(lowerEmail)) {
       setValidationError("Please enter a valid email address.");
       return;
+    }
+
+    if (selectedCategory.id === "iiti") {
+      const isIitiEmail = lowerEmail.endsWith("@iiti.ac.in") || lowerEmail.endsWith(".iiti.ac.in");
+      if (!isIitiEmail) {
+        setValidationError("Please enter institute email ending with .iiti.ac.in");
+        return;
+      }
     }
 
     const phoneDigits = phone.replace(/\D/g, "");
@@ -428,6 +437,16 @@ export default function RegistrationPage() {
     if (totalAmount > 0 && !paymentScreenshot) {
       setSubmitError("Please upload your transaction screenshot or payment confirmation receipt.");
       return;
+    }
+
+    if (selectedCategory.id === "iiti") {
+      const lowerEmail = email.trim().toLowerCase();
+      const isIitiEmail = lowerEmail.endsWith("@iiti.ac.in") || lowerEmail.endsWith(".iiti.ac.in");
+      if (!isIitiEmail) {
+        setCurrentStep("details");
+        setValidationError("Please enter institute email ending with .iiti.ac.in");
+        return;
+      }
     }
 
     setIsSubmitting(true);
@@ -838,7 +857,8 @@ export default function RegistrationPage() {
 
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 mb-1">
-                        Email Address <span className="text-red-500">*</span>
+                        {selectedCategory.id === "iiti" ? "Institute Email Address" : "Email Address"}{" "}
+                        <span className="text-red-500">*</span>
                       </label>
                       <div className="relative group/field">
                         <div className="pointer-events-none absolute left-3.5 top-3 text-gray-400 [perspective:600px] [transform-style:preserve-3d]">
@@ -847,8 +867,12 @@ export default function RegistrationPage() {
                         <input
                           type="email"
                           required
+                          placeholder={selectedCategory.id === "iiti" ? "Enter institute email" : "Enter email address"}
                           value={email}
-                          onChange={(e) => setEmail(e.target.value)}
+                          onChange={(e) => {
+                            setEmail(e.target.value);
+                            if (validationError) setValidationError(null);
+                          }}
                           className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-gray-900 transition-colors duration-200 hover:border-navy focus:border-navy focus:ring-2 focus:ring-navy/20 outline-none"
                         />
                       </div>
