@@ -44,6 +44,12 @@ jobs:
           echo "Building Next.js application..."
           npm run build
 
+          echo "Ensuring MongoDB process is running on port 27018..."
+          if ! pgrep -f "port 27018" > /dev/null; then
+            echo "Starting MongoDB on port 27018..."
+            /usr/bin/mongod --dbpath /home/iiti-mcc/mongodb_data --port 27018 --bind_ip 127.0.0.1 --fork --logpath /home/iiti-mcc/mongodb.log || true
+          fi
+
           echo "Restarting PM2 application..."
           if pm2 describe mcc > /dev/null 2>&1; then
             echo "Process 'mcc' found. Restarting..."
