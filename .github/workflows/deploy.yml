@@ -61,7 +61,7 @@ jobs:
 
           echo "Verifying local HTTP response..."
           sleep 3
-          curl -s -I http://127.0.0.1:3000 || echo "Note: Port 3000 warming up..."
+          curl -s -I http://127.0.0.1:3030 || echo "Note: Port 3030 warming up..."
 
           echo "PM2 Recent Logs:"
           pm2 logs mcc --lines 30 --nostream || true
