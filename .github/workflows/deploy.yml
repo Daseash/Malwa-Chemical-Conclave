@@ -45,13 +45,26 @@ jobs:
           npm run build
 
           echo "Restarting PM2 application..."
-          pm2 restart mcc
+          if pm2 describe mcc > /dev/null 2>&1; then
+            echo "Process 'mcc' found. Restarting..."
+            pm2 restart mcc --update-env
+          else
+            echo "Process 'mcc' not found. Starting fresh..."
+            pm2 start ecosystem.config.cjs || pm2 start npm --name "mcc" -- start
+          fi
 
           echo "Saving PM2 process list..."
           pm2 save
 
           echo "Checking PM2 status..."
           pm2 status
+
+          echo "Verifying local HTTP response..."
+          sleep 3
+          curl -s -I http://127.0.0.1:3000 || echo "Note: Port 3000 warming up..."
+
+          echo "PM2 Recent Logs:"
+          pm2 logs mcc --lines 30 --nostream || true
 
           echo "======================================"
           echo "MCC Deployment Completed"
