@@ -89,7 +89,7 @@ export default function SpeakersPage() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-16">
           {FEATURED_SPEAKERS_2026.map((speaker, i) => (
             <Reveal key={speaker.name} delay={i * 0.05}>
-              <div className="institutional-card overflow-hidden bg-white border border-[#E5E7EB] rounded-2xl shadow-[0_10px_25px_-5px_rgba(0,35,80,0.08),0_8px_10px_-6px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_35px_-8px_rgba(0,47,108,0.16),0_10px_15px_-5px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between h-full hover:border-navy">
+              <div className="institutional-card overflow-hidden bg-white border border-[#E5E7EB] rounded-2xl shadow-[0_12px_30px_-6px_rgba(0,35,80,0.12),0_4px_12px_-2px_rgba(0,0,0,0.06)] hover:shadow-[0_24px_45px_-8px_rgba(0,47,108,0.22),0_12px_20px_-4px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 transition-all duration-300 group flex flex-col justify-between h-full hover:border-navy">
                 <div>
                   <div className="relative h-64 w-full overflow-hidden bg-gray-100">
                     <img
@@ -97,13 +97,6 @@ export default function SpeakersPage() {
                       alt={speaker.name}
                       className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     />
-                    {speaker.badge && (
-                      <div className="absolute top-3 right-3">
-                        <span className="rounded-full bg-navy-950/90 text-gold px-3 py-1 text-[11px] font-bold uppercase tracking-wider backdrop-blur-xs border border-gold/30">
-                          {speaker.badge}
-                        </span>
-                      </div>
-                    )}
                   </div>
 
                   <div className="p-6">
@@ -149,7 +142,7 @@ export default function SpeakersPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {PREVIOUS_SPEAKERS.map((speaker, i) => (
               <Reveal key={speaker.name} delay={i * 0.05}>
-                <div className="institutional-card p-6 flex flex-col items-center text-center bg-white h-full group hover:border-navy transition-all duration-300">
+                <div className="institutional-card p-6 flex flex-col items-center text-center bg-white rounded-2xl border border-[#E5E7EB] shadow-[0_8px_20px_-4px_rgba(0,35,80,0.08),0_4px_8px_-2px_rgba(0,0,0,0.04)] hover:shadow-[0_18px_32px_-6px_rgba(0,47,108,0.18),0_8px_12px_-3px_rgba(0,0,0,0.06)] hover:-translate-y-1 h-full group hover:border-navy transition-all duration-300">
                   <div className="relative h-28 w-28 sm:h-32 sm:w-32 rounded-full overflow-hidden border-2 border-gold/40 p-1 bg-gradient-to-br from-gold/20 to-navy/10 shadow-sm group-hover:scale-105 group-hover:border-navy transition-all duration-300 shrink-0">
                     <img
                       src={speaker.image}
