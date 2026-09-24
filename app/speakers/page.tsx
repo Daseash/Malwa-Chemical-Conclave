@@ -6,7 +6,7 @@ import { Award } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Invited Speakers",
-  description: "Distinguished invited speakers and keynote delegates for Malwa Chemical Conclave 2026.",
+  description: "Distinguished invited speakers and delegates for Malwa Chemical Conclave 2026.",
 };
 
 const FEATURED_SPEAKERS_2026 = [
@@ -15,8 +15,24 @@ const FEATURED_SPEAKERS_2026 = [
     role: "Head, Technology Development & Design",
     organization: "DCM Nouvelle Specialty Chemicals Limited",
     image: "/speakers/zahid-hussain.jpeg",
-    badge: "Keynote Speaker",
+    badge: "Invited Speaker",
     focus: "Specialty Chemicals, Process Innovation & Technology Design",
+  },
+  {
+    name: "Mr. Dipak K. Basu",
+    role: "Vice President - Business Development",
+    organization: "Tiki Tar and Shell India Pvt. Ltd",
+    image: "/speakers/dipak-k-basu.png",
+    badge: "Invited Speaker",
+    focus: "Bitumen & Asphalt Technologies, Business Development & Infrastructure Solutions",
+  },
+  {
+    name: "Prof. Ganti Suryanarayana Murthy",
+    role: "Professor, Mehta Family School of Biosciences and Biomedical Engineering",
+    organization: "Indian Institute of Technology Indore",
+    image: "/speakers/ganti-suryanarayana-murthy.avif",
+    badge: "Invited Speaker",
+    focus: "Sustainable Bioprocessing, Agroecological Systems & Bioengineering",
   },
 ];
 
@@ -57,16 +73,16 @@ export default function SpeakersPage() {
       />
 
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        {/* ── 2026 Featured Keynote Speakers ─────────────────────── */}
+        {/* ── 2026 Featured Invited Speakers ─────────────────────── */}
         <div className="mb-8">
           <span className="text-xs font-bold uppercase tracking-wider text-navy">
             Conclave 2026 Line-Up
           </span>
           <h2 className="mt-2 text-2xl sm:text-3xl font-bold tracking-tight text-navy-950">
-            Distinguished Keynote Speakers
+            Distinguished Invited Speakers
           </h2>
           <p className="mt-1 text-sm text-gray-600">
-            Eminent chemical pioneers, corporate technology leaders, and academic dignitaries delivering keynote talks at Malwa Chemical Conclave 2026.
+            Eminent chemical pioneers, corporate technology leaders, and academic dignitaries delivering invited talks at Malwa Chemical Conclave 2026.
           </p>
         </div>
 
@@ -81,11 +97,13 @@ export default function SpeakersPage() {
                       alt={speaker.name}
                       className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute top-3 right-3">
-                      <span className="rounded-full bg-navy-950/90 text-gold px-3 py-1 text-[11px] font-bold uppercase tracking-wider backdrop-blur-xs border border-gold/30">
-                        {speaker.badge}
-                      </span>
-                    </div>
+                    {speaker.badge && (
+                      <div className="absolute top-3 right-3">
+                        <span className="rounded-full bg-navy-950/90 text-gold px-3 py-1 text-[11px] font-bold uppercase tracking-wider backdrop-blur-xs border border-gold/30">
+                          {speaker.badge}
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   <div className="p-6">
@@ -105,7 +123,7 @@ export default function SpeakersPage() {
                 </div>
 
                 <div className="bg-gray-50/80 px-6 py-3 border-t border-gray-100 text-xs text-navy font-semibold flex items-center justify-between">
-                  <span>Distinguished Keynote &bull; 2026</span>
+                  <span>Invited Speaker &bull; 2026</span>
                   <Award size={14} className="text-gold" />
                 </div>
               </div>
