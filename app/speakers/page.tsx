@@ -34,6 +34,14 @@ const FEATURED_SPEAKERS_2026 = [
     badge: "Invited Speaker",
     focus: "Sustainable Bioprocessing, Agroecological Systems & Bioengineering",
   },
+  {
+    name: "Mr. Peeyush Dubey",
+    role: "General Manager (Lubes)",
+    organization: "Indian Oil Corporation Ltd., M.P. State Office, Bhopal",
+    image: "/speakers/peeyush-dubey.jpg",
+    badge: "Invited Speaker",
+    focus: "Industrial Lubricants, Downstream Petroleum Technologies & Energy Solutions",
+  },
 ];
 
 
@@ -86,7 +94,7 @@ export default function SpeakersPage() {
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-16">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-16">
           {FEATURED_SPEAKERS_2026.map((speaker, i) => (
             <Reveal key={speaker.name} delay={i * 0.05}>
               <div className="institutional-card overflow-hidden bg-white border border-[#E5E7EB] rounded-2xl shadow-[0_12px_30px_-6px_rgba(0,35,80,0.12),0_4px_12px_-2px_rgba(0,0,0,0.06)] hover:shadow-[0_24px_45px_-8px_rgba(0,47,108,0.22),0_12px_20px_-4px_rgba(0,0,0,0.08)] hover:-translate-y-1.5 transition-all duration-300 group flex flex-col justify-between h-full hover:border-navy">
