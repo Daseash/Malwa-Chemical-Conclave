@@ -369,19 +369,13 @@ export default function HomePage() {
       {/* ── REGISTRATION CTA ──────────────────────────────────────── */}
       <section className="border-t-2 border-gold bg-[#001B3D] text-white py-16 sm:py-20">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-4 px-4 text-center sm:px-6 lg:px-8">
-          <span className="inline-block rounded-full bg-white/10 px-3.5 py-1 text-xs font-bold uppercase tracking-widest text-gold-300">
-            Registration Closed
-          </span>
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">
-            Be Part of Malwa Chemical Conclave 2026
+          <h2 className="text-2xl font-bold text-white/90 sm:text-3xl">
+            Malwa Chemical Conclave 2026
           </h2>
-          <p className="max-w-2xl text-base font-medium text-white/90 leading-relaxed">
-            Registrations are now closed. Thank you to all delegates, researchers, and participants for the overwhelming response.
-          </p>
-          <div className="mt-4">
-            <Button href="/registration">
+          <div className="mt-2">
+            <p className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-wider text-gold drop-shadow-md">
               Registration Closed
-            </Button>
+            </p>
           </div>
         </div>
       </section>
