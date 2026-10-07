@@ -425,7 +425,7 @@ export default function SchedulePage() {
 
               <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-end">
                 <Button href="/registration" className="w-full text-center font-bold">
-                  Register for Conclave
+                  Registration Closed
                 </Button>
                 <Link
                   href="/accommodation-venue"

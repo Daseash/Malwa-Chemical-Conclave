@@ -281,10 +281,10 @@ export function Navbar() {
                     <Link
                       href="/registration"
                       onClick={() => setMenuOpen(false)}
-                      className="flex w-full items-center justify-center gap-2 rounded-lg bg-gold py-3.5 text-sm font-bold text-white shadow-xl hover:bg-gold-700 transition-all duration-300 uppercase tracking-wider hover:scale-[1.01]"
+                      className="flex w-full items-center justify-center gap-2 rounded-lg bg-navy-800 border border-white/20 py-3.5 text-sm font-bold text-white shadow-xl hover:bg-navy-900 transition-all duration-300 uppercase tracking-wider hover:scale-[1.01]"
                     >
                       <UserCheck size={18} />
-                      <span>Register for Malwa Chemical Conclave 2026</span>
+                      <span>Registration Closed</span>
                     </Link>
                   </div>
                 </div>
